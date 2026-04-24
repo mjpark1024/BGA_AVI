@@ -811,7 +811,7 @@ namespace HDSInspector
 
                     break;
                 case MenuType.RUNINSPECT:
-                    /*
+                    
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     openFileDialog.Filter = "이미지 파일|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
                     if (openFileDialog.ShowDialog() == true)
@@ -826,19 +826,21 @@ namespace HDSInspector
                             Bitmap bitmap = new Bitmap(diretoryPath + "\\"+ str);
 
                             List<string> id = new List<string>();
-                            id = DataMatrixCode.Algo_Conv_Square_DataMatrix(bitmap, currOrder, "1", i);
-                       
-                            if (id != null && id.Count > 0 && id[0].Trim() != "")
-                                ;// StripID = id[0];
-                            else
-                            {
-                                System.IO.File.Copy(diretoryPath + "\\" + str, "C:\\Users\\admin\\Desktop\\양산\\실패" + "\\" + str, true);
-                                ; //id = DataMatrixCode.GetDataMatrixMJ(bitmap, currOrder, "1", 0);
-                            }
+
+                            string teststr = MatrixCodeDLL.Native_Decode(bitmap);
+                            //id = DataMatrixCode.Algo_Conv_Square_DataMatrix(bitmap, currOrder, "1", i);
+                            //
+                            //if (id != null && id.Count > 0 && id[0].Trim() != "")
+                            //    ;// StripID = id[0];
+                            //else
+                            //{
+                            //    System.IO.File.Copy(diretoryPath + "\\" + str, "C:\\Users\\admin\\Desktop\\양산\\실패" + "\\" + str, true);
+                            //    ; //id = DataMatrixCode.GetDataMatrixMJ(bitmap, currOrder, "1", 0);
+                            //}
                         }
                     }
                     return;
-                    */
+                    
                     InspectionMonitoringCtrl.EndLoader = false;             
                     if (MainWindow.Setting.General.UseIDReader)
                     {
