@@ -1,0 +1,59 @@
+﻿<Window xmlns:my="clr-namespace:ResultManagement"  x:Class="RMS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Icon="Images/main_icon.ico" 
+        MinHeight="950" MinWidth="1100" MaxHeight="950" MaxWidth="1100" Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource ="./Images/main_background.jpg" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        
+        <!--<Border Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,17">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.3" >
+                    <GradientStop Color="#FF444444" Offset="0"/>
+                    <GradientStop Color="#FFD0D0D0" Offset="0.4"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.RowSpan="4" Margin="0,-17,0,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.4">
+                    <GradientStop Color="#FF444444" Offset="1"/>
+                    <GradientStop Color="#FFD0D0D0" Offset="0.96"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>-->
+        
+        <Border Grid.Row="1" Height="20" Margin="0,-2,0,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.486,0.986" StartPoint="0.486,0">
+                    <GradientStop Color="#FF444444" Offset="0"/>
+                    <GradientStop Color="#FFD0D0D0" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-2,0,0">
+            <Button Height="40" Width="110" Style="{DynamicResource MenuButtonStyle}" Name="btnUserManagement" Tag="U">사용자 관리</Button>
+            <Button Height="40" Width="110" Style="{DynamicResource MenuButtonStyle}" Name="btnEquipmentManagement" Tag="E">장비 관리</Button>
+            <Button Height="40" Width="110" Style="{DynamicResource MenuButtonStyle}" Name="btnNGInformationManagement" Tag="N">불량정보 관리</Button>
+            <Button Height="40" Width="110" Style="{DynamicResource MenuButtonStyle}" Name="btnInspectTypeManagement" Tag="I">검사정보 관리</Button>
+            <Button Height="40" Width="110" Style="{DynamicResource MenuButtonStyle}" Name="btnResultDataManagement" Tag="R">결과정보 삭제</Button>
+        </StackPanel>
+        
+        <Grid Grid.Row="3" Name="pnlContent">
+            <my:UserManagement          Visibility="Visible"   Height="785" Width="1024" x:Name="UserManagement"/>
+            <my:EquipmentManagement     Visibility="Collapsed" Height="785" Width="1024" x:Name="EquipmentManagement"/>
+            <my:NGInformationManagement Visibility="Collapsed" Height="785" Width="1024" x:Name="NGInformationManagement"/>
+            <my:InspectTypeManagement   Visibility="Collapsed" Height="785" Width="1024" x:Name="InspectTypeManagement"/>
+            <my:ResultDataManagement    Visibility="Collapsed" Height="785" Width="1024" x:Name="ResultDataManagement"/>
+        </Grid>
+    </Grid>
+</Window>

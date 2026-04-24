@@ -1,0 +1,342 @@
+﻿<UserControl  
+            x:Class="HDSInspector.InspectionResultTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="620">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="WhiteSmoke" Color="WhiteSmoke"/>
+        <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="LightGray" Color="LightGray" />
+        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+        <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border 
+                                Name="Border"
+                                Margin="0,0,-4,0" 
+                                Background="{StaticResource WhiteSmoke}"
+                                BorderBrush="{StaticResource  SolidBorderBrush}" 
+                                BorderThickness="1,1,1,1" 
+                                CornerRadius="2,12,0,0" >
+                                <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="12,2,12,2"
+                                    RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource LightGray}" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Name="ResultTable" DataContext="{Binding}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="255*"/>
+            <ColumnDefinition Width="278*"/>
+            <ColumnDefinition Width="88*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1" CornerRadius="7" >
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFBDBDBD" Offset="0"/>
+                        <GradientStop Color="#FFEFE9F1" Offset="0.709"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1" CornerRadius="7" >
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFBDBDBD" Offset="0"/>
+                        <GradientStop Color="#FFEFE9F1" Offset="0.709"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1" CornerRadius="7" >
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFBDBDBD" Offset="0"/>
+                        <GradientStop Color="#FFEFE9F1" Offset="0.709"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1" CornerRadius="7" >
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFBDBDBD" Offset="0"/>
+                        <GradientStop Color="#FFEFE9F1" Offset="0.709"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1" CornerRadius="7" >
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFBDBDBD" Offset="0"/>
+                        <GradientStop Color="#FFEFE9F1" Offset="0.709"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="0" Margin="0,1" CornerRadius="8,0,0,8" Background="Gray" />
+            <Border Grid.Row="1" Grid.Column="0" Margin="0,1" CornerRadius="8,0,0,8" Background="Gray" />
+            <Border Grid.Row="2" Grid.Column="0" Margin="0,1" CornerRadius="8,0,0,8" Background="Gray" />
+            <Border Grid.Row="3" Grid.Column="0" Margin="0,1" CornerRadius="8,0,0,8" Background="Gray" />
+            <Border Grid.Row="4" Grid.Column="0" Margin="0,1" CornerRadius="8,0,0,8" Background="Gray" />
+
+            <Label Grid.Row="0" Content="모 델" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="1" Content="로 트" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="2" Content="검사자" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="3" Content="시작시간" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="4" Content="경과시간" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Name="txtModel" Grid.Column="1" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtLot" Grid.Column="1" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtOperator" Grid.Column="1" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtStratTime" Text="{Binding Path=StartTime, StringFormat='yy-MM-dd HH:mm:ss'}" Grid.Column="1" Grid.Row="3"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtRunTime" Text="{Binding Path=RunTime, StringFormat=hh\\:mm\\:ss, TargetNullValue= ' --- '}" Grid.Column="1" Grid.Row="4"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="0" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="0" Content="투입스트립" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="완성스트립" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="1" Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            <Border Grid.Row="1" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="1" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="1" Content="완성 유닛" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="불량 유닛" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="#FF762A0D" FontFamily="HY부활L" FontWeight="Bold" Background="{x:Null}" HorizontalAlignment="Center"/>
+
+
+            <Border Grid.Row="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="2" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="2" Content="양품 유닛" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="SR Shift" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="#FF2914B6" FontFamily="HY부활L" FontWeight="Bold" Background="{x:Null}" HorizontalAlignment="Center"/>
+
+
+            <Border Grid.Row="3" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="3" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="3" Content="양품스트립" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="3" Grid.Column="2" Content="불량스트립" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+
+            <Border Grid.Row="4" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="4" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="4" Content="V 전 수율" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Black"  FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="4"  Grid.Column="2" Content="V 후 수율" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="#FF2914B6" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            <Border Grid.Row="5" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Border Grid.Row="5" Grid.Column="2" Background="Silver" CornerRadius="5,0,0,5" Margin="2" />
+            <Label Grid.Row="5" Grid.Column="0" Content="평균 XOut" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="#FF762A0D" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Grid.Row="5" Grid.Column="2" Content="폐기스트립" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="#FF762A0D" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+
+            <TextBlock Text = "{Binding Path=InspectStrip}"      Grid.Column="1" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Blue" FontWeight="Bold"/>
+            <TextBlock Text = "{Binding Path=TotalStrip}"        Grid.Column="3" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+
+            <TextBlock Text = "{Binding Path=TotalUnits}"        Grid.Column="1" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Text = "{Binding Path=BadUnits}"          Grid.Column="3" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Red" FontWeight="Bold"/>
+
+            <TextBlock Text = "{Binding Path=CompletionUnits}"   Grid.Column="1" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock  x:Name="txtPSR_Shift"                    Grid.Column="3" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Blue" FontWeight="Bold"/>
+
+
+            <TextBlock Text = "{Binding Path=GoodStrip}"         Grid.Column="1" Grid.Row="3"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Text = "{Binding Path=BadStrip}"          Grid.Column="3" Grid.Row="3"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+
+            <TextBlock Text = "{Binding Path=BeforeYield, StringFormat='00.00'}" Grid.Column="1" Grid.Row="4"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Text = "{Binding Path=Yield, StringFormat='00.00'}"       Grid.Column="3" Grid.Row="4"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+
+            <TextBlock Text = "{Binding Path=FailStrip}"         Grid.Column="3" Grid.Row="5"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+            <TextBlock Name="txtXOut"                            Grid.Column="1" Grid.Row="5"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+
+
+        </Grid>
+        <TabControl Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Margin="0, 1, 0, 0" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2">
+            <TabItem>
+                <TabItem.Header >
+                    <TextBlock Width="80" Height="25" TextAlignment="Center" Foreground="Black" FontSize="15" FontWeight="Bold" Cursor="Hand">불량 정보</TextBlock>
+                </TabItem.Header>
+                <Grid Grid.Row="2">                 
+                    <Grid x:Name="GridBadResult" Background="Transparent"></Grid>                    
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header >
+                    <TextBlock Width="80" Height="25" TextAlignment="Center" Foreground="Black" FontSize="15" FontWeight="Bold" Cursor="Hand">폐기 불량</TextBlock>
+                </TabItem.Header>
+                <Grid Grid.Row="2">
+                    <Grid x:Name="GridFailResult" Background="Transparent"></Grid>
+                 </Grid>
+            </TabItem>
+            <TabItem x:Name="tbAIResult">
+                <TabItem.Header >
+                    <TextBlock Width="80" Height="25" TextAlignment="Center" Foreground="Black" FontSize="15" FontWeight="Bold" Cursor="Hand">AI 불량</TextBlock>
+                </TabItem.Header>
+                <Grid Grid.Row="2">
+                    <Grid x:Name="GridAIResult" Background="Transparent"></Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Border Grid.Row="2" Grid.ColumnSpan="1" Background="WhiteSmoke" CornerRadius="5,5,5,5" Margin="2" />
+        <Grid Grid.Row="2" Grid.ColumnSpan="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" Background="#FF7A829C"></Border>
+                <Border Grid.Column="1" Grid.ColumnSpan="4" Background="ForestGreen"></Border>
+                <Label Grid.Row="0" Grid.Column="0" Content="연속불량" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="-2" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="폐기설정" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="-2" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+                <Label Grid.RowSpan="1" Grid.Column="1" Content="전체" FontSize="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,-1,0,0" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Grid.RowSpan="1" Grid.Column="2" Content="블럭" FontSize="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,-1,0,0" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Grid.RowSpan="1" Grid.Column="3" Content="X열" FontSize="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,-1,0,0" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Grid.RowSpan="1" Grid.Column="4" Content="Y열" FontSize="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,-1,0,0" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Name="lblFailUnit" Text = "10" Grid.Column="1" Grid.Row="1" FontSize="17" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+                <TextBlock Name="lblFailBlock" Text = "10" Grid.Column="2" Grid.Row="1" FontSize="17" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+                <TextBlock Name="lblFailUnitX" Text = "10" Grid.Column="4" Grid.Row="1" FontSize="17" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+                <TextBlock Name="lblFailUnitY" Text = "10" Grid.Column="3" Grid.Row="1" FontSize="17" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" Background="#FF7A829C"></Border>
+                <Border Grid.Column="1" Grid.ColumnSpan="4" Background="ForestGreen"></Border>
+                <Label Grid.Row="0" Grid.Column="0" Content="배열분할" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="5,-2,0,19" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                <Label Grid.Column="0" Content="폐기" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,20,0,-2" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center" Grid.RowSpan="2"/>
+                <Label Grid.RowSpan="2" Grid.Column="1" Content="배열 정보" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="0,-1,0,21" Foreground="White" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Name="lblFailArrayInfo" Text = "" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="1" Foreground="Red" FontWeight="Bold"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.ColumnSpan="3" Background="Red" Name="spUseConBad"/>                
+                <TextBlock Grid.ColumnSpan="2" Text = "누적 Unit불량" Grid.Column="0" Grid.Row="6" FontSize="13" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text = "정지 사용" Grid.Column="2" Grid.Row="6" Name="lblUseConBad" FontSize="13" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Background="Gray"></Border>
+                <TextBlock Name="lblConBad" Text = "300Strip 누적" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" FontSize="14" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

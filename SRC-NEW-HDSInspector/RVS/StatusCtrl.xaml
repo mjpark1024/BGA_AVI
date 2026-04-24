@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="RVS.StatusCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="1500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="550"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.RowSpan="2" Background="#FFF6EEEE" BorderThickness="2,2,1,2" CornerRadius="5,5,5,5" Margin="0" BorderBrush="#FFFFCD71" >
+            <Label Name="lblMCName" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold">CAI04</Label>
+        </Border>
+        <Grid Grid.Row="0" Grid.Column="1"  Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="105"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="105"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="2,2,1,2" CornerRadius="5,0,0,5" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="1" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="2" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="3" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="4" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="5" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="6" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="7" Background="WhiteSmoke" BorderThickness="1,2,2,2" CornerRadius="0,5,5,0" Margin="0" BorderBrush="#FFFFCD71" />
+            <Label Grid.Column="0" Margin="0,5,0,5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold">모델명</Label>
+            <Label Grid.Column="2" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold">Lot</Label>
+            <Label Grid.Column="4" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="15" FontWeight="Bold">Verify전수율</Label>
+            <Label Grid.Column="6" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="15" FontWeight="Bold">Verify후수율</Label>
+
+            <Label Name="lblModel" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold">000</Label>
+            <Label Name="lblLot" Grid.Column="3" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold">123456789-0</Label>
+            <Label Name="lblBYield" Grid.Column="5" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Foreground="Red">87.4</Label>
+            <Label Name="lblAYield" Grid.Column="7" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Foreground="#FF0032FF"></Label>
+
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1"  Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="2,2,1,2" CornerRadius="5,0,0,5" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="1" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="2" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="3" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="4" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="5" Background="WhiteSmoke" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="6" Background="#FFF6EEEE" BorderThickness="1,2,1,2" Margin="0" BorderBrush="#FFFFCD71" />
+            <Border Grid.Column="7" Background="WhiteSmoke" BorderThickness="1,2,2,2" CornerRadius="0,5,5,0" Margin="0" BorderBrush="#FFFFCD71" />
+            <Label Grid.Column="0" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold">검사Strip</Label>
+            <Label Grid.Column="2" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="15" FontWeight="Bold">폐기Strip</Label>
+            <Label Grid.Column="4" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold">Unit 수</Label>
+            <Label Grid.Column="6" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold">불량Unit</Label>
+            <Label Name="lblInspStrip" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"></Label>
+            <Label Name="lblFailStrip" Grid.Column="3" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="30" FontWeight="Bold" Foreground="#FFFE0303"></Label>
+            <Label Name="lblTotalUnit" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold">123456</Label>
+            <Label Name="lblBadUnits" Grid.Column="7" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"></Label>
+        </Grid>
+        <Grid Grid.Column="2" Grid.RowSpan="2" Margin="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="3,3,1,1" CornerRadius="5,0,0,0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="3,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="3,1,1,3" CornerRadius="0,0,0,5" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="1" Background="#FFF6EEEE" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="1" Background="WhiteSmoke" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="1" Background="WhiteSmoke" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="1" Background="WhiteSmoke" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="3" Background="WhiteSmoke" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="3" Background="WhiteSmoke" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="3" Background="WhiteSmoke" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="5" Background="WhiteSmoke" BorderThickness="1,3,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="5" Background="WhiteSmoke" BorderThickness="1,1,1,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="5" Background="WhiteSmoke" BorderThickness="1,1,1,3" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="0" Grid.Column="7" Background="WhiteSmoke" BorderThickness="1,3,3,1" CornerRadius="0,5,0,0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="1" Grid.Column="7" Background="WhiteSmoke" BorderThickness="1,1,3,1" CornerRadius="0" BorderBrush="#4c7eb6" />
+            <Border Grid.Row="2" Grid.Column="7" Background="WhiteSmoke" BorderThickness="1,1,3,3" CornerRadius="0,0,5,0" BorderBrush="#4c7eb6" />
+            <Label Grid.Row="2" Grid.Column="6" Content="Align" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="Black" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="0" Content="원소재" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="1" Foreground="Olive" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Open" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Red" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="0" Grid.Column="4" Content="Short" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Blue" FontFamily="HY부활L" FontWeight="Bold" Background="{x:Null}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="0" Grid.Column="6" Content="BondPad" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Goldenrod" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Ball" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="SkyBlue" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="PSR핀홀" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Fuchsia" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="4" Content="PSR이물" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Green" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="펀치 Burr" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="IndianRed"  FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="4" Content="CoreCrack" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="LightSteelBlue"  FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="6" Content="VentHole" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Indigo" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="Via미충진" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Margin="1" Foreground="Indigo" FontFamily="HY부활L" FontWeight="Bold" HorizontalAlignment="Right"/>
+            <TextBlock Name="txtAlign" Grid.Column="7" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Blue" FontWeight="Bold"/>
+            <TextBlock Name="txtRaw" Grid.Column="1" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtOpen" Grid.Column="3" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtShort" Grid.Column="5" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtBP" Grid.Column="7" Grid.Row="0"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtBall" Grid.Column="1" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtPin" Grid.Column="3" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtPSR" Grid.Column="5" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtBurr" Grid.Column="1" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtCC" Grid.Column="5" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtVH" Grid.Column="7" Grid.Row="1"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock Name="txtVia" Grid.Column="3" Grid.Row="2"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="1" Foreground="Black" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</UserControl>

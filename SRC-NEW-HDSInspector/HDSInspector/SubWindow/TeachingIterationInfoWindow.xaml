@@ -1,0 +1,131 @@
+﻿<Window x:Class="STWInspector.TeachingIterationInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:Common;assembly=Common"
+        xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="{x:Null}"
+        Title="ROI 반복 설정" Height="495" Width="330">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Grid x:Name="pnlBlockSetting">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.75*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Block 가로 축 반복</TextBlock>
+                <common:NumberTextBox Grid.Column="1" Margin="2" Name="txtBlockColumn" 
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="0" MinValue="1" MaxValue="10000">1</common:NumberTextBox>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblBlockColumn">X개</TextBlock>
+
+                <TextBlock Grid.Row="1" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Block 세로 축 반복</TextBlock>
+                <common:NumberTextBox Grid.Row="1" Grid.Column="1" Margin="2" Name="txtBlockRow"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="0" MinValue="1" MaxValue="10000">1</common:NumberTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblBlockRow">Y개</TextBlock>
+
+                <TextBlock Grid.Row="2" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Block 가로 축 Gap (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="2" Grid.Column="1" Margin="2" Name="txtBlockXPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblBlockPitchX">123.456</TextBlock>
+
+                <TextBlock Grid.Row="3" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Block 세로 축 Gap (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="3" Grid.Column="1" Margin="2" Name="txtBlockYPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblBlockPitchY">123.456</TextBlock>
+            </Grid>
+
+            <Grid x:Name="pnlUnitSetting">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.75*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 가로 축 반복</TextBlock>
+                <common:NumberTextBox Grid.Row="0" Grid.Column="1" Margin="2" Name="txtUnitColumn"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="0" MinValue="1" MaxValue="10000">1</common:NumberTextBox>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblUnitColumn">X개</TextBlock>
+
+                <TextBlock Grid.Row="1" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 세로 축 반복</TextBlock>
+                <common:NumberTextBox Grid.Row="1" Grid.Column="1" Margin="2" Name="txtUnitRow"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="0" MinValue="1" MaxValue="10000">1</common:NumberTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblUnitRow">Y개</TextBlock>
+
+                <TextBlock Grid.Row="2" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 가로 축 Pitch (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="2" Grid.Column="1" Margin="2" Name="txtUnitXPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblUnitPitchX">123.456</TextBlock>
+
+                <TextBlock Grid.Row="3" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 세로 축 Pitch (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="3" Grid.Column="1" Margin="2" Name="txtUnitYPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblUnitPitchY">123.456</TextBlock>
+                
+                <TextBlock Grid.Row="4" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 시작 열 번호</TextBlock>
+                <toolkit:IntegerUpDown Grid.Row="4" Grid.Column="1" Margin="2" Name="txtUnitStartX"
+                                      FontSize="13" VerticalContentAlignment="Center"
+                                      Minimum="1" Maximum="100" Increment="1" Value="1"/>
+
+                <TextBlock Grid.Row="5" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 시작 행 번호</TextBlock>
+                <toolkit:IntegerUpDown Grid.Row="5" Grid.Column="1" Margin="2" Name="txtUnitStartY"
+                                      FontSize="13" VerticalContentAlignment="Center"
+                                      Minimum="1" Maximum="100" Increment="1" Value="1"/>
+
+                <TextBlock Grid.Row="6" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 가로 건너뛰기</TextBlock>
+                <toolkit:IntegerUpDown Grid.Row="6" Grid.Column="1" Margin="2" Name="txtUnitJumpX"
+                                      FontSize="13" VerticalContentAlignment="Center"
+                                      Minimum="1" Maximum="100" Increment="1" Value="1"/>
+
+                <TextBlock Grid.Row="7" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="14">Unit 세로 건너뛰기</TextBlock>
+                <toolkit:IntegerUpDown Grid.Row="7" Grid.Column="1" Margin="2" Name="txtUnitJumpY"
+                                      FontSize="13" VerticalContentAlignment="Center"
+                                      Minimum="1" Maximum="100" Increment="1" Value="1"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" x:Name="pnlExclamation" Visibility="Hidden"
+                    Margin="0, -15, 0, 0">
+            <Image Source="/STWInspector;component/Images/exclamation.png" Width="28" Margin="5, 0, 0, 0"/>
+            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="5, 0, 0, 0" x:Name="txtWarnMessage" Width="268"
+                       Foreground="Blue"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="15" Grid.ColumnSpan="3" Background="#144B92">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Width="100" Height="30" Name="btnOK">확 인</Button>
+            <Button Width="100" Height="30" Grid.Column="1" Name="btnCancel">취 소</Button>
+        </Grid>
+    </Grid>
+</Window>

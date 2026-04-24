@@ -1,0 +1,234 @@
+﻿<Window x:Class="HDSInspector.ImageEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" ShowInTaskbar="False"
+             Title="영상 편집" Height="800" Width="1000" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <common:DoubleToDecimalConverter x:Key="doubleToDecimalconverter"/>
+        <!-- ScrollBar-->
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBarWhite}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBarWhite}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Label -->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!-- TextBlock -->
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <DrawingBrush x:Key="GridBrush" 
+                      Viewport="0,0,8,8" ViewportUnits="Absolute"
+                      TileMode="Tile">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="Beige">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,10,10" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#CCCCFF" Geometry="M0,10 L 0,0 10,0 10,1 1,1 1,10Z">
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!-- Scale, X, Y, GV -->
+        <Border>
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                        <GradientStop Color="#FFA7A7A7" Offset="0.700"/>
+                        <GradientStop Color="#FFDADADA" Offset="0.350"/>
+                        <GradientStop Color="#FFC4C4C4" Offset="0.500"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Display & Handle Scale -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" Margin="5,0,0,0">
+                    <TextBlock Text="Scale:" FontWeight="Bold" Foreground="Black" FontSize="14"/>
+                    <TextBlock Width="30" FontWeight="Bold" HorizontalAlignment="Right" FontSize="14" Foreground="Black"
+                                   Text="{Binding ElementName=sldrScale, Path=Value, Mode=OneWay, Converter={StaticResource doubleToDecimalconverter}, ConverterParameter=2}"/>
+                    <Button x:Name="btnZoomOut" Width="50" Tag="OUT" VerticalAlignment="Center" Margin="-5, 0"
+								Style="{StaticResource NullBackgroundButtonStyle}" Cursor="Hand" ToolTip="Zoom Out">
+                        <Image Source="/HDSInspector;component/Images/zoom_out.png"/>
+                    </Button>
+                    <Slider Name="sldrScale" Orientation="Horizontal" Margin="-5, 0"
+								Minimum="0.1" Maximum="5.0" Value="0.5" 
+								VerticalAlignment="Center" IsSnapToTickEnabled="True" TickFrequency="0.1" 
+								Width="140" Style="{DynamicResource SimpleSlider}"/>
+                    <Button x:Name="btnZoomIn" Width="50" Tag="IN" VerticalAlignment="Center" Margin="-5, 0"
+								Style="{StaticResource NullBackgroundButtonStyle}" Cursor="Hand" ToolTip="Zoom In">
+                        <Image Source="/HDSInspector;component/Images/zoom_in.png"/>
+                    </Button>
+                    <Button x:Name="btnZoomToFit" Width="50" Tag="FIT" VerticalAlignment="Center" Margin="-5, 0"
+								Style="{StaticResource NullBackgroundButtonStyle}" Cursor="Hand" ToolTip="Zoom To Fit">
+                        <Image Source="/HDSInspector;component/Images/zoom_fit.png"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Display X & Y Coordinates -->
+                <Grid Grid.Column="3" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="Black" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right">X :</TextBlock>
+                    <TextBlock Name="txtXPosition" HorizontalAlignment="Right" Foreground="Black" FontWeight="Bold" FontSize="18" Grid.Column="1">0</TextBlock>
+
+                    <TextBlock Foreground="Black" FontWeight="Bold" FontSize="18" Grid.Column="2" HorizontalAlignment="Right">Y :</TextBlock>
+                    <TextBlock Name="txtYPosition" HorizontalAlignment="Right" Foreground="Black" FontWeight="Bold" FontSize="18" Grid.Column="3">0</TextBlock>
+
+                    <TextBlock Foreground="Black" FontWeight="Bold" FontSize="18" Grid.Column="4" HorizontalAlignment="Right">GV :</TextBlock>
+                    <TextBlock Name="txtGVValue" HorizontalAlignment="Right" Foreground="Black" FontWeight="Bold" FontSize="18" Grid.Column="5">0</TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <StackPanel>
+                    <Border BorderThickness="0, 1, 0, 1" BorderBrush="#313131" Height="20">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                                <GradientStop Color="#195aa2" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock Foreground="White" Margin="10, 0">선택 색상</TextBlock>
+                    </Border>
+                    <Border Background="{DynamicResource GridBrush}" BorderThickness="0, 0, 0, 1" BorderBrush="#313131" Height="100">
+                        <Rectangle x:Name="rectFill" Grid.RowSpan="2" Fill="#808080" Margin="15"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- GV & Brush -->
+                <Grid Background="White" Margin="1" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="Black" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Margin="0, 0, 5, 0">GV</TextBlock>
+                    <toolkit:IntegerUpDown Grid.Column="1" Minimum="0" Maximum="255" Increment="1" VerticalAlignment="Center" Height="38" FontSize="16" FontWeight="Bold"
+                                       x:Name="txtBrushColor" Text="128" ToolTip="Gray Value : 0 - 255"/>
+                </Grid>
+                <Grid Background="White" Margin="1" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="Black" FontWeight="Bold" FontSize="15" HorizontalAlignment="Right" Margin="0, 0, 5, 0">Brush</TextBlock>
+                    <toolkit:IntegerUpDown Grid.Column="1" Minimum="1" Maximum="10" Increment="1" VerticalAlignment="Center" Height="38" FontSize="16" FontWeight="Bold"
+                                       Text="5" Name="txtBrushSize" ToolTip="Brush Size : 1 - 10"/>
+                </Grid>
+
+                <Grid Height="100" Width="115" Margin="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton Grid.Row="0" Grid.Column="0" Style="{DynamicResource DrawingToggleButtonStyle}" Name="btnColorPicker" ToolTip="컬러 피커" Margin="1, 1, 1, 1">
+                        <Image Source="Images/color_picker.png" Width="28" Height="28"/>
+                    </ToggleButton>
+                    <ToggleButton Grid.Row="0" Grid.Column="1" Style="{DynamicResource DrawingToggleButtonStyle}" Name="btnFreeDrawing" ToolTip="브러시" Margin="1, 1, 2, 1">
+                        <Image Source="Images/free_drawing.png" Width="32" Height="32"/>
+                    </ToggleButton>
+                    <ToggleButton Grid.Row="1" Grid.Column="0" Style="{DynamicResource DrawingToggleButtonStyle}" Name="btnInitImage" ToolTip="초기화" Margin="1, 1, 2, 1">
+                        <Image Source="Images/clear.png" Width="30" Height="30"/>
+                    </ToggleButton>
+                    <ToggleButton Grid.Row="1" Grid.Column="1" Style="{DynamicResource DrawingToggleButtonStyle}" Name="btnEraser" ToolTip="지우개" Margin="1, 1, 2, 1">
+                        <Image Source="Images/eraser.png" Width="30" Height="30"/>
+                    </ToggleButton>
+                </Grid>
+            </StackPanel>
+
+            <!-- Edit Image Viewer -->
+            <ScrollViewer x:Name="svEditImage" Grid.Column="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Background="White">
+                <Grid Background="Black" Name="pnlInner">
+                    <Grid.LayoutTransform>
+                        <ScaleTransform ScaleX="{Binding ElementName=sldrScale, Path=Value, Mode=OneWay}"
+                                    ScaleY="{Binding ElementName=sldrScale, Path=Value, Mode=OneWay}"/>
+                    </Grid.LayoutTransform>
+                </Grid>
+            </ScrollViewer>
+
+            <TextBlock Name="txtReferenceLabel" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" 
+					   Foreground="Black" FontWeight="Bold" Margin="0,10,28,0" Opacity="0.6" FontSize="20">브 러 시
+				<TextBlock.Background>
+					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+							<GradientStop Color="#FFFDFDFD" Offset="0"/>
+							<GradientStop Color="#FFA7A7A7" Offset="0.700"/>
+							<GradientStop Color="#FFDADADA" Offset="0.350"/>
+							<GradientStop Color="#FFC4C4C4" Offset="0.500"/>
+						</LinearGradientBrush>
+				</TextBlock.Background>
+            </TextBlock>
+        </Grid>
+
+        <!-- Bottom Image Editing Bar -->
+        <Border Grid.Row="2" BorderBrush="#373737" BorderThickness="0, 1, 0, 0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                    <GradientStop Color="#195aa2" Offset="0.750"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="90" Height="30" Name="btnOK" Margin="0, 0, 10, 0">확　인</Button>
+            <Button Width="90" Height="30" Name="btnCancel" Margin="0, 0, 10, 0">취　소</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,356 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.ShapeShiftWithCL"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="670" Width="300">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="4">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">Shape Shift With Center Line 검사</TextBlock>
+        </Border>
+
+        <ScrollViewer x:Name="svViewer" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" Grid.Row="1" Background="White">
+            <StackPanel Grid.Row="1" Background="LightGray">
+                <!-- Mask 설정-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Caption -->
+                    <Border Grid.Row="0" Grid.ColumnSpan="4" Background="#FF2C7596" Margin="-5, 0">
+                        <TextBlock FontSize="12" VerticalAlignment="Center" Margin="15, 0, 0, 0" Foreground="White">Mask 설정</TextBlock>
+                    </Border>
+                    <!-- Ground Thresh -->
+                    <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">전체 Mask 하한</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1" 
+                              MinValue="0" MaxValue="255" Round="0" Name="txtGroundLowerThresh"
+                              Grid.Row="1" Grid.Column="1">0</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">전체 Mask 상한</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtGroundUpperThresh"
+                              Grid.Row="1" Grid.Column="3">100</common:NumberTextBox>
+                    <!-- Shape Thresh-->
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Mask 하한</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtShapeLowerThresh"
+                              Grid.Row="2" Grid.Column="1">150</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Mask 상한</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtShapeUpperThresh"
+                              Grid.Row="2" Grid.Column="3">200</common:NumberTextBox>
+                    <!-- Erosion / Dilation Shape Iter -->
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Mask 축소</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtErosionShapeIter"
+                              Grid.Row="3" Grid.Column="1">2</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Mask 확장</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtDilationShapeIter"
+                              Grid.Row="3" Grid.Column="3">30</common:NumberTextBox>
+                    <!-- Shape Shift Margin X/Y -->
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Shift X</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtShapeShiftMarginX"
+                              Grid.Row="4" Grid.Column="1">10</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Shift Y</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtShapeShiftMarginY"
+                              Grid.Row="4" Grid.Column="3">10</common:NumberTextBox>
+                    <!-- Shape Shift Offset X/Y -->
+                    <TextBlock FontSize="11.5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Offset X</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="-100" MaxValue="100" Round="0" Name="txtShapeOffsetX"
+                              Grid.Row="5" Grid.Column="1">0</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">형상 Offset Y</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="-100" MaxValue="100" Round="0" Name="txtShapeOffsetY"
+                              Grid.Row="5" Grid.Column="3">0</common:NumberTextBox>
+                    <!-- Erosion / Dilation Train Iter -->
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">Mask 축소</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtErosionTrainIter"
+                              Grid.Row="6" Grid.Column="1">4</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">Mask 확장</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtDilationTrainIter"
+                              Grid.Row="6" Grid.Column="3">0</common:NumberTextBox>
+                </Grid>
+
+                <!-- 형상 영역 중앙선 검사 수행 유무 -->
+                <Border Grid.ColumnSpan="4" Background="#FF2C7596" Margin="-5, 0" Height="22">
+                    <CheckBox FontSize="12" Margin="15, 0, 0, 0" VerticalAlignment="Center" Foreground="White"
+                              x:Name="chkCLUse" IsChecked="True">형상 영역 중앙선 검사 적용</CheckBox>
+                </Border>
+                <Grid Margin="0, 2" IsEnabled="{Binding ElementName=chkCLUse, Path=IsChecked, Mode=OneWay}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="11.5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">임계 값</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1" 
+                              MinValue="0" MaxValue="255" Round="0" Name="txtLeadThresh"
+                              Grid.Row="0" Grid.Column="1">160</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">연속 불량 개수</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMinHeightSize"
+                              Grid.Row="0" Grid.Column="3">5</common:NumberTextBox>
+                    
+                    <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">편차 최소허용(%)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMinNormalRatio"
+                              Grid.Row="1" Grid.Column="1">30</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">편차 최대허용(%)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMaxNormalRatio"
+                              Grid.Row="1" Grid.Column="3">30</common:NumberTextBox>
+                    
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">최소 선폭 범위(%)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMinWidthRatio"
+                              Grid.Row="2" Grid.Column="1">30</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">최대 선폭 범위(%)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMaxWidthRatio"
+                              Grid.Row="2" Grid.Column="3">30</common:NumberTextBox>
+                    
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">최소 선폭 범위(px)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMinWidthSize"
+                              Grid.Row="3" Grid.Column="1">5</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">최대 선폭 범위(px)</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtMaxWidthSize"
+                              Grid.Row="3" Grid.Column="3">30</common:NumberTextBox>
+                </Grid>
+                
+                <!-- 형상 영역 검사 수행 유무 -->
+                <Border Grid.ColumnSpan="4" Background="#FF2C7596" Margin="-5, 0" Height="22">
+                    <CheckBox FontSize="12" Margin="15, 0, 0, 0" VerticalAlignment="Center" Foreground="White"
+                              x:Name="chkMasterUse" IsChecked="True">형상 영역 검사 적용</CheckBox>
+                </Border>
+                <!-- 형상 영역 검사 -->
+                <Grid Margin="0, 2" IsEnabled="{Binding ElementName=chkMasterUse, Path=IsChecked, Mode=OneWay}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Thresh Type -->
+                    <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Grid.Column="0" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdUpper" IsChecked="True">임계 이상</RadioButton>
+                        <RadioButton Grid.Column="1" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdLower">임계 이하</RadioButton>
+                        <RadioButton Grid.Column="2" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdRange">임계 범위</RadioButton>
+                    </Grid>
+                    <!-- Lower threshold, Upper threshold -->
+                    <TextBlock FontSize="11.5" Grid.Row="2" VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtGV">임계 값</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtThreshold"
+                              Grid.Row="2" Grid.Column="1">180</common:NumberTextBox>
+
+                    <TextBlock FontSize="11.5" Grid.Row="2" VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtLowerGV">하한 임계</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtLowerThreshold"
+                              Grid.Row="2" Grid.Column="1">180</common:NumberTextBox>
+
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtUpperGV">상한 임계</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtUpperThreshold"
+                              Grid.Row="2" Grid.Column="3">255</common:NumberTextBox>
+                    <!-- Apply Average Diff -->
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 적용</TextBlock>
+                    <CheckBox FontSize="11.5" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="2, 0, 0, 0" IsChecked="False" Name="chkApplyAverDiff"/>
+                    <!-- Average Min / Max Margin -->
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 최소범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1" IsEnabled="{Binding ElementName=chkApplyAverDiff, Path=IsChecked, Mode=OneWay}"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtAverMinMargin"
+                              Grid.Row="4" Grid.Column="1">30</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 최대범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1" IsEnabled="{Binding ElementName=chkApplyAverDiff, Path=IsChecked, Mode=OneWay}"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtAverMaxMargin"
+                              Grid.Row="4" Grid.Column="3">30</common:NumberTextBox>
+                    <!-- Insp Range -->
+                    <TextBlock FontSize="11.5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사조건 범위</TextBlock>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <CheckBox Name="chkMinRange" IsEnabled="{Binding ElementName=radThresholdRange, Path=IsChecked, Mode=OneWay}" Margin="5, 0, 15, 0" IsChecked="True">Min</CheckBox>
+                        <CheckBox Name="chkMaxRange" IsEnabled="{Binding ElementName=radThresholdRange, Path=IsChecked, Mode=OneWay}" Margin="15, 0, 15, 0">Max</CheckBox>
+                        <CheckBox Name="chkInRange"  IsEnabled="{Binding ElementName=radThresholdRange, Path=IsChecked, Mode=OneWay}" Margin="15, 0, 5, 0">In</CheckBox>
+                    </StackPanel>
+                    <!-- Insp Min, Max Margin -->
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사최소 허용범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinMargin"
+                              Grid.Row="6" Grid.Column="1">30</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사최대 허용범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMaxMargin"
+                              Grid.Row="6" Grid.Column="3">30</common:NumberTextBox>
+                    <!-- Min Defect Size -->
+                    <TextBlock FontSize="11.5" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">최소 검출사이즈</TextBlock>
+                    <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Beige">MIN</TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Beige" Grid.Column="2">MAX</TextBlock>
+                        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="-1, 1, 2, 1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinDefectSize" Grid.Column="1">15</common:NumberTextBox>
+                        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="-1, 1, 2, 1" IsEnabled="False" IsReadOnly="True"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMaxDefectSize" Grid.Column="3">10</common:NumberTextBox>
+                    </Grid>
+                </Grid>
+
+                <!-- 표면 영역 검사 수행 유무 -->
+                <Border Grid.ColumnSpan="4" Background="#FF2C7596" Margin="-5, 0" Height="22">
+                    <CheckBox Margin="15, 0, 0, 0" VerticalAlignment="Center" Foreground="White"
+                              x:Name="chkSlaveUse" IsChecked="True">표면 영역 검사 적용</CheckBox>
+                </Border>
+                <!-- 표면 영역 검사 -->
+                <Grid IsEnabled="{Binding ElementName=chkSlaveUse, Path=IsChecked, Mode=OneWay}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Thresh Type -->
+                    <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Grid.Column="0" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdUpper2">임계 이상</RadioButton>
+                        <RadioButton Grid.Column="1" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdLower2">임계 이하</RadioButton>
+                        <RadioButton Grid.Column="2" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 0, 0, 0"
+                         Name="radThresholdRange2" IsChecked="True">임계 범위</RadioButton>
+                    </Grid>
+                    <!-- Lower threshold, Upper threshold -->
+                    <TextBlock FontSize="11.5" Grid.Row="2" VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtGV2">임계 값</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtThreshold2"
+                              Grid.Row="2" Grid.Column="1">80</common:NumberTextBox>
+
+                    <TextBlock FontSize="11.5" Grid.Row="2" VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtLowerGV2">하한 임계</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtLowerThreshold2"
+                              Grid.Row="2" Grid.Column="1">0</common:NumberTextBox>
+
+                    <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" Margin="3, 0, 0, 0" Name="txtUpperGV2">상한 임계</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtUpperThreshold2"
+                              Grid.Row="2" Grid.Column="3">100</common:NumberTextBox>
+                    <!-- Apply Average Diff -->
+                    <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 적용</TextBlock>
+                    <CheckBox FontSize="11.5" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="2, 0, 0, 0" IsChecked="False" Name="chkApplyAverDiff2"/>
+                    <!-- Average Min / Max Margin -->
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 최소범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtAverMinMargin2"
+                              Grid.Row="4" Grid.Column="1">30</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">평균값 최대범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtAverMaxMargin2"
+                              Grid.Row="4" Grid.Column="3">30</common:NumberTextBox>
+                    <!-- Insp Range -->
+                    <TextBlock FontSize="11.5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사조건 범위</TextBlock>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <CheckBox Name="chkMinRange2" IsEnabled="{Binding ElementName=radThresholdRange2, Path=IsChecked, Mode=OneWay}" Margin="5, 0, 15, 0" IsChecked="True">Min</CheckBox>
+                        <CheckBox Name="chkMaxRange2" IsEnabled="{Binding ElementName=radThresholdRange2, Path=IsChecked, Mode=OneWay}" Margin="15, 0, 15, 0" IsChecked="True">Max</CheckBox>
+                        <CheckBox Name="chkInRange2"  IsEnabled="{Binding ElementName=radThresholdRange2, Path=IsChecked, Mode=OneWay}" Margin="15, 0, 5, 0">In</CheckBox>
+                    </StackPanel>
+                    <!-- Insp Min, Max Margin -->
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사최소 허용범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinMargin2"
+                              Grid.Row="6" Grid.Column="1">10</common:NumberTextBox>
+                    <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">검사최대 허용범위</TextBlock>
+                    <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMaxMargin2"
+                              Grid.Row="6" Grid.Column="3">10</common:NumberTextBox>
+                    <!-- Min Defect Size -->
+                    <TextBlock FontSize="11.5" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="3, 0, 0, 0">최소 검출사이즈</TextBlock>
+                    <Grid Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Beige">MIN</TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Beige" Grid.Column="2">MAX</TextBlock>
+                        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="-1, 1, 5, 1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinDefectSize2" Grid.Column="1">30</common:NumberTextBox>
+                        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="-1, 1, 5, 1"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMaxDefectSize2" Grid.Column="3">10</common:NumberTextBox>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

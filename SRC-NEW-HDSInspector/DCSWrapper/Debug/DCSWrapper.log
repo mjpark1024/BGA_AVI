@@ -1,0 +1,12 @@
+﻿  Stdafx.cpp
+  AssemblyInfo.cpp
+AssemblyInfo.cpp(40): warning C4947: 'System::Security::Permissions::SecurityAction::RequestMinimum': 사용되지 않는 것으로 표시되었습니다.
+  AssemblyInfo.cpp(40): note: 메시지: 'Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.'
+  NiDAQmxLib.cpp
+  C/C++ 코드 분석을 실행하고 있습니다...
+  코드를 생성하고 있습니다...
+  .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+  DCSWrapper.vcxproj -> D:\Source\BAV\BAV_\SRC-NEW-HDSInspector\..\bin\DCSWrapper.dll
+  DCSWrapper.vcxproj -> D:\Source\BAV\BAV_\SRC-NEW-HDSInspector\..\bin\DCSWrapper.pdb (Full PDB)
+  코드 분석을 실행하고 있습니다...
+  코드 분석 완료 -- 오류: 0개, 경고: 0개

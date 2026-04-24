@@ -1,0 +1,1200 @@
+﻿<Window x:Class="HDSInspector.ModelManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:common="clr-namespace:Common;assembly=Common"
+        Title="모델 관리" Height="1050" Width="1800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBarWhite}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBarWhite}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <RadialGradientBrush RadiusY="0.726" RadiusX="0.475" GradientOrigin="0.401,0.247" Center="0.347,0.121">
+            <GradientStop Color="#FF9799A3" Offset="0.946"/>
+            <GradientStop Color="#FFEBEBEB"/>
+        </RadialGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- First Column -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="10"/>
+                <!-- Center Margin -->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                        <GradientStop Color="#195aa2" Offset="0.750"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="txtModelName" VerticalAlignment="Center" TextWrapping="Wrap" 
+                        Foreground="White" FontSize="24" FontFamily="Arial" FontWeight="Bold" Margin="15, 0">선택된 모델이 없습니다.</TextBlock>
+                </ScrollViewer>
+            </Border>
+            <Grid Grid.ColumnSpan="3" Grid.RowSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                            <GradientStop Color="#195aa2" Offset="0.750"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock x:Name="txtGroupName" VerticalAlignment="Center" TextWrapping="Wrap" 
+                        Foreground="White" FontSize="24" FontFamily="Arial" FontWeight="Bold" Margin="15, 0"></TextBlock>
+                </Border>
+
+                <Button Grid.Row="4" Grid.ColumnSpan="3" Margin="1, 3, 1, 0" Name="btnGoldenModel" Tag="Create" Visibility="Hidden">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="/HDSInspector;component/Images/goldenModel.png" Width="26" Height="23"  Margin="1"/>
+                        <TextBlock FontSize="12" Text="골든 모델 불러오기 " VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <!-- C / M / D horizontal button panel -->
+                <Button Grid.Row="5" Grid.Column="0" Margin="1, 4, 1, 2" Name="btnCreateGroup" Tag="Create">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/add_64_64.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="추가" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="1" Margin="1, 4, 1, 2" Name="btnModifyGroup" Tag="Modify">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/modify_128_128.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="수정" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="5" Grid.Column="2" Margin="1, 4, 1, 2" Name="btnDeleteGroup" Tag="Delete">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/remove_64_64.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="삭제" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <!-- No. | Group -->
+                <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Margin="0, 2, 0, 0" Orientation="Horizontal">
+                    <StackPanel.Effect>
+                        <DropShadowEffect ShadowDepth="5" Direction="310" Color="DarkGray" BlurRadius="4" Opacity="0.5"/>
+                    </StackPanel.Effect>
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <TextBlock Text="No." Width="50" VerticalAlignment="Center" FontSize="12" Margin="10, 0, 0, 0"/>
+                    <TextBlock Text="Group" VerticalAlignment="Center" FontSize="12" Margin="10, 0, 0, 0"/>
+                </StackPanel>
+                <Border Grid.Row="6" Grid.ColumnSpan="3" BorderBrush="#FF919191" BorderThickness="1" Margin="0, 2, 0, 0"></Border>
+                <!-- listbox -->
+                <ScrollViewer x:Name="svGroup" Background="White"
+                Grid.Row="7" Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                    <ScrollViewer.Effect>
+                        <DropShadowEffect ShadowDepth="5" Direction="310" Color="DarkGray" BlurRadius="4" Opacity="0.5"/>
+                    </ScrollViewer.Effect>
+                    <ListBox x:Name="lbGroup" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="0"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Index}" Margin="15, 0, 0, 0"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Code}"  Margin="0, 0, 0, 0"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Name}"  Margin="15, 0, 0, 0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- C / M / D horizontal button panel -->
+            <Grid Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="1, 4, 1, 2" x:Name="btnRenameModel" Tag="Rename">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/modify_128_128.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="모델변경" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="1, 4, 1, 2" Name="btnCreateModel" Tag="Create">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/add_64_64.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="모델 추가" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="2" Margin="1, 4, 1, 2" Name="btnModifyModel" Tag="Modify">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/modify_128_128.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="모델 수정" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="3" Margin="1, 4, 1, 2" Name="btnDeleteModel" Tag="Delete">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/remove_64_64.png" Width="16" Height="16" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="모델 삭제" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/Zoom_in.png" Width="24" Height="24" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="모델검색" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Label>
+                <TextBox Grid.Column="1" Grid.Row="2"  Margin="3" FontSize="20" Name="txtSearchModelCode" CharacterCasing="Upper" ></TextBox>
+                <Button Name="btnPrevCode" Grid.Column="2" Margin="5" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/blackPrev.png" Width="14" Height="14" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="이전" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Name="btnNextCode" Grid.Column="3" Margin="5" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="Images/blackNext.png" Width="14" Height="14" Opacity="0.85"/>
+                        <TextBlock FontWeight="Normal" FontSize="12" Text="다음" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- No. | Model -->
+            <StackPanel Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Margin="0, 2, 0, 0" Orientation="Horizontal">
+                <StackPanel.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="310" Color="DarkGray" BlurRadius="4" Opacity="0.5"/>
+                </StackPanel.Effect>
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <TextBlock Text="No." Width="50" VerticalAlignment="Center" FontSize="12" Margin="10, 0, 0, 0"/>
+                <TextBlock Text="Model" VerticalAlignment="Center" FontSize="12" Margin="10, 0, 0, 0"/>
+            </StackPanel>
+            <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" BorderBrush="#FF919191" BorderThickness="1" Margin="0, 2, 0, 0"/>
+
+            <!-- listbox -->
+            <ScrollViewer x:Name="svModel" Background="White"
+                Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                <ScrollViewer.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="310" Color="DarkGray" BlurRadius="4" Opacity="0.5"/>
+                </ScrollViewer.Effect>
+                <ListBox x:Name="lbModel" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Index}" Margin="15, 0, 0, 0"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="15, 0, 0, 0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+            <Grid Grid.Row="6" Grid.ColumnSpan="7" Name="StripHelpGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Border Background="White" Grid.Row="0">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="5" Direction="310" Color="DarkGray" BlurRadius="4" Opacity="0.5"/>
+                    </Border.Effect>
+                    <Image Source="Images/b.png" Stretch="UniformToFill" SnapsToDevicePixels="True" Margin="0"/>
+                </Border>
+                <StackPanel Name="CamInfo" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Height="40">
+                    <Label Content="Width" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <common:NumberTextBox Name="txtCamWidth" Width="40" FontSize="10" VerticalAlignment="Center"/>
+                    <Label Margin="2,0,0,0" FontWeight="Bold" Content="Height" VerticalAlignment="Center"/>
+                    <common:NumberTextBox Name="txtCamHeight" Width="40" FontSize="10" VerticalAlignment="Center"/>
+                    <Label Margin="2,0,0,0" FontWeight="Bold" Content="CamFile" VerticalAlignment="Center"/>
+                    <TextBox Name="txtCamFile" Width="230" FontSize="10" VerticalAlignment="Center"/>
+                    <RadioButton VerticalAlignment="Center" Name="rbTop" Margin="5" IsChecked="True">BP</RadioButton>
+                    <RadioButton VerticalAlignment="Center" Name="rbBot">CA1</RadioButton>
+                    <RadioButton VerticalAlignment="Center" Name="rbTra">BA1</RadioButton>
+                </StackPanel>
+                <Grid Name="VisionInfo" Grid.Row="1" VerticalAlignment="Stretch" Background="White" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <!--<ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="4"/>-->
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision1" Height="28" Tag="0">재실행</Button>
+                    <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision2" Height="28" Tag="1">재실행</Button>
+                    <Button Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision3" Height="28" Tag="2">재실행</Button>
+                    <Button Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision4" Height="28" Tag="3">재실행</Button>
+                    <Button Grid.Column="8" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision5" Height="28" Tag="4">재실행</Button>
+                    <!--<Button Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="1" Margin="5, 0, 5, 0" x:Name="btnRerunVision32" Height="28" Tag="5">재실행</Button>-->
+                    <Label Content="BondPad" FontWeight="Bold" FontSize="12" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="1" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision1State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+                    <Label Content="CA V1" FontWeight="Bold" FontSize="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="3" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision2State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+                    <Label Content="CA V2" FontWeight="Bold" FontSize="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="5" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision3State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+                    <Label Content="BA V1" FontWeight="Bold" FontSize="12" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="7" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision4State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+                    <Label Content="BA V2" FontWeight="Bold" FontSize="12" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="9" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision5State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+                    <!--<Label Content="V32" FontWeight="Bold" FontSize="12" Grid.Column="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Border Width="15" Height="15" Grid.Column="11" CornerRadius="2" Background="#FFFFEB00" HorizontalAlignment="Center" Name="circVision32State" VerticalAlignment="Center" Margin="0,0,0,0" Opacity="0.9">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>-->
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!-- Model Specification -->
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="550"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Content="PLC전송" Name="btnPLC"   Margin="1, 3, 1, 3" FontWeight="Bold"/>
+                <Button Grid.Column="3" Content="타설비 정보" Name="btnMC"   Margin="1, 3, 1, 3" FontWeight="Bold"/>
+                <Button Grid.Column="5" Content="시   작" Name="btnStart" Margin="1, 3, 1, 3" FontWeight="Bold"/>
+            </Grid>
+
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="380"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" BorderBrush="#FF919191" BorderThickness="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="기준 영상" FontSize="12" Margin="10, 0" HorizontalAlignment="Left"/>
+                    </Grid>
+
+                </Border>
+                <Image Grid.Row="1" Name="imgBase">
+
+                </Image>
+                <Grid Name="grdMark" Grid.Row="2" Grid.Column="1" Margin="2" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="42"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="23"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >유닛마킹 유형 선택</Label>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit0" Margin="5" Tag="0"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="없음"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit1" Margin="5" Tag="1"></RadioButton>
+                        <Image Source="Images/Unit1.PNG" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit2" Margin="5" Tag="2"></RadioButton>
+                        <Image Source="Images/Unit2.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit3" Margin="5" Tag="3"></RadioButton>
+                        <Image Source="Images/Unit3.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="4" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit4" Margin="5" Tag="4"></RadioButton>
+                        <Image Source="Images/Unit4.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="5" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit5" Margin="5" Tag="5"></RadioButton>
+                        <Image Source="Images/Unit5.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="6" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit6" Margin="5" Tag="6"></RadioButton>
+                        <Image Source="Images/Unit6.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="7" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit7" Margin="5" Tag="7"></RadioButton>
+                        <Image Source="Images/Unit7.png" Width="28" Height="50" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="8" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit8" Margin="5" Tag="8"></RadioButton>
+                        <Image Source="Images/Unit8.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="9" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdUnit9" Margin="5" Tag="9"></RadioButton>
+                        <Image Source="Images/Unit9.png" Width="28" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >레일마킹 유형 선택</Label>
+
+                    </StackPanel>
+                    <Grid Grid.Row="4" Grid.ColumnSpan="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                            <RadioButton VerticalAlignment="Center" Name="rdRail0" Margin="5" Tag="0"></RadioButton>
+                            <Label VerticalAlignment="Center" FontWeight="Bold" Content="없음"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="1"  Orientation="Horizontal">
+                            <RadioButton VerticalAlignment="Center" Name="rdRail1" Margin="5" Tag="1"></RadioButton>
+                            <Image Source="Images/Rail1.png" Width="57" Height="30" Opacity="0.85"></Image>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="2"  Orientation="Horizontal">
+                            <RadioButton VerticalAlignment="Center" Name="rdRail2" Margin="5" Tag="2"></RadioButton>
+                            <Image Source="Images/Rail2.png" Width="57" Height="30" Margin="0,1,0,0" Opacity="0.85"></Image>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="3"  Orientation="Horizontal">
+                            <RadioButton VerticalAlignment="Center" Name="rdRail3" Margin="5" Tag="3"></RadioButton>
+                            <Image Source="Images/Rail3.png" Width="57" Height="30" Opacity="0.85"></Image>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal">
+                            <RadioButton VerticalAlignment="Center" Name="rdRail4" Margin="5" Tag="4"></RadioButton>
+                            <Image Source="Images/Rail4.png" Width="57" Height="30" Opacity="0.85"></Image>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="5" Orientation="Vertical" Margin="0,1,0,0">
+                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Marker.RailIrr}" Name="cbRailIrr" >불규칙배열</CheckBox>
+                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Marker.FlipChip}" Name="cbFlipchip" >Flip-Chip</CheckBox>
+                        </StackPanel>
+                    </Grid>
+
+
+                    <StackPanel Grid.Row="5" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >수량마킹 유형 선택</Label>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="6" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumberLeft" Margin="5" Tag="0"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="좌측"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="7" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumberRight" Margin="5" Tag="1"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="우측"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="0" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumber0" Margin="5" Tag="0"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="없음"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumber1" Margin="5" Tag="1"></RadioButton>
+                        <Image Source="Images/Num_Dir1.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumber2" Margin="5" Tag="2"></RadioButton>
+                        <Image Source="Images/Num_Dir2.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="3" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumber3" Margin="5" Tag="3"></RadioButton>
+                        <Image Source="Images/Num_Dir3.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="4" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdNumber4" Margin="5" Tag="4"></RadioButton>
+                        <Image Source="Images/Num_Dir4.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >수량 재검 유형 선택</Label>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="0" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdReMark0" Margin="5"  Tag="0"></RadioButton>
+                        <Image Source="Images/Num_Dir1.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdReMark1" Margin="5" Tag="1"></RadioButton>
+                        <Image Source="Images/Num_Remove1.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdReMark2" Margin="5" Tag="2"></RadioButton>
+                        <Image Source="Images/Num_Remove2.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="3" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdReMark3" Margin="5" Tag="3"></RadioButton>
+                        <Image Source="Images/Num_Remove4.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="4" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdReMark4" Margin="5" Tag="4"></RadioButton>
+                        <Image Source="Images/Num_Remove3.png" Width="30" Height="40" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <CheckBox Name="cbZeroMarkTop" VerticalAlignment="Center" Margin="5"  IsChecked="{Binding Path=Marker.ZeroMark}"></CheckBox>
+                        <Label VerticalAlignment="Center" FontSize="15">0 마킹</Label>
+                    </StackPanel>
+                    <StackPanel Grid.Row="9" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >제조주차 유형 선택</Label>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="6" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeekLeft" Margin="0" Tag="0"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="좌측"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="7" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeekRight" Margin="0" Tag="1"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="우측"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="8" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeekCenter" Margin="0" Tag="2"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="중앙"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="0" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeek0" Margin="5" Tag="0"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="없음"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeek1" Margin="5" Tag="1"></RadioButton>
+                        <Image Source="Images/Week1.png" Width="30" Height="37" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdWeek2" Margin="5" Tag="2"></RadioButton>
+                        <Image Source="Images/Week2.png" Width="30" Height="37" Opacity="0.85"></Image>
+                    </StackPanel>
+                    <TextBlock Grid.Row="10" Grid.Column="3" FontSize="12" Text="주차&#10;타입" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel  Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="2" Orientation="Horizontal">                        
+                        <ComboBox HorizontalAlignment="Center" Height="20" Width="70" Name="cmbWeekMark" SelectedIndex="0">
+                            <ComboBoxItem>WWYY</ComboBoxItem>
+                            <ComboBoxItem>YYWW</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="11" Grid.ColumnSpan="10" VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Silver" Offset="0.250"/>
+                                <GradientStop Color="Gray" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="12" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                                   Margin="3, 0, 0, 0" >ID Mark 선택</Label>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="12" Grid.Column="0" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdIDNone" Margin="5" Tag="0" GroupName="ID"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="없음"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="12" Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdIDLeft" Margin="5" Tag="1" GroupName="ID"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="좌측"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="12" Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton VerticalAlignment="Center" Name="rdIDRight" Margin="5" Tag="2" GroupName="ID"></RadioButton>
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="우측"/>
+                    </StackPanel>
+                    <TextBox Grid.Row="12" Grid.Column="4" Margin="0 5 0 0" x:Name="tbHistoryID" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <StackPanel Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="3" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Content="바코드 수"/>
+                        <ComboBox VerticalAlignment="Center" Name="cbIDCount" Margin="5" Tag="2"  Width="70" SelectedIndex="0">
+                            <ComboBoxItem>1개</ComboBoxItem>
+                            <ComboBoxItem>2개</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <CheckBox Name="chkText" Grid.Row="12" Grid.Column="8" Grid.ColumnSpan="2" VerticalContentAlignment="Center" FontSize="12" FontWeight="Bold">문자 표시</CheckBox>
+
+                </Grid>
+                <Border Grid.Row="4">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                            <GradientStop Color="#195aa2" Offset="0.750"/>
+
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="btnSave" Margin="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Source="Images/save_file_128_128.png" Width="20" Height="20" Margin="-5, 0, 0, 0"/>
+                            <TextBlock FontWeight="Normal" FontSize="12" Text="저 장" VerticalAlignment="Center" Margin="10, 0, 10, 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnCancel" Grid.Column="1" Margin="2">취 소</Button>
+                    <Button Grid.Column="3" Name="btnMakeMark"   Margin="2" >마크 파일 재생성</Button>
+                    <Button Grid.Column="4"   Name="btnClose" ToolTip="닫 기" Content="닫 기"  Margin="2"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.RowSpan="2"  Background="White" x:Name="pnlModelSpec">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="1.6*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="2.2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="7" Grid.RowSpan="6" Grid.ColumnSpan="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.55*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center" 
+                            Orientation="Horizontal" Grid.ColumnSpan="8" >
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                                <GradientStop Color="#195aa2" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="14" FontFamily="Arial" FontWeight="Bold" 
+                           Margin="3, 0, 0, 0" Foreground="White">AutoNG 정보</Label>
+                    </StackPanel>
+
+                    <!--XOut 초과 폐기-->
+                    <Label  Grid.Row="1" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">폐기 불량 유닛 수</Label>
+                    <common:NumberTextBox  Grid.Row="1" Grid.Column="1" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding AutoNG}" x:Name="txtAutoNGCnt"/>
+                    <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+                    <Button Grid.Row="1" Grid.Column="3" Margin="1" Name="btnCalc1">Calc</Button>
+
+                    <!--연속 XOut 폐기-->
+                    <!--<Label Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>-->
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14*"/>
+                            <ColumnDefinition Width="85*"/>
+                            <ColumnDefinition Width="66*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="66*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="14" FontFamily="Arial" Grid.ColumnSpan="2">연속폐기</Label>
+                        <Label Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="14" FontFamily="Arial">X유닛</Label>
+                        <Label Grid.Column="4" VerticalAlignment="Center" Margin="6,0,0,0" FontSize="14" FontFamily="Arial">Y유닛</Label>
+                        <common:NumberTextBox  Grid.Column="5" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4,4,4,4" Text="{Binding AutoNGX}" x:Name="txtAutoNGCntX"/>
+                        <common:NumberTextBox  Grid.Column="3" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4,4,4,4" Text="{Binding AutoNGY}" x:Name="txtAutoNGCntY"/>
+                    </Grid>
+
+                    <!--블록폐기-->
+                    <Label  Grid.Row="3" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">블록 폐기 유닛 수</Label>
+                    <common:NumberTextBox  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding AutoNGBlock}" x:Name="txtAutoNGBlockCnt"/>
+                    <Label Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+
+                    <!--외각 행 XOut 폐기-->
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">외각 폐기</Label>
+                        <ComboBox Grid.Column="1" FontSize="14" VerticalContentAlignment="Center" SelectedIndex="{Binding AutoNGOuterYMode}" Name="cbAutoNGOuterYMode">
+                            <ComboBoxItem>양쪽</ComboBoxItem>
+                            <ComboBoxItem>레일부</ComboBoxItem>
+                            <ComboBoxItem>몰드부</ComboBoxItem>
+                        </ComboBox>                        
+                    </Grid>                    
+                    <common:NumberTextBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding AutoNGOuterY}" x:Name="txtAutoNGOuterY"/>
+                    <Label Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+       
+
+                    <!--외각 분할행 XOut 폐기-->
+                    <Label  Grid.Row="5" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">외각 분할 폐기</Label>
+                    <common:NumberTextBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4,4,4,4" Text="{Binding AutoNGOuterDivY}" x:Name="txtAutoNGOuterDivY"/>
+                    <Label Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+
+                    <!--배열 분할행 XOut 폐기-->
+                    <Grid Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="4" Grid.RowSpan="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Label  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">배열 분할 폐기</Label>
+                        <common:NumberTextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4,4,4,4" Text="{Binding AutoNGMatrixY}" x:Name="txtAutoNGMaxtrixX"/>
+                        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">X</Label>
+                        <common:NumberTextBox  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinValue="0"   MaxValue="300"   Round="0" VerticalContentAlignment="Center" Margin="4,4,4,4" Text="{Binding AutoNGMatrixY}" x:Name="txtAutoNGMaxtrixY"/>
+                        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Y</Label>
+                        <Button Grid.Row="4" Grid.Column="4" Margin="1" Name="btn_DeleteList">삭제</Button>
+                        <Button Grid.Row="4" Grid.Column="3" Margin="1" Name="btn_AddList">추가</Button>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="14" FontFamily="Arial">배열 정보</Label>
+                        <ListBox Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Grid.ColumnSpan="2" x:Name= "ListMatrix" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False" Margin="2"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="2" Focusable="False"
+                                 ItemsSource="{Binding p_ListMatrix,  NotifyOnSourceUpdated=True,  NotifyOnTargetUpdated=True}"  SelectedIndex="{Binding p_nSelectedList}">
+                        </ListBox>
+                    </Grid>
+                </Grid>
+                <Label  Grid.Row="0" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">제품 폭</Label>
+                <Label  Grid.Row="1" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">제품 길이</Label>
+                <StackPanel Grid.Row="13" Grid.ColumnSpan="4" VerticalAlignment="Center"
+                            Orientation="Horizontal" >
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                            <GradientStop Color="#195aa2" Offset="0.750"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <Label FontSize="14" FontFamily="Arial" FontWeight="Bold" 
+                           Margin="3, 0, 0, 0" Foreground="White">Unit 구분 정보</Label>
+                </StackPanel>
+                <StackPanel Grid.Row="18" Grid.ColumnSpan="4" VerticalAlignment="Center"
+                            Orientation="Horizontal" >
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                            <GradientStop Color="#195aa2" Offset="0.750"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <Label FontSize="14" FontFamily="Arial" FontWeight="Bold" 
+                           Margin="3, 0, 0, 0" Foreground="White">Block 구분 정보</Label>
+                </StackPanel>
+
+                <Label  Grid.Row="19" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Block Count</Label>
+                <Label  Grid.Row="20" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Block Gap</Label>
+                <Label  Grid.Row="2" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial" Visibility="Hidden">상부 Scan 속도</Label>
+                <Label  Grid.Row="3" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial" Visibility="Hidden">하부 Scan 속도</Label>
+                <Label  Grid.Row="2" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">제품 두께</Label>
+                <Label  Grid.Row="3" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">검사 선택</Label>
+                <Label  Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="5, 0" FontSize="14" FontFamily="Arial">CAM1 피치</Label>
+                <common:NumberTextBox  Grid.Row="5" Grid.Column="3" MinValue="-20.0"   MaxValue="20.0"   Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding XPitch}" x:Name="txtXPitch"/>
+                <CheckBox x:Name="cbVerify" IsChecked="{Binding Path=UseVerify}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0,10,0" FontSize="14" FontFamily="Arial">
+                    <TextBlock Text="VRS 사용" FontWeight="Light"/>
+                </CheckBox>
+                <CheckBox x:Name="cbAI" IsChecked="{Binding Path=UseAI}" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0,10,0" FontSize="14" FontFamily="Arial">
+                    <TextBlock Text="AI 사용" FontWeight="Light"/>
+                </CheckBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="4">
+                    <CheckBox x:Name="cbConBad" IsChecked="{Binding Path=UseConBad}" VerticalAlignment="Center" Margin="0, 0,10,0" FontSize="14" FontFamily="Arial">
+                        <TextBlock Text="누적 Unit 불량" FontWeight="Light"/>
+                    </CheckBox>
+                    <common:NumberTextBox  Text="{Binding ConBad}" x:Name="txtConBad" Margin="5,3" Grid.Column="1" Width="50" HorizontalAlignment="Left" MinValue="0" MaxValue="1000"></common:NumberTextBox >
+                    <TextBlock Text="Strip 시 정지 사용" FontWeight="Light"/>
+                </StackPanel>
+
+                <CheckBox Visibility="Visible" x:Name="cbIDMark" IsChecked="{Binding Path=UseIDMark}" Grid.Row="25" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="35, 0,10,0" FontSize="14" FontFamily="Arial">ID Mark 사용</CheckBox>
+                <Label Grid.Row="14" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Unit X-Count</Label>
+                <Label Grid.Row="15" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Unit Y-Count</Label>
+                <Label Grid.Row="16" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Unit X-Pitch</Label>
+                <Label Grid.Row="17" VerticalAlignment="Center" Margin="0, 0" FontSize="14" FontFamily="Arial">Unit Y-Pitch</Label>
+                       
+                <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                <Label Grid.Row="19" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">블럭</Label>
+                <Label Grid.Row="20" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial" Grid.ColumnSpan="2" Visibility="Hidden">mm/sec</Label>
+                <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial" Grid.ColumnSpan="2" Visibility="Hidden">mm/sec</Label>
+                <Label Grid.Row="14" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+                <Label Grid.Row="15" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+                <Label Grid.Row="16" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                <Label Grid.Row="17" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+
+                <Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+
+                <common:NumberTextBox  Grid.Row="0" Grid.Column="1" MinValue="0.0" MaxValue="100.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.Height}" x:Name="txtHeight"/>
+                <common:NumberTextBox  Grid.Row="1" Grid.Column="1" MinValue="0.0" MaxValue="300.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.Width}" x:Name="txtWidth"/>
+                <common:NumberTextBox  Grid.Row="2" Grid.Column="1" MinValue="0.0" MaxValue="2.000" Round="3" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.Thickness}" x:Name="txtThickness"/>
+                <common:NumberTextBox  Grid.Row="19" Grid.Column="1" MinValue="1"   MaxValue="100"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.Block}" x:Name="txtBlock"/>
+                <common:NumberTextBox  Grid.Row="20" Grid.Column="1" MinValue="0.0" MaxValue="100.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.BlockGap}" x:Name="txtBlockGap"/>
+                <common:NumberTextBox  Grid.Row="2" Grid.Column="1" MinValue="0"   MaxValue="500"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding ScanVelocity1}" x:Name="txtScanVelocity1" Visibility="Hidden"/>
+                <common:NumberTextBox  Grid.Row="3" Grid.Column="1" MinValue="0"   MaxValue="500"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding ScanVelocity2}" x:Name="txtScanVelocity2" Visibility="Hidden"/>
+                <common:NumberTextBox  Grid.Row="14" Grid.Column="1" MinValue="1"   MaxValue="1000"   Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.UnitColumn}" x:Name="txtUnitX"/>
+                <common:NumberTextBox Grid.Row="15" Grid.Column="1" MinValue="1"   MaxValue="1000"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.UnitRow}" x:Name="txtUnitY"/>
+                <common:NumberTextBox Grid.Row="16" Grid.Column="1" MinValue="0.0" MaxValue="100.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.UnitWidth}" x:Name="txtUnitPitchX"/>
+                <common:NumberTextBox Grid.Row="17" Grid.Column="1" MinValue="0.0" MaxValue="100.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.UnitHeight}" x:Name="txtUnitPitchY"/>
+                <ComboBox Name="cbInspect" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="2" SelectedIndex="{Binding Path=InspectMode}" FontSize="13" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="기준 검사"/>
+                    <ComboBoxItem Content="1회차 재검"/>
+                    <ComboBoxItem Content="2회차 재검"/>
+                    <ComboBoxItem Content="3회차 재검"/>
+                    <ComboBoxItem Content="양면ID마킹"/>
+                </ComboBox>
+                <Grid Grid.Row="4" Grid.ColumnSpan="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="CheckBoxBPContainer" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+                    </Grid>
+                    <Grid x:Name="CheckBoxCAContainer" Grid.Column="1" Grid.Row="0" Margin="0, 0">             
+                    </Grid>
+                    <Grid x:Name="CheckBoxBAContainer" Grid.Column="1" Grid.Row="1" Margin="0, 0">
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="21" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="14" FontFamily="Arial" >PSR Margin(um)</Label>
+                    <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="14" FontFamily="Arial" >W/P Margin(um)</Label>
+                    <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontFamily="Arial">X</Label>
+                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontFamily="Arial">X</Label>
+                    <Label Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontFamily="Arial">Y</Label>
+                    <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontFamily="Arial">Y</Label>
+                    <common:NumberTextBox Grid.Row="0" Grid.Column="2" MinValue="0.0" MaxValue="500.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.PSRMarginX}" x:Name="txtPSRMarginX"/>
+                    <common:NumberTextBox Grid.Row="0" Grid.Column="4" MinValue="0.0" MaxValue="500.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.PSRMarginY}" x:Name="txtPSRMarginY"/>
+                    <common:NumberTextBox Grid.Row="1" Grid.Column="2" MinValue="0.0" MaxValue="500.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.WPMarginX}" x:Name="txtWPMarginX"/>
+                    <common:NumberTextBox Grid.Row="1" Grid.Column="4" MinValue="0.0" MaxValue="500.0" Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.WPMarginY}" x:Name="txtWPMarginY"/>
+                </Grid>
+                <Grid Grid.Row="23" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.ColumnSpan="5" VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                                <GradientStop Color="#195aa2" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="14" FontFamily="Arial" Foreground="White" FontWeight="Bold" Margin="3, 0, 0, 0" >ITS 정보</Label>
+                    </StackPanel>
+                    <CheckBox Grid.Row="0" Grid.Column="5" Name="cbITS" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.UseITS}" >사용</CheckBox>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Name="cbLeft" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.LeftID}" >좌측ID</CheckBox>
+                    <CheckBox Grid.Row="1" Grid.Column="1" Name="cbSkipdata" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.SKIPDATA}" >SkipData</CheckBox>
+                    <CheckBox Grid.Row="1" Grid.Column="2" Name="cbINA" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.InnerAOI}" Visibility="Hidden">내층AOI</CheckBox>
+                    <CheckBox Grid.Row="1" Grid.Column="3" Name="cbOTA" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.OuterAOI}" Visibility="Hidden">외층AOI</CheckBox>
+                    <CheckBox Grid.Row="1" Grid.Column="4" Name="cbBBT" VerticalAlignment="Center" Margin="5" FontSize="13"  IsChecked="{Binding Path=ITS.BBT}" Visibility="Hidden">BBT</CheckBox>
+                </Grid>
+                <Grid Grid.Row="25" Grid.RowSpan="4" Grid.ColumnSpan="4"
+                      Name="pnlMarking" Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.ColumnSpan="7" VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                                <GradientStop Color="#195aa2" Offset="0.750"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Label FontSize="14" FontFamily="Arial" Foreground="White" FontWeight="Bold" 
+                               Margin="3, 0, 0, 0" Name="lblUseMarking">마킹 정보</Label>
+                    </StackPanel>
+                    <Grid Grid.Row="0" Grid.ColumnSpan="7" >
+                        <CheckBox Grid.Row="0" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Name="chkUseMarking" IsChecked="{Binding Path=UseMarking}" >Mark 사용</CheckBox>
+                    </Grid>
+                    <Label Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="14" FontFamily="Arial">Marking Step</Label>
+                    <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" Grid.RowSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0" FontSize="14" FontFamily="Arial">
+                            <TextBlock FontSize="13" FontFamily="Arial" Text="Marking&#xA;  Shift"/>
+                        </Label>                        
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0" FontSize="13" FontFamily="Arial">Boat1</Label>
+                                <common:NumberTextBox Grid.Column="1" MinValue="-240" MaxValue="240" Round="2" VerticalContentAlignment="Center" Margin="1,4,1,4" Text="{Binding Strip.MarkShift1}" x:Name="txtMarkShift1"/>
+                            </Grid>
+                            <Grid Grid.Row="1" x:Name="UseDualLaser">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0" FontSize="13" FontFamily="Arial">Boat2</Label>
+                                <common:NumberTextBox Grid.Column="1" MinValue="-240" MaxValue="240" Round="2" VerticalContentAlignment="Center" Margin="1,4,1,4" Text="{Binding Strip.MarkShift2}" x:Name="txtMarkShift2"/>
+                            </Grid>
+                        </Grid>                        
+                        <Label Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-4,0,0,0" FontSize="12" FontFamily="Arial">mm</Label>
+                    </Grid>
+                    
+                    <Label Grid.Row="2" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="14" FontFamily="Arial">Units / Step</Label>
+                    <Label Grid.Row="3" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="14" FontFamily="Arial">Pitch / Step</Label>
+
+                    <common:NumberTextBox  Grid.Row="1" Grid.Column="1" MinValue="2"   MaxValue="3"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.MarkStep}" x:Name="txtMarkStep"/>
+                    <common:NumberTextBox  Grid.Row="2" Grid.Column="1" MinValue="1"   MaxValue="100"   Round="0" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.StepUnits}" x:Name="txtStepUnits"/>
+                    <common:NumberTextBox  Grid.Row="3" Grid.Column="1" MinValue="1"   MaxValue="120"   Round="2" VerticalContentAlignment="Center" Margin="4" Text="{Binding Strip.StepPitch}" x:Name="txtStepPitch"/>
+                    
+                    <Label  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">Units</Label>
+                    <Label  Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" FontSize="14" FontFamily="Arial">mm</Label>
+                    <Button Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="2" Name="btnCalc2">Calc</Button>
+                    <Grid Grid.Row="8" Grid.ColumnSpan="5" Margin="0,0,-0.2,0.4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="105"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Grid>
+                        
+            </Grid>
+            
+            <Grid Grid.Row="0" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.55*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9.5*"/>
+                    <RowDefinition Height="2.2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="29" Grid.ColumnSpan="4" Grid.RowSpan="6"  Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" />
+                    <Border CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF919191" Offset="1"/>
+                                <GradientStop Color="White"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock Text="불량 유형별 폐기 설정" Margin="5,1,0,0" FontWeight="Bold" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+
+                        <ScrollViewer x:Name="AutoNG_List" VerticalScrollBarVisibility="Auto" IsEnabled="True">
+
+                            <ItemsControl x:Name="AutoNG_Control" ItemsSource="{Binding}" IsEnabled="False">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="4"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                Content="{Binding Name}"
+                                IsChecked="{Binding IsChecked}"
+                                IsEnabled="{Binding IsEnabled}"     
+                                Margin="5"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

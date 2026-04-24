@@ -1,0 +1,48 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using System.IO;
+using Common.Drawing.MarkingTypeUI;
+using Common.Drawing.MarkingInformation;
+
+namespace Common.Drawing
+{
+    class ToolSpecialMark : ToolRectangleBase
+    {
+        #region Ctor.
+        public ToolSpecialMark()
+        {
+            using (MemoryStream stream = new MemoryStream(Properties.Resources.Rectangle))
+            {
+                ToolCursor = new Cursor(stream); // Set Cursor.
+            }
+        }
+        #endregion
+
+        public override void OnMouseDown(DrawingCanvas drawingCanvas, MouseButtonEventArgs e)
+        {
+            Point p = e.GetPosition(drawingCanvas);
+            if (p.X >= drawingCanvas.ActualWidth - 1 || p.Y >= drawingCanvas.ActualHeight - 1)
+            {
+                return;
+            }
+
+            if (p.X < 0)
+                p.X = 0;
+            if (p.Y < 0)
+                p.Y = 0;
+
+            SetGraphicsColor(drawingCanvas);
+            string str = GetMarkID(drawingCanvas);
+            GraphicsSpecialMark graphic = new GraphicsSpecialMark(p.X, p.Y, p.X + 1, p.Y + 1,
+                                      drawingCanvas.LineWidth,
+                                      drawingCanvas.ObjectColor, str,
+                                      drawingCanvas.ActualScale, false, false, 0, GraphicsRegionType.MarkingUnit);
+
+            // Add this Rectangle to GraphicList of drawingCanvas.
+            UnitSpecialProperty rc = new UnitSpecialProperty();
+            graphic.MarkInfo = new MarkItem(MarkingType.GetMarkType(eMarkingType.eMarkingUnitSpecial), rc, 0);
+            AddNewObject(drawingCanvas, graphic);
+        }
+    }
+}

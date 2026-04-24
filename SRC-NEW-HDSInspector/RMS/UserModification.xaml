@@ -1,0 +1,54 @@
+﻿<Window x:Class="ResultManagement.UserModification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UserModification" Height="400" Width="400" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" Icon="{x:Null}" WindowStyle="ToolWindow">
+    <Grid Margin="15,10,15,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 26"  Background="LightGray" Height="2" Grid.ColumnSpan="4"/>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 50, 26" Background="Black"     Height="2"/>
+
+        <Border Grid.Row="1" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="2" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="3" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="4" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="5" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        
+        <Label Grid.Row="0" VerticalAlignment="Top"    Margin="3, 0, 0, 0" FontSize="17">정보수정</Label>
+        <Label Grid.Row="1" VerticalAlignment="Center" Margin="3, 0, 0, 0" FontSize="15">ID</Label>
+        <Label Grid.Row="2" VerticalAlignment="Center" Margin="3, 0, 0, 0" FontSize="15">이 름</Label>
+        <Label Grid.Row="3" VerticalAlignment="Center" Margin="3, 0, 0, 0" FontSize="15">새 비밀번호</Label>
+        <Label Grid.Row="4" VerticalAlignment="Center" Margin="3, 0, 0, 0" FontSize="15">새 비밀번호 확인</Label>
+        <Label Grid.Row="5" VerticalAlignment="Center" Margin="3, 0, 0, 0" FontSize="15">사용 권한</Label>
+        
+        <TextBox Name="txtID"   Grid.Row="1" Grid.Column="1" Margin="5" VerticalContentAlignment="Center"
+                 MaxLength="12" IsReadOnly="True"/>
+        <TextBox Name="txtName" Grid.Row="2" Grid.Column="1" Margin="5" VerticalContentAlignment="Center"
+                     MaxLength="12" IsReadOnly="True"/>
+        <PasswordBox Name="txtNewPassword" Grid.Row="3" Grid.Column="1" Margin="5" VerticalContentAlignment="Center"
+                     MaxLength="12"/>
+        <PasswordBox Name="txtCheckNewPassword" Grid.Row="4" Grid.Column="1" Margin="5" VerticalContentAlignment="Center"
+                     MaxLength="12"/>
+        <ComboBox Name="cmbAuthority" Grid.Row="5" Grid.Column="1" Margin="5" VerticalContentAlignment="Center"
+                   ItemsSource="{Binding}" ></ComboBox>
+        
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Name="btnOK" Height="30" Width="100" Margin="10, 0" Style="{DynamicResource SimpleButton}">확 인</Button>
+            <Button Name="btnCancel"  Height="30" Width="100" Margin="10, 0" Style="{DynamicResource SimpleButton}">취 소</Button>
+        </StackPanel>
+    </Grid>
+</Window>

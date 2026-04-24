@@ -1,0 +1,108 @@
+﻿<Window x:Class="STWInspector.SubWindow.SaveGoldenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Golden Model4" Height="450" Width="420" WindowStyle="ToolWindow" Topmost="True" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Icon="{x:Null}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--Top-->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Orientation="Horizontal" Margin="3, 0, 0, 0" >
+            <Image Source="../Images/goldenModel.png" Width="20" Height="20" Margin="5, 4, 0, 0"/>
+            <Label FontSize="17" FontWeight="Bold">골든 모델 저장</Label>
+        </StackPanel>
+        
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 15" Background="LightGray" Height="2" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 15" Background="Black"     Height="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="150"/>
+
+        <!--Center 1-->
+        <Grid Grid.Row="1" Grid.ColumnSpan="4" Name="page1" Tag="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="1" Grid.ColumnSpan="3" Margin="0,0,0,0" Opacity="0.25">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,0,0" Opacity="0.25">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="3" Grid.ColumnSpan="3" Margin="0,0,0,0" Opacity="0.25">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="4" Grid.ColumnSpan="3" Margin="0,0,0,0" Opacity="0.25">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="5" Grid.ColumnSpan="3" Margin="0,0,0,0" Opacity="0.25">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontSize="15" FontWeight="Bold">Group</TextBlock>
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontSize="15" FontWeight="Bold">Model</TextBlock>
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontSize="15" FontWeight="Bold">Date</TextBlock>
+            <TextBlock Grid.Row="4" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontSize="15" FontWeight="Bold">Password</TextBlock>
+            <TextBlock Grid.Row="5" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontSize="15" FontWeight="Bold">Comment</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontSize="14">전체영상 보기</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontSize="14">기준영상 보기</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontSize="14">영상 취득</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontSize="14">부분 검사</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontSize="14">전체 검사</TextBlock>
+        </Grid>
+
+        <!--Bottom-->
+        <Border Grid.Row="7" Background="#FFFFC200" Grid.ColumnSpan="4"/>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Name="btnSave" Height="35" Width="95" Margin="5, 0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="../Images/save_file_128_128.png" Width="20" Height="20" Margin="-5, 0, 0, 0"/>
+                    <TextBlock FontWeight="Normal" FontSize="12" Text="저 장" VerticalAlignment="Center" Margin="10, 0, 10, 0"/>
+                </StackPanel>
+            </Button>
+            <Button Name="btnClose" Height="35" Width="95" Margin="5, 0">닫 기</Button>
+        </StackPanel>
+    </Grid>
+</Window>
+

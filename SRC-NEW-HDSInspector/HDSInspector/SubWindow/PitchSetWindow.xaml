@@ -1,0 +1,68 @@
+﻿<Window x:Class="HDSInspector.SubWindow.PitchSetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pitch 설정" Height="200" Width="300" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="0" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="3">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF919191" Offset="1" />
+                    <GradientStop Color="White" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Grid.Column="1" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">현재 값</Label>
+        <Label Grid.Column="2" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">계산 값</Label>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Unit Pitch X</Label>
+        <Label Grid.Column="0" Grid.Row="2" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Unit Pitch Y</Label>
+        <Label Grid.Column="0" Grid.Row="3" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Block Gap</Label>
+        <Label Grid.Column="1" Grid.Row="1" Name="lblPitchX" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">0.0</Label>
+        <Label Grid.Column="1" Grid.Row="2" Name="lblPitchY" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">0.0</Label>
+        <Label Grid.Column="1" Grid.Row="3" Name="lblGap" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">0.0</Label>
+        <Border Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF960404" Offset="0" />
+                    <GradientStop Color="Red" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Grid.Column="2" Grid.Row="1" Name="lblPitchX2" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">0.0</Label>
+        <Label Grid.Column="2" Grid.Row="2" Name="lblPitchY2" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">0.0</Label>
+        <Label Grid.Column="2" Grid.Row="3" Name="lblGap2" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White">0.0</Label>
+        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                    <GradientStop Color="#195aa2" Offset="0.750"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button Grid.Column="0" Margin="15,2" Name="btnOK">변경 적용</Button>
+            <Button Grid.Column="1" Margin="15,2" Name="btnCancel">취 소</Button>
+        </Grid>
+    </Grid>
+</Window>

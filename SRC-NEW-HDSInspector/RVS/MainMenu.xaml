@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="RVS.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="24" d:DesignWidth="500" FontFamily="Arial">
+    <Menu Name="menu1" FontFamily="Arial">
+        <Menu.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                <GradientStop Color="#77444444" Offset="1"/>
+                <GradientStop Color="White" Offset="0.35"/>
+            </LinearGradientBrush>
+        </Menu.Background>
+        <!-- 모델 메뉴 -->
+        <MenuItem Header="파일(_F)" Margin="10,0,0,0">
+            <MenuItem Header="불량 이미지 보기(_N)" 
+                      x:Name="NGImage" Click="MenuItem_Click" TextInput="MenuItem_TextInput" InputGestureText="Alt+N"/>
+            <MenuItem Header="끝내기(_X)" 
+                      x:Name="ExitApplication" Click="MenuItem_Click" TextInput="MenuItem_TextInput" InputGestureText="Alt+X"/>
+        </MenuItem>
+        <!-- 검사 메뉴 -->
+        <MenuItem Header="설정(_E)">
+            <MenuItem Header="Settings..(_R)"
+                      x:Name="Settings" InputGestureText="Ctrl+R" Click="MenuItem_Click"/>            
+        </MenuItem>
+        <!-- 결과 메뉴 -->
+        <MenuItem Header="도움말(_H)">
+            <MenuItem Header="About RVS(_T)"
+                      x:Name="About" InputGestureText="Ctrl+T" Click="MenuItem_Click" TextInput="MenuItem_TextInput"/>
+        </MenuItem>
+    </Menu>
+</UserControl>

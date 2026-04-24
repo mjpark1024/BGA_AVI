@@ -1,0 +1,54 @@
+﻿<UserControl xmlns:my="clr-namespace:Common;assembly=Common"  x:Class="HDSInspector.InspectionResultImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="230" d:DesignWidth="100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Gray" BorderThickness="1, 1, 1, 0">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+            </Border.Effect>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource ="/HDSInspector;component/Images/REF.png" Opacity="0.5"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Border>
+
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1, 1, 1, 1">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3" Direction="310" Color="Black" BlurRadius="4" Opacity="0.5"/>
+            </Border.Effect>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource ="/HDSInspector;component/Images/DEF.png" Opacity="0.5"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Border>
+        <Border Name="NGColor" Grid.Row="2" CornerRadius="2" Opacity="0.2" Background="DarkGray" Margin="0,1,0,0">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" Direction="310" Color="Black" BlurRadius="4" Opacity="0.2"/>
+            </Border.Effect>
+        </Border>
+
+        <my:AntiAliasedImage Name="RefImage" Grid.Row="0" Stretch="Fill" Margin="1" Tag="ref"/>
+        <my:AntiAliasedImage Name="DefImage" Grid.Row="1" Stretch="Fill" Margin="1" Tag="def"/>
+        <Rectangle Grid.Row="1" Width="20" Height="20" Stroke="Red" StrokeThickness="1" x:Name="LastDefImage" Visibility="Hidden"/>
+        
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Name="txtNGName" Grid.Row ="2" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="11" FontFamily="Arial"/>
+                <TextBlock Name="txtUnitPos" Grid.Row ="2" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="11" FontFamily="Arial"/>
+                <TextBlock Name="txtDefectInfo" Grid.Row ="2" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="11" FontFamily="Arial"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.VentHole"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="430" Width="300">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="4">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">Vent Hole 검사</TextBlock>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" Grid.Row="1" Background="White">
+            <Grid Grid.Row="1" Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+
+                <!-- Lower threshold, Upper threshold -->
+                <TextBlock FontSize="11.5" Grid.Row="1" VerticalAlignment="Center" Margin="5, 0, 0, 0" Name="txtGV">임계 값</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtThreshold"
+                              Grid.Row="1" Grid.Column="1">100</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">최소 검출사이즈(px)</TextBlock>
+                <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="33"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black">MIN</TextBlock>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="2">이하</TextBlock>
+                    <common:NumberTextBox Grid.Column="1" FontSize="13" VerticalContentAlignment="Center" Margin="-1, 2, 2, 2"
+                                          MinValue="0" MaxValue="90000" Round="0" Name="txtMinDefectSize">30</common:NumberTextBox>
+                </Grid>
+                <Grid Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="33"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Grid Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="33"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,54 @@
+﻿<Window x:Class="ResultManagement.EquipmentRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EquipmentRegistration" Height="400" Width="400" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" Icon="{x:Null}" WindowStyle="ToolWindow">
+    <Grid Margin="15,10,15,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 33" Background="LightGray" Height="2" Grid.ColumnSpan="4"/>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 20, 33" Background="Black"     Height="2"/>
+
+        <Border Grid.Row="1" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="2" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+        <Border Grid.Row="3" HorizontalAlignment="Left" Margin="3, 3, 0, 0" Background="#385D8A" Width="2" Height="17" />
+
+        <Label Grid.Row="0" VerticalAlignment="Top"    Margin="3, 0, 0, 0" FontSize="17">장비등록</Label>
+        <Label Grid.Row="1" VerticalAlignment="Center" Margin="5, 0, 0, 0" FontSize="15">장비이름</Label>
+        <Label Grid.Row="2" VerticalAlignment="Center" Margin="5, 0, 0, 0" FontSize="15">장비타입</Label>
+        <Label Grid.Row="3" VerticalAlignment="Center" Margin="5, 0, 0, 0" FontSize="15" Visibility="Hidden">사용여부</Label>
+
+        <Image Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Source="./Images/checked.png" Name="imgValidName"/>
+        <TextBox Name="txtName"   
+                 Grid.Row="1" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" MaxLength="12"/>
+        <Button Name="btnCheckName" Grid.Row="1" Grid.Column="3" Margin="5" Style="{DynamicResource SimpleButton}">중복확인</Button>
+        <ComboBox Name="cmType" 
+                 Grid.Row="2" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" ItemsSource="{Binding}"/>
+        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="7,5,5,5" Visibility="Hidden">
+            <RadioButton Name="UseYes" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" GroupName="IsUseGrop" IsChecked="True" Visibility="Hidden" />
+            <Label FontSize="12" Visibility="Hidden">네</Label>
+            <RadioButton Name="UseNo"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" GroupName="IsUseGrop" Margin="20,0,0,0" Visibility="Hidden" />
+            <Label FontSize="12" Visibility="Hidden">아니오</Label>
+        </StackPanel>        
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Name="btnOK" Height="30" Width="100" Margin="10, 0" Style="{DynamicResource SimpleButton}">확 인</Button>
+            <Button Name="btnCancel"  Height="30" Width="100" Margin="10, 0" Style="{DynamicResource SimpleButton}">취 소</Button>
+        </StackPanel>
+    </Grid>
+</Window>

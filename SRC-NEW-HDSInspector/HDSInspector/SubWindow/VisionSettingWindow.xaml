@@ -1,0 +1,119 @@
+﻿<Window x:Class="HDSInspector.SubWindow.VisionSettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:Common;assembly=Common"
+        Title="비전 설정" Height="310" Width="550"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+        <!--Top-->
+        <Label Grid.Row="0" VerticalAlignment="Top"    Margin="3, 0, 0, 0" FontSize="17" FontWeight="Bold" Grid.ColumnSpan="4">비전 설정</Label>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 15" Background="LightGray" Height="2" Grid.ColumnSpan="4"/>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, -20, 15" Background="Black"     Height="2"/>
+        
+        <Border Grid.Row="1" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="5" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="6" Grid.ColumnSpan="4" Opacity="0.25">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Margin="3, 0">※ 기준 영상을 로컬 PC에 복사하신 후 경로를 지정해 주시기 바랍니다.</TextBlock>
+
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" Margin="3, 0, 0, 0">상부 반사</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0, 3, 0, 3" VerticalContentAlignment="Center" IsReadOnly="True" x:Name="txtVision1ImagePath"/>
+        <Button Margin="1" Grid.Row="2" Grid.Column="3" x:Name="btnFileOpen1" Style="{DynamicResource SimpleButton}"
+                BorderBrush="#888888" BorderThickness="1">경로 지정</Button>
+
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" Margin="3, 0, 0, 0">하부 반사</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0, 3, 0, 3" VerticalContentAlignment="Center" IsReadOnly="True" x:Name="txtVision2ImagePath"/>
+        <Button Margin="1" Grid.Row="3" Grid.Column="3" x:Name="btnFileOpen2" Style="{DynamicResource SimpleButton}"
+                BorderBrush="#888888" BorderThickness="1">경로 지정</Button>
+
+        <TextBlock Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" Margin="3, 0, 0, 0">상부 투과</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0, 3, 0, 3" VerticalContentAlignment="Center" IsReadOnly="True" x:Name="txtVision3ImagePath"/>
+        <Button Margin="1" Grid.Row="4" Grid.Column="3" x:Name="btnFileOpen3" Style="{DynamicResource SimpleButton}"
+                BorderBrush="#888888" BorderThickness="1">경로 지정</Button>
+
+        <TextBlock Grid.Row="5" Text="CamWidth" FontWeight="Bold" VerticalAlignment="Center"  Margin="3, 0, 0, 0"/>
+        <common:NumberTextBox Grid.Row="5" Grid.Column="1" Name="txtCamWidth" Margin="0, 3, 0, 3" 
+                              HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="80"/>
+        
+        <TextBlock Grid.Row="6" Text="CamHeight" FontWeight="Bold" VerticalAlignment="Center" Margin="3, 0, 0, 0"/>
+        <common:NumberTextBox Grid.Row="6" Grid.Column="1" Name="txtCamHeight" Margin="0, 3, 0, 3" 
+                              HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="80"/>
+
+        <Grid Grid.Row="8" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Margin="5, 0" Height="30" Name="btnOK">확 인</Button>
+            <Button Grid.Column="2" Margin="5, 0" Height="30" Name="btnCancel">취 소</Button>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                    <GradientStop Color="#195aa2" Offset="0.750"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,260 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HDSInspector" x:Class="HDSInspector.LotWindow"
+        xmlns:igs="clr-namespace:IGS.SubControl;assembly=IGS_Client"
+        Title="Lot 입력" Height="640" Width="1300"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="580"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Image Opacity="0.5" Source="/HDSInspector;component/Images/metalic.jpg" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="DarkGray" BorderThickness="0,0,1,0"/>
+        
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="UpperGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="95"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="Lot No"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="Operator"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="투입 수량"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="ITS No"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="공정코드"/>
+            <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="제조주차"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="110" Height="30" Margin="10,0" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" x:Name="txtLot" TextAlignment="Left" CharacterCasing="Upper"/>
+                <ComboBox Width="80" Height="30" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" x:Name="cbLotType"/>
+            </StackPanel>
+
+            <TextBox Grid.Row="1" Grid.Column="3" Width="110" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" x:Name="txtITSLot" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper"/>
+
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="110" Height="30" HorizontalAlignment="Left" Margin="10,0" x:Name="txtOperator" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper"/>
+                <TextBlock Name="tbOperName" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="4" Grid.Column="1" Margin="10,0,0,0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Name="tbPreCnt"/>
+
+            <TextBox Grid.Row="3" Grid.Column="3" Width="110" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" x:Name="txtCode" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper"/>
+            <TextBox Grid.Row="4" Grid.Column="3" Width="110" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" x:Name="txtWeek" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper" IsEnabled="False"/>
+
+            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Name="spMESState">
+                <TextBlock FontSize="11" FontWeight="Bold" Foreground="Crimson" Text="전산 : "/>
+                <TextBlock FontSize="11" FontWeight="Bold" Foreground="Crimson" Name="tbOpState"/>
+            </StackPanel>
+            
+            <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" x:Name="txtGageLabel" FontSize="11" Margin="10,0">
+                <Run Text="디스크 사용량"/>
+            </TextBlock>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Text="검사 옵션"/>
+            <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="CheckBoxInspContainer" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="2">
+                    
+                </Grid>
+                <CheckBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="cbMarkEnable" Margin ="-10,0,0,0 " FontWeight="Bold" Content="Mark 사용" Foreground="Tomato" IsEnabled="False"/>
+                <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="chkVerify" Margin ="-5,0,0,0 " Content="VRS 사용"/>
+                <CheckBox Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="chkUseAI" Content="AI 사용"/>
+                <CheckBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="cbConBad" Content="누적 Unit 불량 100Strip 시 정지 사용"/>
+            </Grid>
+
+            <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <igs:POP_WARNING_Ctrl Grid.Row="0" x:Name="igsWarningInfo"/>
+                <igs:POP_CHANGE_POINT_Ctrl Grid.Row="1" x:Name="igsChangeInfo"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="1" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="고정불량 설정" Margin="5,1,0,0" FontWeight="Bold" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+            </Border>
+
+            <CheckBox Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" x:Name="chkStaticMark" Content="고정마킹 사용"/>
+            <local:LaserSelector Grid.Row="2" Grid.Column="0" x:Name="map" Height="240" Width="590"/>
+
+            <Border Grid.Row="3" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="불량명 AutoNG 설정" Margin="5,1,0,0" FontWeight="Bold" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+            </Border>
+
+            <Grid Grid.Row="4" Margin="0,0,0,5">
+
+                <ScrollViewer x:Name="AutoNG_List" VerticalScrollBarVisibility="Auto" IsEnabled="True">
+
+                    <ItemsControl x:Name="AutoNG_Control" ItemsSource="{Binding}" IsEnabled="False">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="6"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                Content="{Binding Name}"
+                                IsChecked="{Binding IsChecked}"
+                                IsEnabled="{Binding IsEnabled}"     
+                                Margin="5"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </ScrollViewer>
+
+
+
+
+
+
+                <!--<Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>-->
+                
+                <!--<Border Grid.Row="1" Grid.ColumnSpan="8" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                <Border Grid.Row="3" Grid.ColumnSpan="8" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                <Border Grid.Row="5" Grid.ColumnSpan="8" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                
+                <CheckBox Grid.Row="0" Grid.Column="0" Name="cbAutoNG00" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="0" Name="cbAutoNG01" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="0" Name="cbAutoNG02" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="0" Name="cbAutoNG03" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="0" Name="cbAutoNG04" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="0" Name="cbAutoNG05" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="0" Name="cbAutoNG06" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>                                                                                                                                                                                                                 
+                
+                <CheckBox Grid.Row="0" Grid.Column="1" Name="cbAutoNG07" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="1" Name="cbAutoNG08" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="1" Name="cbAutoNG09" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="1" Name="cbAutoNG10" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="1" Name="cbAutoNG11" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="1" Name="cbAutoNG12" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="1" Name="cbAutoNG13" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                                                                                                                                                                                                                                              
+                <CheckBox Grid.Row="0" Grid.Column="2" Name="cbAutoNG14" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="2" Name="cbAutoNG15" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="2" Name="cbAutoNG16" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="2" Name="cbAutoNG17" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="2" Name="cbAutoNG18" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="2" Name="cbAutoNG19" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="2" Name="cbAutoNG20" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                                                                                                                                                                                                                                              
+                <CheckBox Grid.Row="0" Grid.Column="3" Name="cbAutoNG21" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="3" Name="cbAutoNG22" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="3" Name="cbAutoNG23" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="3" Name="cbAutoNG24" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="3" Name="cbAutoNG25" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="3" Name="cbAutoNG26" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="3" Name="cbAutoNG27" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>                                                         
+                
+                <CheckBox Grid.Row="0" Grid.Column="4" Name="cbAutoNG28" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="4" Name="cbAutoNG29" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="4" Name="cbAutoNG30" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="4" Name="cbAutoNG31" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="4" Name="cbAutoNG32" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="4" Name="cbAutoNG33" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="4" Name="cbAutoNG34" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                                                                                                                                                                                                                                              
+                <CheckBox Grid.Row="0" Grid.Column="5" Name="cbAutoNG35" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="5" Name="cbAutoNG36" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="5" Name="cbAutoNG37" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="5" Name="cbAutoNG38" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="5" Name="cbAutoNG39" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="5" Name="cbAutoNG40" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="6" Grid.Column="5" Name="cbAutoNG41" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                                                                                                                                                                                                                                              
+                <CheckBox Grid.Row="0" Grid.Column="6" Name="cbAutoNG42" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="6" Name="cbAutoNG43" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="6" Name="cbAutoNG44" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="6" Name="cbAutoNG45" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="6" Name="cbAutoNG46" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>
+                <CheckBox Grid.Row="5" Grid.Column="6" Name="cbAutoNG47" VerticalAlignment="Center" Margin="3" FontSize="12"></CheckBox>-->
+                
+
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnOK" Width="120" Height="35" Margin="20,0" Content="확 인"/>
+            <Button x:Name="btnCancel" Width="120" Height="35" Margin="20,0" Content="취 소"/>
+        </StackPanel>
+    </Grid>
+</Window>

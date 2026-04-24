@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.GV_Inspection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Common.Drawing.InspectionTypeUI"
+             mc:Ignorable="d" 
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="5">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">GV 검사</TextBlock>
+        </Border>
+      
+        <TextBlock FontSize="11.5" Grid.Row="1" VerticalAlignment="Center" Margin="5, 0, 0, 0">Ball 임계값</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                          MinValue="0" MaxValue="255" Round="0" Name="txtBall_Thresh"
+                          Grid.Row="1" Grid.Column="2"  HorizontalContentAlignment="Center">100</common:NumberTextBox>
+
+
+        <TextBlock FontSize="11.5" Grid.Row="2"  VerticalAlignment="Center" Margin="5, 0, 0, 0">Core임계값</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                          MinValue="0" MaxValue="255" Round="0" Name="txtCore_Thresh"
+                          Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Center">0</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="3" VerticalAlignment="Center" Margin="5, 0, 0, 0">마스크 축소</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                          MinValue="0" MaxValue="255" Round="0" Name="txtMask"
+                          Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Center">100</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="4" VerticalAlignment="Center" Margin="5, 0, 0, 0">타겟 GV</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                          MinValue="0" MaxValue="255" Round="0" Name="txtTaget_GV"
+                          Grid.Row="4" Grid.Column="2" HorizontalContentAlignment="Center">80</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="5" VerticalAlignment="Center" Margin="5, 0, 0, 0">GV_Margin</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                          MinValue="0" MaxValue="255" Round="0" Name="txtGV_Margin"
+                          Grid.Row="5" Grid.Column="2" HorizontalContentAlignment="Center">10</common:NumberTextBox>
+
+    </Grid>
+</UserControl>

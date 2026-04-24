@@ -1,0 +1,35 @@
+﻿<Window x:Class="HDSInspector.SubWindow.ChangeUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="ChangeUserWindow" MinHeight="200" MinWidth="300" MaxHeight="200" MaxWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Image Source="../Images/teaching.png" Opacity="0.55" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="1" Content="ID" Height="30" HorizontalAlignment="Right" Name="lbID" VerticalAlignment="Center" FontWeight="Bold"/>
+            <Label Grid.Row="2" Content="PW" Height="30" HorizontalAlignment="Right" Name="lbPW" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Height="30" Margin="20, 0" Width="150" HorizontalAlignment="Left" Name="txtID" FontSize="14"/>
+            <PasswordBox Grid.Row="2" Grid.Column="1" Height="30" Margin="20, 0" Width="150" HorizontalAlignment="Left" Name="txtPW" FontSize="14"/>
+        </Grid>
+        
+        <Border Grid.Row="7" Background="#4c7eb6"/>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Name="btnOK" Height="35" Width="95" Margin="10, 0">확 인</Button>
+            <Button Name="btnCancel"  Height="35" Width="95" Margin="10, 0">취 소</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="HDSInspector.TeachingSubMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="140" d:DesignWidth="190" MaxHeight="150" MaxWidth="240"
+             xmlns:my="clr-namespace:HDSInspector">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ToggleButton Grid.Row="0" Grid.Column="0" Name="btnPointer"  ToolTip="선택" Tag="Pointer" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/pointer_64_64.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">선택</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Visibility="Hidden" Grid.Row="0" Grid.Column="2" Name="btnPannning" ToolTip="화면 이동" Tag="Move" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/drag_48_48.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">이동</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="0" Grid.Column="2" Name="btnRawmetrial" ToolTip="원소재" Tag="Rawmetrial" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">원소재</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="0" Grid.Column="2" Name="btnCopyAndPaste" ToolTip="오려붙이기" Tag="CopyAndPaste" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/cut.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">오려</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">붙이기</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="0" Grid.Column="4" Name="btnRectangle" ToolTip="사각형" Tag="Rectangle" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8, 4"/>
+                <Label x:Name="lblRectangle" HorizontalAlignment="Center" FontSize="9">유닛</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="0" Grid.Column="6" Name="btnAlign" ToolTip="얼라인 패턴" Tag="AlignPattern" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" FontSize="9" FontWeight="Bold">Align</TextBlock>
+                <TextBlock FontSize="3"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="9" FontWeight="Bold">Pattern</TextBlock>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="0" Grid.Column="6" Name="btnOuter" ToolTip="외곽 섹션" Tag="Outer" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">외곽</Label>
+            </StackPanel>
+        </ToggleButton>
+
+        <ToggleButton Grid.Row="2" Grid.Column="4" Name="btnPSROdd" ToolTip="PSR이물 검사" Tag="PSROdd" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">PSR</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="2" Grid.Column="4" Name="btnEllipse" ToolTip="원형" Tag="Ellipse" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/circle.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">원형툴</Label>
+            </StackPanel>
+        </ToggleButton>
+        
+        <ToggleButton Grid.Row="2" Grid.Column="6" Name="btnStripAlign" ToolTip="Strip 원점" 
+                      Tag="StripOrigin" Style="{DynamicResource DrawingToggleButtonStyle}" BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/polygon.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">Strip</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">원점</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="2" Grid.Column="6" Name="btnPolyLine" ToolTip="다각형 (Shift 키를 누른 상태에서 직선을 그릴 수 있습니다.)" 
+                      Tag="PolyLine" Style="{DynamicResource DrawingToggleButtonStyle}" BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/polygon.png" Margin="8, 4"/>
+                <Label HorizontalAlignment="Center" FontSize="9">다각형</Label>
+            </StackPanel>
+        </ToggleButton>
+        
+        <ToggleButton Grid.Row="2" Grid.Column="0" Name="btnLine" ToolTip="길이 측정 (Shift 키를 누른 상태에서 직선을 그릴 수 있습니다.)" 
+                      Tag="Line" Style="{DynamicResource DrawingToggleButtonStyle}" BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/draw_line.png" Margin="4, 4, 4, 0"/>
+                <Label HorizontalAlignment="Center" FontSize="9">길이</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="2" Grid.Column="0" Name="btnWPShift" ToolTip="W/P Shift" 
+                      Tag="WPShift" Style="{DynamicResource DrawingToggleButtonStyle}" BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">W/P</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">Shift</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="2" Grid.Column="2" Name="btnGuideLine" ToolTip="가이드 라인" Tag="GuideLine" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/guide_line.png" Margin="8"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">Guide</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">Line</Label>
+            </StackPanel>
+        </ToggleButton>
+        <ToggleButton Grid.Row="2" Grid.Column="2" Name="btnIDMark" ToolTip="ID Mark" Tag="IDMark" Style="{DynamicResource DrawingToggleButtonStyle}"
+                      BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/ID.png" Margin="8"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">ID</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">Mark</Label>
+            </StackPanel>
+        </ToggleButton>
+    </Grid>
+</UserControl>

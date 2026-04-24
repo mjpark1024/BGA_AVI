@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HDSInspector.MarkSubMenuCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="70" MaxHeight="80" MaxWidth="70"
+             xmlns:my="clr-namespace:HDSInspector">
+    <Grid>
+        <ToggleButton Grid.Row="0" Grid.Column="0" Name="btnStripAlign" ToolTip="Mark Strip Align" 
+                      Tag="MarkStripAlign" Style="{DynamicResource DrawingToggleButtonStyle}" BorderBrush="#888888" BorderThickness="1">
+            <StackPanel>
+                <Image Source="Images/rectangle.png" Margin="8, 8" Height="20"/>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -10, 0, 0">Strip</Label>
+                <Label HorizontalAlignment="Center" FontSize="9" Margin="0, -12, 0, 0">Align</Label>
+            </StackPanel>
+        </ToggleButton>
+    </Grid>
+</UserControl>

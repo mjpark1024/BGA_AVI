@@ -1,0 +1,688 @@
+﻿<Window x:Class="Setting_INI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Setting_INI"
+        mc:Ignorable="d"
+        Title="INI Setup Util" Height="768" Width="1920" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnConvert"  Grid.Column="0" Margin="5" FontSize="20" Foreground="Red">4호기타입만 절대 한번 사용</Button>
+            <Button Name="btnSave"  Grid.Column="2" Margin="5" FontSize="20">저 장</Button>
+            <Button Name="btnClose"  Grid.Column="4" Margin="5" FontSize="20">종 료</Button>
+        </Grid>
+        <TabControl>
+            <TabItem x:Name="tab00" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">설비 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">관리 코드</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">설비 코드</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">설비 유형</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">설비 IP</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">모델 경로</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">결과 경로</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">POP 경로</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Verify 저장경로</Label>
+                    <Label Grid.Column="0" Grid.Row="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ID 결과 경로</Label>
+                    <Label Grid.Column="0" Grid.Row="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">티칭 비밀번호</Label>
+                    <Label Grid.Column="0" Grid.Row="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">폐기 정보 저장</Label>
+                    <Label Grid.Column="0" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">X-OUT 폐기율</Label>
+                    <Label Grid.Column="0" Grid.Row="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Verify 폐기유닛 수</Label>
+                    <Label Grid.Column="0" Grid.Row="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ID 리더 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ID 리더 IP</Label>
+                    <Label Grid.Column="0" Grid.Row="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ResultSize Type</Label>
+                    <Label Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="20">[0 : Image Size1] [1 : Image Size2]</Label>
+                    <Label Grid.Column="0" Grid.Row="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Result Image Size1</Label>
+                    <Label Grid.Column="2" Grid.Row="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Result Image Size2</Label>
+                    <Label Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20"> [0: Front CA Boat1]   [1: Front BA Boat1]</Label>
+                    <Label Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">티칭 시 비밀번호 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">POP에 폐기 정보 저장 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="3" VerticalContentAlignment="Center"  FontSize="20">Verify 사용 시 설정 유닛수 이상 불량 발생 시 스트립 폐기</Label>
+                    <Label Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">ID 리더 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="5" Grid.Row="0" VerticalContentAlignment="Center" FontSize="18">CornerImage Size X,Y</Label>
+                    <Label Grid.Column="8" Grid.Row="0" VerticalContentAlignment="Center" FontSize="20">mm</Label>
+                    <Label Grid.Column="5" Grid.Row="1"  VerticalContentAlignment="Center" FontSize="20">ICS File Path</Label>
+                    <Label Grid.Column="5" Grid.Row="2" Grid.RowSpan="3" VerticalContentAlignment="Center" FontSize="20">ICS OFFSET</Label>
+                    <Label Grid.Column="6" Grid.Row="2" VerticalContentAlignment="Center" FontSize="20">BP OFFSET X,Y</Label>
+                    <Label Grid.Column="6" Grid.Row="3" VerticalContentAlignment="Center" FontSize="20">CA OFFSET X,Y</Label>
+                    <Label Grid.Column="6" Grid.Row="4" VerticalContentAlignment="Center" FontSize="20">BA OFFSET X,Y</Label>
+                    <Label Grid.Column="9" Grid.Row="2" VerticalContentAlignment="Center" FontSize="20">Pixel</Label>
+                    <Label Grid.Column="9" Grid.Row="3" VerticalContentAlignment="Center" FontSize="20">Pixel</Label>
+                    <Label Grid.Column="9" Grid.Row="4" VerticalContentAlignment="Center" FontSize="20">Pixel</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtMCCode"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtMCName"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtMCType"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtMCIP"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtModelPath" Grid.ColumnSpan="3"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="20" Name="txtResultPath" Grid.ColumnSpan="3"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="20" Name="txtPopPath" Grid.ColumnSpan="3"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="20" Name="txtVerifyPath" Grid.ColumnSpan="3"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="3" FontSize="20" Name="txtIDPath"></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="1" Margin="3" FontSize="20" Name="txtUsePW"></TextBox>
+                    <TextBox Grid.Row="10" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseFail"></TextBox>
+                    <TextBox Grid.Row="11" Grid.Column="1" Margin="3" FontSize="20" Name="txtRejectRate"></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="1" Margin="3" FontSize="20" Name="txtUnitLimit"></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="1" Margin="3" FontSize="20" Name="txtuseIDReader"></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="1" Margin="3" FontSize="20" Name="txtIDReaderIP"></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="1" Margin="3" FontSize="20" Name="txtResultImageSizeType"></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="1" Margin="3" FontSize="20" Name="txtResultImageSize1"></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="3" Margin="3" FontSize="20" Name="txtResultImageSize2"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="6" Margin="3" FontSize="20" Name="txtCornerImageSizeX"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="7" Margin="3" FontSize="20" Name="txtCornerImageSizeY"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="7" Margin="3" FontSize="20" Name="txtICS_OFFSET_BP_X"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="8" Margin="3" FontSize="20" Name="txtICS_OFFSET_BP_Y"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="7" Margin="3" FontSize="20" Name="txtICS_OFFSET_CA_X"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="8" Margin="3" FontSize="20" Name="txtICS_OFFSET_CA_Y"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="7" Margin="3" FontSize="20" Name="txtICS_OFFSET_BA_X"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="8" Margin="3" FontSize="20" Name="txtICS_OFFSET_BA_Y"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="3" Margin="3" FontSize="20" Name="txtICSFilePath"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab01" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">DB 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">DB 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">DB IP</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">DB Port</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">RVS 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">RVS IP</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">RVS Port</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">VRS DB 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">VRS DB IP</Label>
+                    <Label Grid.Column="0" Grid.Row="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">VRS DB Port</Label>
+                    <Label Grid.Column="0" Grid.Row="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">검사 DB Table</Label>
+                    <Label Grid.Column="0" Grid.Row="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Bin Code Table</Label>
+
+
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">데이터베이스 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">RVS 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">VRS 데이터베이스 미사용(0) 사용(1)</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseDB"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtDBIP"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtDBPort"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseRVS"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtRVSIP"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="20" Name="txtRVSPort"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="20" Name="txtVRSDB" ></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="20" Name="txtVRSDBIP" ></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="3" FontSize="20" Name="txtVRSDBPort"></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="1" Margin="3" FontSize="20" Name="txtAVITN"></TextBox>
+                    <TextBox Grid.Row="10" Grid.Column="1" Margin="3" FontSize="20" Name="txtBCTN"></TextBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab09" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">ITS 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS사용</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS 경로1</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS 경로2</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS 경로3</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS DB 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS DB IP</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS SB Port</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">ITS Table</Label>
+
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">ITS 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">ITS 데이터베이스 미사용(0) 사용(1)</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseITS"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSPath1" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSPath2" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSPath3" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseITSDB"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSDBIP"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSDBPort" ></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="20" Name="txtITSTN" ></TextBox>
+                </Grid>
+            </TabItem>
+           
+            <TabItem x:Name="tab02" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">로그 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">로그 저장</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">로그 저장 레벨</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">로그 표시 레벨</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">로그 저장 기간(일)</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">로그 저장 미사용(0) 사용(1)</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtLogSave"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtLevel"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtDisplay"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtDate"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab03" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">IS 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">Camera BP</Label>
+                    <Label Grid.Column="2" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">Camera CA</Label>
+                    <Label Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">Camera BA</Label>
+
+                    <Label Grid.Column="1" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">BP</Label>
+                    <Label Grid.Column="2" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">CA_Master</Label>
+                    <Label Grid.Column="3" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">CA_Slaver</Label>
+                    <Label Grid.Column="4" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">CA_Master</Label>
+                    <Label Grid.Column="5" Grid.Row="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Background="Black" Foreground="White">CA_Slaver</Label>
+
+                    <Border Grid.Column="5" Grid.Row="3" Grid.RowSpan="8" Background="White"></Border>
+                    <Label Grid.Column="5" Grid.Row="3" FontSize="15" VerticalAlignment="Center">F/G Type List</Label>
+                    <Label Grid.Column="5" Grid.Row="4" FontSize="15" VerticalAlignment="Center" Margin="10,5">0. File</Label>
+                    <Label Grid.Column="5" Grid.Row="5" FontSize="15" VerticalAlignment="Center" Margin="10,5">1. Dalsa Sapera</Label>
+                    <Label Grid.Column="5" Grid.Row="6" FontSize="15" VerticalAlignment="Center" Margin="10,5">2. Euresys MultiCam</Label>
+                    <Label Grid.Column="5" Grid.Row="7" FontSize="15" VerticalAlignment="Center" Margin="10,5">3. Matrox Mil</Label>
+                    <Label Grid.Column="5" Grid.Row="8" FontSize="15" VerticalAlignment="Center" Margin="10,5">4. Euresys Coaxlink</Label>
+                    <Label Grid.Column="5" Grid.Row="9" FontSize="15" VerticalAlignment="Center" Margin="10,5">5. Dalsa CLHS Mono</Label>
+                    <Label Grid.Column="5" Grid.Row="10" FontSize="15" VerticalAlignment="Center" Margin="10,5">6. Dalsa CLHS RGB</Label>
+                    
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">CA Slaver PC 사용</Label>
+                    <Label Grid.Column="3" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">BA Slaver PC 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 X Flip</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">센서 사이즈</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 X 해상도</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 Y 해상도</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 시작 Delay</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 Red Gain</Label>
+                    <Label Grid.Column="0" Grid.Row="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 Green Gain</Label>
+                    <Label Grid.Column="0" Grid.Row="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 Blue Gain</Label>
+                    <Label Grid.Column="0" Grid.Row="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">카메라 Strength</Label>
+                    <Label Grid.Column="0" Grid.Row="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">F/G Type</Label>
+                    <Label Grid.Column="0" Grid.Row="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">F/G Dev Name</Label>
+                    <Label Grid.Column="0" Grid.Row="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">CamFile Path</Label>
+                    <Label Grid.Column="0" Grid.Row="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">IS IP</Label>
+                    <Label Grid.Column="0" Grid.Row="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15">IS Port</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="15">미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="15">미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="15">미사용(0) 사용(1)</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="15" Name="txtUseCASlave"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="4" Margin="3" FontSize="15" Name="txtUseBASlave"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="15" Name="txtXF1" ></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="2" Margin="3" FontSize="15" Name="txtXF2" ></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="3" Margin="3" FontSize="15" Name="txtXF3" ></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="15" Name="txtCS1" ></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="2" Margin="3" FontSize="15" Name="txtCS2" ></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="3" Margin="3" FontSize="15" Name="txtCS3" ></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="15" Name="txtRX1" ></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="2" Margin="3" FontSize="15" Name="txtRX2" ></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="3" Margin="3" FontSize="15" Name="txtRX3" ></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="15" Name="txtRY1" ></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="2" Margin="3" FontSize="15" Name="txtRY2" ></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="3" Margin="3" FontSize="15" Name="txtRY3" ></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="15" Name="txtPD1" ></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="2" Margin="3" FontSize="15" Name="txtPD2" ></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="3" Margin="3" FontSize="15" Name="txtPD3" ></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="15" Name="txtRG1" ></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="2" Margin="3" FontSize="15" Name="txtRG2" ></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="3" Margin="3" FontSize="15" Name="txtRG3" ></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="3" FontSize="15" Name="txtGG1" ></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="2" Margin="3" FontSize="15" Name="txtGG2" ></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="3" Margin="3" FontSize="15" Name="txtGG3" ></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="1" Margin="3" FontSize="15" Name="txtBG1" ></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="2" Margin="3" FontSize="15" Name="txtBG2" ></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="3" Margin="3" FontSize="15" Name="txtBG3" ></TextBox>
+                    <TextBox Grid.Row="10" Grid.Column="1" Margin="3" FontSize="15" Name="txtST1" ></TextBox>
+                    <TextBox Grid.Row="10" Grid.Column="2" Margin="3" FontSize="15" Name="txtST2" ></TextBox>
+                    <TextBox Grid.Row="10" Grid.Column="3" Margin="3" FontSize="15" Name="txtST3" ></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="1" Margin="3" FontSize="15" Name="txtFT1" ></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="2" Margin="3" FontSize="15" Name="txtFT2" ></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="3" Margin="3" FontSize="15" Name="txtFT3" ></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="4" Margin="3" FontSize="15" Name="txtFT4" ></TextBox>
+                    <TextBox Grid.Row="12" Grid.Column="5" Margin="3" FontSize="15" Name="txtFT5" ></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="1" Margin="3" FontSize="15" Name="txtDN1" ></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="2" Margin="3" FontSize="15" Name="txtDN2" ></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="3" Margin="3" FontSize="15" Name="txtDN3" ></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="4" Margin="3" FontSize="15" Name="txtDN4" ></TextBox>
+                    <TextBox Grid.Row="13" Grid.Column="5" Margin="3" FontSize="15" Name="txtDN5" ></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="1" Margin="3" FontSize="15" Name="txtCF1" ></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="2" Margin="3" FontSize="15" Name="txtCF2" ></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="3" Margin="3" FontSize="15" Name="txtCF3" ></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="4" Margin="3" FontSize="15" Name="txtCF4" ></TextBox>
+                    <TextBox Grid.Row="14" Grid.Column="5" Margin="3" FontSize="15" Name="txtCF5" ></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="1" Margin="3" FontSize="15" Name="txtVI1" ></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="2" Margin="3" FontSize="15" Name="txtVI2" ></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="3" Margin="3" FontSize="15" Name="txtVI3" ></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="4" Margin="3" FontSize="15" Name="txtVI4" ></TextBox>
+                    <TextBox Grid.Row="15" Grid.Column="5" Margin="3" FontSize="15" Name="txtVI5" ></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="1" Margin="3" FontSize="15" Name="txtVP1" ></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="2" Margin="3" FontSize="15" Name="txtVP2" ></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="3" Margin="3" FontSize="15" Name="txtVP3" ></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="4" Margin="3" FontSize="15" Name="txtVP4" ></TextBox>
+                    <TextBox Grid.Row="16" Grid.Column="5" Margin="3" FontSize="15" Name="txtVP5" ></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab04" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">PLC 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">PLC 연결 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">PLC Type</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">PLC IP</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">PLC Port</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">양품 ID</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">폐기ID</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">PLC 연결 미사용(0) 사용(1)</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUsePLC"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtPLCType"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtPLCIP"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtPLCPort"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtGood"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="20" Name="txtBad"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab05" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">마킹 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">레이저 연결 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">2Boat 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">레이저 IP</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">레이저 Port</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">얼라인 카메라 타입</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">레이저 연결 미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">0: 1Boat / 1: 2Boat</Label>
+                    <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">0: Picolo  /  1: GigE</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseLaser"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtDualBoat"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtLaserIP"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtLaserPort"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtAlignCamType"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab06" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">조명 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명연결 사용</Label>
+                    <Label Grid.Column="2" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명1 Type</Label>
+                    <Label Grid.Column="2" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명2 Type</Label>
+                    <Label Grid.Column="2" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명3 Type</Label>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명 포트 1</Label>
+                    <Label Grid.Column="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명 포트 2</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">조명 포트 3</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">BP 조명 채널</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">CA 조명 채널</Label>
+                    <Label Grid.Column="0" Grid.Row="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">BA 조명 채널</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">조명 연결 미사용(0) 사용(1)</Label>
+
+                    <Label Grid.Column="1" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널1</Label>
+                    <Label Grid.Column="2" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널2</Label>
+                    <Label Grid.Column="3" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널3</Label>
+                    <Label Grid.Column="4" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널4</Label>
+                    <Label Grid.Column="5" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널5</Label>
+                    <Label Grid.Column="6" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널6</Label>
+                    <Label Grid.Column="7" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널7</Label>
+                    <Label Grid.Column="8" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Background="Black" Foreground="White">채널8</Label>
+
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseLight"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="3" Margin="3" FontSize="20" Name="txtLightType"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="3" Margin="3" FontSize="20" Name="txtLightType2"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="3" Margin="3" FontSize="20" Name="txtLightType3"></TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" FontSize="20" Name="txtPT1"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" FontSize="20" Name="txtPT2"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtPT3"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="20" Name="txtBP1"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="2" Margin="3" FontSize="20" Name="txtBP2"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="3" Margin="3" FontSize="20" Name="txtBP3"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="4" Margin="3" FontSize="20" Name="txtBP4"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="5" Margin="3" FontSize="20" Name="txtBP5"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="6" Margin="3" FontSize="20" Name="txtBP6"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="7" Margin="3" FontSize="20" Name="txtBP7"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="8" Margin="3" FontSize="20" Name="txtBP8"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="20" Name="txtCA1"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="2" Margin="3" FontSize="20" Name="txtCA2"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="3" Margin="3" FontSize="20" Name="txtCA3"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="4" Margin="3" FontSize="20" Name="txtCA4"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="5" Margin="3" FontSize="20" Name="txtCA5"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="6" Margin="3" FontSize="20" Name="txtCA6"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="7" Margin="3" FontSize="20" Name="txtCA7"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="8" Margin="3" FontSize="20" Name="txtCA8"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="3" FontSize="20" Name="txtBA1"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="2" Margin="3" FontSize="20" Name="txtBA2"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="3" Margin="3" FontSize="20" Name="txtBA3"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="4" Margin="3" FontSize="20" Name="txtBA4"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="5" Margin="3" FontSize="20" Name="txtBA5"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="6" Margin="3" FontSize="20" Name="txtBA6"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="7" Margin="3" FontSize="20" Name="txtBA7"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="8" Margin="3" FontSize="20" Name="txtBA8"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab07" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">엔코더 설정</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">엔코더 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">컨버터 타입</Label>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Low Pulse</Label>
+                    <Label Grid.Column="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">High Pulse</Label>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">필터 사용</Label>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">필터 시간(ms)</Label>
+                    <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">엔코더미사용(0) 사용(1)</Label>
+                    <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center"  FontSize="20">0: NI Counter / 1: SW T/B</Label>
+                    <Label Grid.Column="0" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Navy" Foreground="White">NI Counter Set</Label>
+                    <Label Grid.Column="1" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" Foreground="White">BP</Label>
+                    <Label Grid.Column="2" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" Foreground="White">CA</Label>
+                    <Label Grid.Column="3" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" Foreground="White">BA</Label>
+
+                    <Label Grid.Column="5" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Com Port</Label>
+                    <Label Grid.Column="5" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Direction</Label>
+                    <Label Grid.Column="5" Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Pulse Count</Label>
+                    <Label Grid.Column="5" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Pulse Delay #1</Label>
+                    <Label Grid.Column="5" Grid.Row="8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Pulse Delay #2</Label>
+                    <Label Grid.Column="5" Grid.Row="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Pulse 간격(ms)</Label>
+                    
+                    <Label Grid.Column="5" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Navy" Foreground="White">SW T/B Set</Label>
+                    <Label Grid.Column="6" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" Foreground="White">CA Boat</Label>
+                    <Label Grid.Column="7" Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" Foreground="White">BA Boat</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="20" Name="txtUseENC"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" FontSize="20" Name="txtENCType"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" FontSize="20" Name="txtLow1"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="2" Margin="3" FontSize="20" Name="txtLow2"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="3" Margin="3" FontSize="20" Name="txtLow3"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" FontSize="20" Name="txtHigh1"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="2" Margin="3" FontSize="20" Name="txtHigh2"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="3" Margin="3" FontSize="20" Name="txtHigh3"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="3" FontSize="20" Name="txtFilter1"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="2" Margin="3" FontSize="20" Name="txtFilter2"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="3" Margin="3" FontSize="20" Name="txtFilter3"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="3" FontSize="20" Name="txtTime1"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="2" Margin="3" FontSize="20" Name="txtTime2"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="3" Margin="3" FontSize="20" Name="txtTime3"></TextBox>
+
+                    <TextBox Grid.Row="4" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCPort1"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCPort2"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCDir1"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCDir2"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCCnt1"></TextBox>
+                    <TextBox Grid.Row="6" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCCnt2"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCDelay11"></TextBox>
+                    <TextBox Grid.Row="7" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCDelay12"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCDelay21"></TextBox>
+                    <TextBox Grid.Row="8" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCDelay22"></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="6" Margin="3" FontSize="20" Name="txtENCWidth1"></TextBox>
+                    <TextBox Grid.Row="9" Grid.Column="7" Margin="3" FontSize="20" Name="txtENCWidth2"></TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

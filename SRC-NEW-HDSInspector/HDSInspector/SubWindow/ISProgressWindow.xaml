@@ -1,0 +1,8 @@
+﻿<Window x:Class="HDSInspector.SubWindow.ISProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ISProgressWindow" Height="300" Width="300" WindowStyle ="None" SizeToContent="Height"
+        Topmost="True" WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False">
+    <StackPanel Orientation="Vertical" Name="pnlProgress"/>
+</Window>

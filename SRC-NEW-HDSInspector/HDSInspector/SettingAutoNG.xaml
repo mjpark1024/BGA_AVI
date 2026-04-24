@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="HDSInspector.SettingAutoNG"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="700">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2"  Margin="0,5,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" />
+            <Border Grid.Row="1" Grid.RowSpan="4" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+            <Border CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="불량율 AutoNG 설정" Margin="5,1,0,0" FontWeight="Bold" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="불량율(%)" FontWeight="Bold" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 5"/>
+            <StackPanel Grid.Column="1" Grid.Row="2"  Orientation="Horizontal">
+                <common:NumberTextBox Grid.Column="1" Grid.Row="1" Height="25" MinValue="0" MaxValue="100" Margin="5" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" HorizontalAlignment="Left"  Name="txtRate" VerticalAlignment="Center" Width="50" Text="0" MaxLength="5" />
+                <TextBlock VerticalAlignment="Bottom" Margin="5,0,0,7">%</TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Margin="25,0,0,7" Foreground="Gray"> ※ 불량율 = (전체 불량 수 / 유닛 수) X 100</TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2"  Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" />
+            <Border CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="불량명 AutoNG 설정" Margin="5,1,0,0" FontWeight="Bold" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+            </Border>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="1" Grid.ColumnSpan="3" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                <Border Grid.Row="3" Grid.ColumnSpan="3" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                <Border Grid.Row="5" Grid.ColumnSpan="3" Background="#AADDDDDD" Margin="1, 0, 0, 0"/>
+                <CheckBox Grid.Row="0" Grid.Column="0" Name="cbOuter" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15" >외곽검사</CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="0" Name="cbRaw" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">원소재</CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="0" Name="cbBP" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">본드패드</CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="0" Name="cbOpen" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Open</CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="0" Name="cbShort" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Short</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="1" Name="cbBall" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Ball</CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="1" Name="cbPinhole" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">PSR미도포</CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="1" Name="cbPSR" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">PSR이물질</CheckBox>
+                <CheckBox Grid.Row="3" Grid.Column="1" Name="cbBurr" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Punch Burr</CheckBox>
+                <CheckBox Grid.Row="4" Grid.Column="1" Name="cbCrack" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Core Crack</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="2" Name="cbVH" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Vent Hole</CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="2" Name="cbVia" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Via Hole</CheckBox>
+                <CheckBox Grid.Row="2" Grid.Column="2" Name="cbAlign" VerticalAlignment="Center" Margin="20,5,5,5" FontSize="15">Align</CheckBox>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>
+

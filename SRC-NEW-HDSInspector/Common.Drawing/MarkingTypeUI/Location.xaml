@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Common.Drawing.MarkingTypeUI.Location"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="340">
+    <Grid Grid.Row="2" Name="grdLoaction" Visibility="Visible">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton VerticalAlignment="Center" Name="rdLeft" Margin="0" Tag="0"></RadioButton>
+                <Label VerticalAlignment="Center" Name="lbLeft" FontWeight="Bold" Content="좌측"/>
+                <RadioButton VerticalAlignment="Center" Name="rdRight" Margin="0" Tag="0"></RadioButton>
+                <Label VerticalAlignment="Center" Name="lbRight" FontWeight="Bold" Content="우측"/>
+                <RadioButton VerticalAlignment="Center" Name="rdCenter" Margin="0" Tag="0"></RadioButton>
+                <Label VerticalAlignment="Center" Name="lbCenter" FontWeight="Bold" Content="중앙"/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="2" Margin="2" Name="btnLeft" Tag="left" FontSize="20">
+            ◀
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1" Margin="2" Name="btnUp" Tag="up" FontSize="20">
+            ▲
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Margin="2" Name="btnDown" Tag="down" FontSize="20">
+            ▼
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Margin="2" Name="btnRight" Tag="right" FontSize="20">
+            ▶
+        </Button>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label FontSize="10">이동피치</Label>
+            <TextBox Grid.Row="1" Margin="2" Name="txtPitch">0.001</TextBox>
+        </Grid>
+        <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" VerticalAlignment="Center" Margin="2" FontSize="15">Left</Label>
+            <Label Grid.Row="1" VerticalAlignment="Center" Margin="2" FontSize="15">Top</Label>
+            <Label Grid.Row="2" VerticalAlignment="Center" Margin="2" FontSize="15" Name="lblWidth">Width</Label>
+            <Label Grid.Row="2" VerticalAlignment="Center" Margin="2" FontSize="15" Name="lblRadian">반지름</Label>
+            <Label Grid.Row="3" VerticalAlignment="Center" Margin="2" FontSize="15" Name="lblHeight">Height</Label>
+            <Label Grid.Row="4" VerticalAlignment="Center" Margin="2" FontSize="15" >Rotate</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="txtLeft" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="txtTop" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="txtWidth" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Name="txtHeight" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="txtRadian" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="txtRotate" FontSize="18" VerticalContentAlignment="Center" Margin="5,3">0.000</TextBox>
+            <Button Grid.Row="5" Grid.ColumnSpan="2" Margin="2" FontSize="15" Name="btnLoaction">적 용</Button>
+        </Grid>
+    </Grid>
+</UserControl>

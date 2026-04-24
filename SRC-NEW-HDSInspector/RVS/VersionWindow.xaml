@@ -1,0 +1,23 @@
+﻿<Window x:Class="RVS.VersionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        Title="Version" Height="300" Width="350">
+    <Grid>
+        <Border BorderBrush="LightGray" BorderThickness="5" CornerRadius="10" Margin="10"/>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,15,0,0" FontFamily="Arial">
+                HDS Verify SW -1.0.1v
+            </TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock>
+                Copyright(c) 2017 by Haesung DS
+            </TextBlock>
+            <TextBlock>
+                Co., Ltd. All rights reserved
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,158 @@
+﻿<Window x:Class="IGS.SubWindow.POP_START_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGS.SubWindow"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="POP_Start_Window" Height="360" Width="600">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="320"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="540"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <CheckBox x:Name="chkStaticMark" Grid.Column="2" Content="고정마킹 사용" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,5"/>
+        <Grid Background="Transparent" Height="320" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <!-- Background -->
+
+
+            <!--Set Lot No & Operator-->
+            <Grid x:Name="UpperGrid" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3.9*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Lot No"   FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0, 0, 0"/>
+                <Grid x:Name="LotNo" Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="txtLot" Margin="5,3,5,3" FontFamily="Arial" FontSize="16" FontWeight="Bold" 
+						Grid.Column="0" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper"/>
+                    <ComboBox x:Name="cbLotType" Grid.Row="0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" Margin="0,3,15,3"/>
+                </Grid>
+
+
+                <Label Content="Operator" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Row="1"/>
+                <TextBox x:Name="txtOperator" Margin="5,3,171,3" FontFamily="Arial" FontSize="16" FontWeight="Bold" 
+					Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" IsReadOnly="True" TextAlignment="Left"/>
+                <TextBox x:Name="txtCode" Margin="341,3,15,3" FontFamily="Arial" FontSize="16" FontWeight="Bold" 
+					Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper"/>
+                <CheckBox x:Name="chkLiveImage" Grid.Row="2" Grid.Column="1" Content="Live이미지획득" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="225,0,0,0" Visibility="Hidden"/>
+                <CheckBox Name="chkVerify" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,2">VRS 사용</CheckBox>
+                <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" x:Name="txtGageLabel" FontSize="11"><Run Text="디스크 사용량"/></TextBlock>
+                <Label Content="공정코드" FontSize="16" FontWeight="Bold" Margin="264,0,88,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="고객코드" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center" Grid.Column="0" />
+                    <Label Content="S10243" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center" Grid.Column="1" />
+                    <Label Content="제조주차" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center" Grid.Column="2" />
+                    <Label Content="2220" FontSize="16" FontWeight="Bold"  HorizontalAlignment="Center" Grid.Column="3" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="검사 유무" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Row="0"/>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="chkBotSur1"  Grid.Column="0" Grid.Row="0" Content="BA 표면1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" IsEnabled="False"/>
+                    <CheckBox x:Name="chkBotSur2"  Grid.Column="1" Grid.Row="0" Content="BA 표면2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" IsEnabled="False"/>
+                    <CheckBox x:Name="chkBondPad"  Grid.Column="0" Grid.Row="1" Content="본드 패드" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" IsEnabled="False"/>
+                    <CheckBox x:Name="chkTopSur1"  Grid.Column="1" Grid.Row="1" Content="CA 표면1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" IsEnabled="False"/>
+                    <CheckBox x:Name="chkTopSur2"  Grid.Column="2" Grid.Row="1" Content="CA 표면2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" IsChecked="True" IsEnabled="False"/>
+                </Grid>
+            </Grid>
+
+            <!-- Pnl Laser -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" x:Name="pnlLaser">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Marking Option" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="6, 0, 0, 0"/>
+                <Grid Grid.Column="1" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="cbMarkEnable" Grid.Column="0" Content="Mark사용" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0, 0, 0" IsEnabled="False" />
+                    <TextBox x:Name="txtDate" Width="40" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold">H201</TextBox>
+                    <TextBlock x:Name="txtIDMark" Width="150" HorizontalAlignment="Center" Margin="0,0,50,0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="15" FontWeight="Bold">234523455345654</TextBlock>
+
+                    <Label x:Name="labelfirstMark" Grid.Row="2" Content="1차 마킹" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                    <TextBox x:Name="txtFirstMark" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold">H301234523455345654</TextBox>
+
+                    <TextBox Name="Customer_Combo" Grid.Row="0" Grid.Column="2" Margin="10,2"  />
+
+                    <CheckBox x:Name="cbIDMark"  Grid.Column="3" Content="ID Mark" FontWeight="Bold" VerticalAlignment="Center" Margin="0, 0, 0, 0" IsEnabled="False" Visibility="Hidden"/>
+                    <TextBox x:Name="txtWeek" Margin="10,2" FontFamily="Arial" FontSize="16" FontWeight="Bold" 
+						Grid.Column="2" Grid.Row="1" VerticalContentAlignment="Center" TextAlignment="Left" CharacterCasing="Upper" IsEnabled="False"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="cbConBad" Grid.Row="8" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="10,0" FontSize="14" FontFamily="Arial">누적 Unit 불량 100Strip 시 정지 사용</CheckBox>
+            </Grid>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="btnOK"     Grid.Row="3" Width="120" Height="35" Margin="15, 0" Content="확 인"/>
+                <Button x:Name="btnCancel" Grid.Row="3" Width="120" Height="35" Margin="15, 0" Content="취 소"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

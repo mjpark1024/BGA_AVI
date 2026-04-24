@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Common.Drawing.MarkingTypeUI.RailSpecial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             xmlns:local="clr-namespace:Common.Drawing.MarkingTypeUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="405" Width="340">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="290"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="4">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">특수 (Rail Marking)</TextBlock>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" Grid.Row="2" Background="White">
+            <Grid Grid.Row="1" Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.ColumnSpan="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="2, 0, 0, 0" Name="txtGV">ParameterNumber</TextBlock>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="cbParaNumber" SelectedIndex="0" FontSize="15" HorizontalContentAlignment="Center" Margin="1">
+                    <ComboBoxItem >1</ComboBoxItem>
+                    <ComboBoxItem >2</ComboBoxItem>
+                    <ComboBoxItem >3</ComboBoxItem>
+                    <ComboBoxItem >4</ComboBoxItem>
+                    <ComboBoxItem >5</ComboBoxItem>
+                    <ComboBoxItem >6</ComboBoxItem>
+                    <ComboBoxItem >7</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" Margin="5, 0, 0, 0" >Unit Col</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="30" Round="0" Name="txtUnitCol" IsEnabled="False"
+                              Grid.Row="2" Grid.Column="1">0</common:NumberTextBox>
+                <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" Margin="5, 0, 0, 0" >Unit Row</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="30" Round="0" Name="txtUnitRow" IsEnabled="False"
+                              Grid.Row="2" Grid.Column="3">0</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">PLT File</TextBlock>
+                <TextBox FontSize="13" VerticalContentAlignment="Center" Margin="1" Grid.ColumnSpan="3"
+                              Name="txtFontFile" IsReadOnly="true"
+                              Grid.Row="0" Grid.Column="1" >1</TextBox>
+
+            </Grid>
+        </ScrollViewer>
+        <local:RailLocation Grid.Row="1" x:Name="location"/>
+    </Grid>
+</UserControl>

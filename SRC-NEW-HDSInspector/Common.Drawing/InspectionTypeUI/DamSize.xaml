@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.DamSize"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" Width="300">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="5">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">Dam Size 검사</TextBlock>
+        </Border>
+
+        <!-- Lower threshold, Upper threshold -->
+        <TextBlock FontSize="11.5" Grid.Row="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">임계(GV)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtThreshold"
+                              Grid.Row="2" Grid.Column="1">100</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">경계(GV)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtUpperThres"
+                              Grid.Row="2" Grid.Column="3">30</common:NumberTextBox>
+
+        <RadioButton Grid.Row="1" Grid.Column="0" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15, 0, 0, 0"
+                         Name="radLH" IsChecked="True">Low to High</RadioButton>
+        <RadioButton Grid.Row="1" Grid.Column="2" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 0, 0, 0"
+                         Name="radHH" >High to High</RadioButton>
+
+        <TextBlock FontSize="11.5" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">Min Size(um)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinSize"
+                              Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">3</common:NumberTextBox>
+        <TextBlock FontSize="11.5" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">Max Size(um)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMaxSize"
+                              Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">3</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0" Visibility="Hidden">검사 Margin (%)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMargin"
+                              Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Hidden">3</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">Min Width(Pixel)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtMinWidth"
+                              Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">3</common:NumberTextBox>
+
+    </Grid>
+</UserControl>

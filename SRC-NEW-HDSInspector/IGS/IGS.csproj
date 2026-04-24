@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{676C993A-E9CC-415A-8DEA-1D563E0F2976}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IGS</RootNamespace>
+    <AssemblyName>IGS_Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mts_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Classes\StandardManager.cs" />
+    <Compile Include="SubWindow\WARNING_POPUP_Window.xaml.cs">
+      <DependentUpon>WARNING_POPUP_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWindow\MultiThreadingTest.xaml.cs">
+      <DependentUpon>MultiThreadingTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="POPStateCtrl_Horizontal.xaml.cs">
+      <DependentUpon>POPStateCtrl_Horizontal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="POPStateCtrl_Vertical.xaml.cs">
+      <DependentUpon>POPStateCtrl_Vertical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMenuCtrl.xaml.cs">
+      <DependentUpon>ReportMenuCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWindow\StartTestWindow.xaml.cs">
+      <DependentUpon>StartTestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubControl\POP_CHANGE_POINT_Ctrl.xaml.cs">
+      <DependentUpon>POP_CHANGE_POINT_Ctrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubControl\POP_MODEL_HISTORY_Ctrl.xaml.cs">
+      <DependentUpon>POP_MODEL_HISTORY_Ctrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubControl\POP_WARNING_Ctrl.xaml.cs">
+      <DependentUpon>POP_WARNING_Ctrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\ATTEND_VERIFY_Window.xaml.cs">
+      <DependentUpon>ATTEND_VERIFY_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\BREAKTIME_Window.xaml.cs">
+      <DependentUpon>BREAKTIME_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\CHANGE_MODEL_CONFIRM.xaml.cs">
+      <DependentUpon>CHANGE_MODEL_CONFIRM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\CODE_SEARCH_Window.xaml.cs">
+      <DependentUpon>CODE_SEARCH_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\COMPLETE_CONFIRM_Window.xaml.cs">
+      <DependentUpon>COMPLETE_CONFIRM_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\LEAV_Count_Window.xaml.cs">
+      <DependentUpon>LEAV_Count_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\MY_MACHINE_Window.xaml.cs">
+      <DependentUpon>MY_MACHINE_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\NGCount_Window.xaml.cs">
+      <DependentUpon>NGCount_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\PASSWORD_Window.xaml.cs">
+      <DependentUpon>PASSWORD_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_ATTEND_Window.xaml.cs">
+      <DependentUpon>POP_ATTEND_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_CHANGE_POINT_Window.xaml.cs">
+      <DependentUpon>POP_CHANGE_POINT_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_COMPLETE_Window.xaml.cs">
+      <DependentUpon>POP_COMPLETE_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_EXCEPT_Window.xaml.cs">
+      <DependentUpon>POP_EXCEPT_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_LEAV_Window.xaml.cs">
+      <DependentUpon>POP_LEAV_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_LOT_SEARCH_Window.xaml.cs">
+      <DependentUpon>POP_LOT_SEARCH_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_START_Window.xaml.cs">
+      <DependentUpon>POP_START_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_SUSPEND_Window.xaml.cs">
+      <DependentUpon>POP_SUSPEND_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\POP_WARNING_Window.xaml.cs">
+      <DependentUpon>POP_WARNING_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\SUSPEND_CONFIRM_Window.xaml.cs">
+      <DependentUpon>SUSPEND_CONFIRM_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindow\VERIFY_USER_LIST_Window.xaml.cs">
+      <DependentUpon>VERIFY_USER_LIST_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestWindow\SwitchingTestWindow.xaml.cs">
+      <DependentUpon>SwitchingTestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl.xaml.cs">
+      <DependentUpon>UserCtrl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LogCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\ClientManager.cs" />
+    <Compile Include="Classes\ClientSocket.cs" />
+    <Compile Include="Classes\ConnectMysql.cs" />
+    <Compile Include="Classes\IGSCommon.cs" />
+    <Compile Include="Classes\QueryManager.cs" />
+    <Compile Include="LogCtrl.xaml.cs">
+      <DependentUpon>LogCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="SubWindow\WARNING_POPUP_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow\MultiThreadingTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="POPStateCtrl_Horizontal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="POPStateCtrl_Vertical.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportMenuCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow\StartTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubControl\POP_CHANGE_POINT_Ctrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubControl\POP_MODEL_HISTORY_Ctrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubControl\POP_WARNING_Ctrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\ATTEND_VERIFY_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\BREAKTIME_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\CHANGE_MODEL_CONFIRM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\CODE_SEARCH_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\COMPLETE_CONFIRM_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\LEAV_Count_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\MY_MACHINE_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\NGCount_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\PASSWORD_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\POP_ATTEND_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_CHANGE_POINT_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\POP_COMPLETE_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_EXCEPT_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_LEAV_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_LOT_SEARCH_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\POP_START_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_SUSPEND_Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindow\POP_WARNING_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\SUSPEND_CONFIRM_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindow\VERIFY_USER_LIST_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow\SwitchingTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mts_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\state_blue.png" />
+    <Resource Include="Images\state_green.png" />
+    <Resource Include="Images\state_red.png" />
+    <Resource Include="Images\state_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\attend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\leave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\except.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\complete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\attend2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search_color2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\User.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

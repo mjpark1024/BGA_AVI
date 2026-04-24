@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="ResultManagement.ResultDataManagement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="#7f7f7f" BorderThickness="7" Background="LightGray">
+        </Border>
+        <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="17,10,159,5" FontSize="15" HorizontalAlignment="Right" FontWeight="Bold">장비명 :</Label>
+        <ComboBox Grid.Row="3" Grid.Column="1" Height="25" Name="cmbMachine" Margin="100,10,0,0" Width="150" ItemsSource="{Binding}" Background="LightGray"/>
+        <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="17, 0, 155, 15" FontSize="15" FontWeight="Bold">삭제 날짜 :</Label>
+        <Label Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="17, 0, 0, 13" FontSize="25" FontWeight="Bold">~</Label>
+        <DatePicker x:Name="txtDateStart" FontSize="15" Grid.Row="4" Grid.Column="1" Height="30" Width="160" Margin="10,0,-10,10" HorizontalAlignment="Right" Background="White"/>
+        <DatePicker x:Name="txtDateEnd"   FontSize="15" Grid.Row="4" Grid.Column="2" Height="30" Width="160" Margin="10,0,0,10" Background="White"/>
+        <StackPanel Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,15,-5,0">
+            <Button x:Name="btnDeleteAll" Height="30" Width="100" Margin="2, 0" Style="{DynamicResource SimpleButton}">전체정보 삭제</Button>
+            <Button x:Name="btnDeleteImage" Height="30" Width="100" Margin="8, 0" Style="{DynamicResource SimpleButton}">이미지 삭제</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
+

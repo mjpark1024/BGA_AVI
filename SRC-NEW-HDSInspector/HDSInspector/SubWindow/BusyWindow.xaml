@@ -1,0 +1,14 @@
+﻿<Window x:Class="HDSInspector.SubWindow.BusyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d"
+        WindowStyle="None"
+        xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+        Width="286" MaxWidth="286" MinWidth="286" Height="66" MaxHeight="66" MinHeight="66" 
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False"
+        Topmost="True">
+    <toolkit:BusyIndicator Name="BusyBar" BusyContent=" 자동검사 종료중입니다. 잠시만 기다려주세요.."/>
+</Window>

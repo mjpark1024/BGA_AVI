@@ -1,0 +1,61 @@
+﻿<UserControl xmlns:my="clr-namespace:HDSInspector"  x:Class="HDSInspector.TeachingViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:drawing="clr-namespace:Common.Drawing;assembly=Common.Drawing"
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid>
+        <!-- Teaching & Viewing space -->
+        <Border Grid.Row="0"/>
+        <TabControl Grid.Row="0" x:Name="tabTeaching" Margin="0, 10, 0, 0" BorderBrush="Black" BorderThickness="1">
+            <!--
+            <TabItem x:Name="tabCam11" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">BA 외관 1</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam11View" />
+            </TabItem>
+            <TabItem x:Name="tabCam12" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">BA 외관 2</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam12View" />
+            </TabItem>
+            <TabItem x:Name="tabCam21" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">본드 패드1</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam21View" />
+            </TabItem>
+            <TabItem x:Name="tabCam22" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">본드 패드2</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam22View" />
+            </TabItem>
+            <TabItem x:Name="tabCam31" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">CA 외관 1</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam31View" />
+            </TabItem>
+            <TabItem x:Name="tabCam32" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header >
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">CA 외관 2</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam32View" />
+            </TabItem>
+            -->
+            <!--<TabItem x:Name="tabCam12" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="90" Height="22" TextAlignment="Center" Foreground="White" FontSize="13" FontWeight="Bold" Cursor="Hand">후단 패턴2</TextBlock>
+                </TabItem.Header>
+                <my:TeachingViewerCtrl x:Name="Cam32View" />
+            </TabItem>-->
+           
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,20 @@
+﻿<Application x:Class="ResultManagement.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/ToggleButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/SimpleStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Common.Control;component/ControlStyles/PieDataPoint.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

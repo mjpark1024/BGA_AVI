@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.WindowPunch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="5">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">Window Punch 검사</TextBlock>
+        </Border>
+
+        <!-- Lower threshold, Upper threshold -->
+        <TextBlock FontSize="11.5" Grid.Row="1" VerticalAlignment="Center" Margin="5, 0, 0, 0">임계(GV)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtLowerThreshold"
+                              Grid.Row="1" Grid.Column="1">100</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">Core Crack 검사</TextBlock>
+        <CheckBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkCrack"></CheckBox>
+        
+        <TextBlock FontSize="11.5" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">축 소 (px)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtErode"
+                              Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">경계부 MarginY(px)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtCrackMarginY"
+                              Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+        <TextBlock FontSize="11.5" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">검출 임계(GV)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtCrackMaxMargin"
+                              Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+        <TextBlock FontSize="11.5" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">검출 크기(px)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtCrackSize"
+                              Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">Burr 검사</TextBlock>
+        <CheckBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkBurr"></CheckBox>
+
+        <TextBlock FontSize="11.5" Grid.Row="8" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">경계부 MarginY(px)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtBurrMarginY"
+                              Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+        <TextBlock FontSize="11.5" Grid.Row="9" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">검출 임계(GV)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtBurrMaxMargin"
+                              Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+        <TextBlock FontSize="11.5" Grid.Row="10" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">검출 크기(px)</TextBlock>
+        <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="5, 2, 2, 2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtBurrSize"
+                              Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2">3</common:NumberTextBox>
+
+    </Grid>
+</UserControl>

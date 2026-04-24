@@ -1,0 +1,296 @@
+﻿<UserControl xmlns:my="clr-namespace:Common.Control;assembly=Common.Control"  x:Class="HDSInspector.SettingGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Common;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,-1,0"/>
+                <Border Grid.Row="2" Grid.RowSpan="5" Background="#AADDDDDD" Margin="1, 0, 0, 1"/>
+                <Border Grid.Row="1" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="장비 설정" Margin="5,3,0,0" FontWeight="Bold" Foreground="Black" FontSize="14"/>
+                </Border>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Grid.Row="0" Text="장비 이름" />
+                    <TextBlock FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Grid.Row="1" Text="장비 IP" />
+                    <TextBlock FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Grid.Row="2" Text="DB IP" />
+                    <TextBlock FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Grid.Row="3" Text="Verify IP" />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" Width="180" Height="30" Name="cmbMachine" 
+                              Style="{StaticResource ComboBoxStyle1}" HorizontalAlignment="Left"/>
+                    <my:IPControl Grid.Row="1" HorizontalAlignment="Left" Name="txtIP"/>
+                    <my:IPControl Grid.Row="2" HorizontalAlignment="Left" Name="txtDBIP"/>
+                    <my:IPControl Grid.Row="3" HorizontalAlignment="Left" Name="txtVerifyIP"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" Margin="-2,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" Margin="1,0,0,0"/>
+                <Border Grid.Row="2" Grid.RowSpan="5" Background="#AADDDDDD" Margin="1, 0, 0, 1"/>
+                <Border Grid.Row="1" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="조명 설정" Margin="15,3,0,0" FontWeight="Bold" Foreground="Black" FontSize="14"/>
+                </Border>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Text="조명 1"/>
+                    <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Text="조명 2"/>
+                    <TextBlock Grid.Row="2" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Text="조명 3"/>
+                    <TextBlock Grid.Row="3" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Text="조명 4"/>
+                    <TextBlock Grid.Row="4" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 0, 0, 0" Text="조명 5"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightYes1" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightNo1" Margin="15,0,5,0">미사용</RadioButton>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10, 0, 5, 0">Port</TextBlock>
+                        <TextBox HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="110" Height="25" FontSize="12" Name="txtLightPort1"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightYes2" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightNo2" Margin="15,0,5,0">미사용</RadioButton>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10, 0, 5, 0">Port</TextBlock>
+                        <TextBox HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="110" Height="25" FontSize="12" Name="txtLightPort2"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" IsEnabled="False">
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightYes3" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightNo3" Margin="15,0,5,0">미사용</RadioButton>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10, 0, 5, 0" Foreground="Gray">Port</TextBlock>
+                        <TextBox HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="110" Height="25" FontSize="12" Name="txtLightPort3"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" IsEnabled="False">
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightYes4" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightNo4" Margin="15,0,5,0">미사용</RadioButton>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10, 0, 5, 0" Foreground="Gray">Port</TextBlock>
+                        <TextBox HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="110" Height="25" FontSize="12" Name="txtLightPort4"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" IsEnabled="False">
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightYes5" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseLightNo5" Margin="15,0,5,0">미사용</RadioButton>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10, 0, 5, 0" Foreground="Gray">Port</TextBlock>
+                        <TextBox HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="110" Height="25" FontSize="12" Name="txtLightPort5"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" Margin="0,0,-1,0"/>
+                <Border Grid.Row="2" Grid.RowSpan="5" Background="#AADDDDDD" Margin="1, 0, 0, 1"/>
+                <Border Grid.Row="1" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="PLC 설정" Margin="5,3,0,0" FontWeight="Bold" Foreground="Black" FontSize="14"/>
+                </Border>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="사용 여부" />
+                    <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="IP" />
+                    <TextBlock Grid.Row="2" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Port" />
+
+                    <TextBlock Grid.Row="3" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2, 0, 0, 0" Text="Cam1 Delay" />
+                    <TextBlock Grid.Row="4" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2, 0, 0, 0" Text="Cam2 Delay" />
+                    <TextBlock Grid.Row="5" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2, 0, 0, 0" Text="Cam3 Delay" />
+                    <TextBlock Grid.Row="6" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2, 0, 0, 0" Text="CamY Position" />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="29"/>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="29*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <RadioButton Height="20" FontSize="12" Name="radUsePLCYes" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUsePLCNo" Margin="15,0,5,0">미사용</RadioButton>
+                    </StackPanel>
+
+                    <my:IPControl Grid.Row="1" Name="txtPLCIP" HorizontalAlignment="Left"/>
+                    <common:NumberTextBox Grid.Row="2" HorizontalAlignment="Left" HorizontalContentAlignment="Right"
+                                          Width="165" Height="25" FontSize="12" Name="txtPLCPort"/>
+
+                    <common:NumberTextBox FontSize="12"  HorizontalAlignment="Left" HorizontalContentAlignment="Right" Height="25" Name="txtDelay1" Width="165" Grid.Row="3" />
+                    <common:NumberTextBox FontSize="12"  HorizontalAlignment="Left" HorizontalContentAlignment="Right" Height="25" Name="txtDelay2" Width="165" Grid.Row="4" />
+                    <common:NumberTextBox FontSize="12"  HorizontalAlignment="Left" HorizontalContentAlignment="Right" Height="25" Name="txtDelay3" Width="165" Grid.Row="5" />
+                    <TextBox FontSize="12"  HorizontalAlignment="Left" HorizontalContentAlignment="Right" Height="25" Name="txtCamYPosition" Width="165" Grid.Row="6" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="-2,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="DarkGray" BorderThickness="1" Margin="1,0,0,0"/>
+                <Border Grid.Row="2" Grid.RowSpan="5" Background="#AADDDDDD" Margin="1, 0, 0, 1"/>
+                <Border Grid.Row="1" CornerRadius="0,0,0,0" Grid.ColumnSpan="2" Margin="1,1,1,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="Counter 설정" Margin="15,3,0,0" FontWeight="Bold" Foreground="Black" FontSize="14"/>
+                </Border>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="사용 여부" />
+                    <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Init Delay"/>
+                    <TextBlock Grid.Row="3" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Camera1"/>
+                    <TextBlock Grid.Row="4" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Camera2"/>
+                    <TextBlock Grid.Row="5" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Camera3"/>
+                    <TextBlock Grid.Row="6" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Text="Align Resolution"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5, 0, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <RadioButton Height="20" FontSize="12" Name="radUseCounterYes" Margin="0,0,5,0">사용</RadioButton>
+                        <RadioButton Height="20" FontSize="12" Name="radUseCounterNo" Margin="15,0,5,0">미사용</RadioButton>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="High" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Text="Low" />
+                    <common:NumberTextBox Grid.Row="1" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterDelay"/>
+                    <common:NumberTextBox Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterHigh1"/>
+                    <common:NumberTextBox Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterLow1"/>
+                    <common:NumberTextBox Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterHigh2"/>
+                    <common:NumberTextBox Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterLow2"/>
+                    <common:NumberTextBox Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterHigh3"/>
+                    <common:NumberTextBox Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtCounterLow3"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="130" Height="25" FontSize="12" Name="txtResolution"/>
+                </Grid>
+            </Grid>
+        </Grid> 
+    </Grid>    
+</UserControl>

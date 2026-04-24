@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="IGS.SubControl.POP_WARNING_Ctrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IGS.SubControl"
+             mc:Ignorable="d"
+             d:DesignHeight="185" d:DesignWidth="700">
+
+    <Grid>
+        <Viewbox Stretch="Uniform">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="700"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Row="0" Grid.RowSpan="3" Width="700" BorderThickness="1" BorderBrush="Silver" Background="White"/>
+                <Border Grid.Row="0" Background="Black" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="White" FontSize="17" FontWeight="Bold" Text="Warning &amp; Holding 조회"/>
+                </Border>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="조회결과"/>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="12" Name="tbResultMsg" Foreground="Blue"/>
+                    </Border>
+                </Grid>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="관리번호"/>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="처리구분"/>
+                    </Border>
+                    <Border Grid.Column="2" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="등록자"/>
+                    </Border>
+                    <Border Grid.Column="3" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Text="전달내용"/>
+                    </Border>
+                </Grid>
+
+                <ScrollViewer Grid.Row="3" x:Name="svInfo" Background="Transparent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                    <ListBox x:Name="lbInfo" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                <Setter Property="BorderBrush" Value="Silver"/>
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="Auto" Margin="-5,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding control_num}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding rule}" Foreground="{Binding color}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding regist}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding msg}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontSize="14" TextWrapping="WrapWithOverflow" Width="420"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>                
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

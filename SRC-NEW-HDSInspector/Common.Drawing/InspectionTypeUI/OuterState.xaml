@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Common.Drawing.InspectionTypeUI.OuterState"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Common.Drawing.InspectionTypeUI"
+            xmlns:common="clr-namespace:Common;assembly=Common"
+             xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" Width="300">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#144B92" Grid.ColumnSpan="4">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Name="txtCaption" Margin="5, 0">표면 검사</TextBlock>
+        </Border>
+
+
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" Grid.Row="1" Background="White">
+            <Grid Grid.Row="1" Background="LightGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Row="0" Background="Black" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White">어두운 불량 검출</Label>
+                <Label Grid.Row="0" Grid.Column="2" Background="White" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Black">밝은 불량 검출</Label>
+                <!-- Lower threshold, Upper threshold -->
+                <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="20" Background="Silver"></Border>
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="20" Background="WhiteSmoke"></Border>
+
+                <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" Margin="5, 0, 0, 0" >마스크 임계</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtMaskThreshUpper"
+                              Grid.Row="1" Grid.Column="3">200</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" Margin="5, 0, 0, 0" Name="txtUpperGV">검출 임계</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtInspThreshUpper"
+                              Grid.Row="2" Grid.Column="3">200</common:NumberTextBox>
+                <TextBlock FontSize="11.5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">마스크 임계</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtMaskThreshLower"
+                              Grid.Row="1" Grid.Column="1">200</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">검출 임계</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="255" Round="0" Name="txtInspThreshLower"
+                              Grid.Row="2" Grid.Column="1">200</common:NumberTextBox>
+
+
+
+                <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">영역 축소 픽셀</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtErosionTrainIter"
+                              Grid.Row="3" Grid.Column="1">1</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">영역 축소 픽셀</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="100" Round="0" Name="txtDilationTrainIter"
+                              Grid.Row="3" Grid.Column="3">1</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">최소 검출 크기</TextBlock>
+                <common:NumberTextBox Grid.Column="1" Grid.Row="4"  FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                                          MinValue="0" MaxValue="1000" Round="0" Name="txtMinDefectSize">30</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0">최소 검출 크기</TextBlock>
+                <common:NumberTextBox Grid.Column="3" Grid.Row="4"  FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                                          MinValue="0" MaxValue="1000" Round="0" Name="txtMaxDefectSize">30</common:NumberTextBox>
+
+                <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0" Visibility="Hidden">핀홀판단 GV</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtPINGV"
+                              Grid.Row="6" Grid.Column="1" Visibility="Hidden">20</common:NumberTextBox>
+                <TextBlock FontSize="11.5" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0" Visibility="Hidden">핀홀판단 GV</TextBlock>
+                <common:NumberTextBox FontSize="13" VerticalContentAlignment="Center" Margin="2"
+                              MinValue="0" MaxValue="1000" Round="0" Name="txtSUMGV"
+                              Grid.Row="6" Grid.Column="3" Visibility="Hidden">20</common:NumberTextBox>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
+
+

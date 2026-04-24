@@ -1,0 +1,27 @@
+﻿<Window xmlns:my="clr-namespace:RVS"  x:Class="RVS.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Icon="Images/main_icon.ico"
+        Title="환경설정" Height="600" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="5,5,5,0" Name="tbSettings" TabStripPlacement="Left" SelectedIndex="3">
+            <TabItem FontWeight="Bold" FontSize="15" Style="{DynamicResource BlendTabStyle}">
+                <TabItem.Header>
+                    <TextBlock Width="80" TextAlignment="Center" Foreground="White" FontSize="15" FontWeight="Bold">RVS</TextBlock>
+                </TabItem.Header>                
+                <my:SettingRVS VerticalAlignment="Stretch" x:Name="tabRVS"/>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="btnOK" Margin="10, 0" Height="40" Width="110">확 인</Button>
+                <Button Name="btnCancel" Margin="10, 0" Height="40" Width="110">취 소</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

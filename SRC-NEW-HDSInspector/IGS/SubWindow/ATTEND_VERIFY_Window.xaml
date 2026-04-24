@@ -1,0 +1,163 @@
+﻿<Window x:Class="IGS.SubWindow.ATTEND_VERIFY_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGS.SubWindow"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="출근 VERIFY 작업자 입력" Height="360" Width="530">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Black" BorderBrush="Gray" BorderThickness="1" Name="bdTitle">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="White" FontSize="20" FontWeight="Bold" Text="VERIFY 작업자 입력"/>
+        </Border>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="70" Margin="2,4" BorderThickness="0" Background="DimGray" Cursor="Hand" Name="btnCancel">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="20" Text="취소"/>
+            </Button>
+            <Button Width="70" Margin="2,4" BorderThickness="0" Background="OrangeRed" Cursor="Hand" Name="btnOK">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="20" Text="보고"/>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderThickness="1" BorderBrush="Silver" Background="SkyBlue">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" Text="작업자 검색"/>
+            </Border>
+
+            <TextBox Grid.Column="1" Margin="5,3" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" IsReadOnly="True" Name="tboxTotalUser">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <Button Grid.Column="2" Margin="3" Background="#FF102239" BorderThickness="0" Cursor="Hand" Name="btnTotalSearch">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="../Images/search_white.png" Width="20" Height="20"/>
+            </Button>
+
+            <Button Grid.Column="3" Margin="3" Background="DimGray" BorderThickness="0" Cursor="Hand" Name="btnTotalSet">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" Foreground="White" Text="선택 적용"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Name="cbAll"/>
+            </Border>
+            <Border Grid.Column="1" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Text="설비 코드"/>
+            </Border>
+            <Border Grid.Column="2" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Text="Y/N"/>
+            </Border>
+            <Border Grid.Column="3" BorderThickness="1" BorderBrush="Silver" Background="#FFC2CADC">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Text="VERIFY 작업자"/>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="3" BorderBrush="Silver" BorderThickness="1"/>
+        <ScrollViewer Grid.Row="3" x:Name="svInfo" Background="Transparent" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Margin="1">
+            <ListView x:Name="lbInfo" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" AlternationCount="2">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="WhiteSmoke"/>
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="30" Margin="-5,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Grid.Column="0" Height="30" IsChecked="{Binding bChecked}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="15,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="140" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding mc_code}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Margin="0,0,0,0"/>
+                                    </Border>
+                                    <Border Width="40" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding verify_yn}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Margin="0,0,0,0"/>
+                                    </Border>
+                                    <Border Width="320" Height="27" HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding verify_user}" VerticalContentAlignment="Center" FontSize="14" FontWeight="Bold" Width="220" Margin="20,0,0,0" IsReadOnly="True">
+                                                <TextBox.Resources>
+                                                    <Style TargetType="{x:Type Border}">
+                                                        <Setter Property="CornerRadius" Value="5"/>
+                                                    </Style>
+                                                </TextBox.Resources>
+                                            </TextBox>
+                                            <Button Margin="3,0" Width="30" Background="Tomato" BorderThickness="0" Cursor="Hand" Tag="{Binding mc_code}" x:Name="btnDelete" Click="btnDelete_Click">
+                                                <Button.Resources>
+                                                    <Style TargetType="{x:Type Border}">
+                                                        <Setter Property="CornerRadius" Value="5"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                                <Image Source="../Images/delete.png" Width="20" Height="20"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </CheckBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</Window>

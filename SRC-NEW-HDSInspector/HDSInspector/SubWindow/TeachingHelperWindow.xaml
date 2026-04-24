@@ -1,0 +1,190 @@
+﻿<Window x:Class="HDSInspector.SubWindow.TeachingHelperWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:Common;assembly=Common"
+        xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="{x:Null}"
+        Title="섹션 반복 설정" Height="460" Width="360">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <!--Top-->
+        <Label Grid.Row="0" VerticalAlignment="Top"    Margin="3, 0, 0, 0" FontSize="17" FontWeight="Bold">섹션 반복 설정</Label>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 15" Background="LightGray" Height="2"/>
+        <Border Grid.Row="0" VerticalAlignment="Bottom" Margin="3, 0, 200, 15" Background="Black" Height="2"/>
+
+        <StackPanel Grid.Row="1" Height="255">
+            <!-- Block Setting -->
+            <Grid x:Name="pnlBlockSetting" Height="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.75*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.ColumnSpan="3" Opacity="0.25">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Border Grid.Row="1" Grid.ColumnSpan="3" Opacity="0.25">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Border Grid.Row="2" Grid.ColumnSpan="3" Opacity="0.25">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="0" Margin="5, 0, 0, 0" VerticalAlignment="Center" FontSize="13" FontWeight="Bold">Block 가로축 Gap (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="0" Grid.Column="1" Margin="2" Name="txtBlockGap"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0, 0, 5, 0" Name="lblBlockGap">123.456</TextBlock>
+            </Grid>
+            <!-- Unit Setting -->
+            <Grid x:Name="pnlUnitSetting" Height="60">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="143*"/>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="109*"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.ColumnSpan="4" Opacity="0.25" Margin="0,0,-0.4,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Border Grid.Row="1" Grid.ColumnSpan="4" Opacity="0.25" Margin="0,0,-0.4,-1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF919191" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Grid.Row="0" Margin="5,6,108.4,6" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Grid.ColumnSpan="3">Unit 가로 축 Pitch (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="0" Grid.Column="2" Margin="2.4,2,1.4,2" Name="txtUnitXPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0,7,4.6,7" Name="lblUnitPitchX">123.456</TextBlock>
+
+                <TextBlock Grid.Row="1" Margin="5,6,108.4,6" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Grid.ColumnSpan="3">Unit 세로 축 Pitch (mm)</TextBlock>
+                <common:NumberTextBox Grid.Row="1" Grid.Column="2" Margin="2.4,2,1.4,2" Name="txtUnitYPitch"
+                                      FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                                      Round="4" MinValue="0" MaxValue="10000">1234.5678</common:NumberTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="DarkGray" Margin="0,7,4.6,7" Name="lblUnitPitchY">123.456</TextBlock>
+            </Grid>
+
+            <Border BorderBrush="#FF919191" BorderThickness="1" Height="20">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="12" FontFamily="Arial" FontWeight="Bold" Width="80" VerticalAlignment="Center" Margin="10, 0, 0, 0">대칭 형태</TextBlock>
+                </StackPanel>
+            </Border>
+            <Grid Height="80">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="4"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.RowSpan="3" Grid.ColumnSpan="5"  BorderBrush="#EFEFEF" BorderThickness="1" >
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#4F4F4F" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Border Grid.RowSpan="3" Grid.Column="0" Background="#0088E8" Name="ButtonBorder1" Opacity="0.6"/>
+                <Border Grid.RowSpan="3" Grid.Column="1" Background="#0088E8" Name="ButtonBorder2" Opacity="0.6"/>
+                <Border Grid.RowSpan="3" Grid.Column="2" Background="#0088E8" Name="ButtonBorder3" Opacity="0.6"/>
+                <Border Grid.RowSpan="3" Grid.Column="3" Background="#0088E8" Name="ButtonBorder4" Opacity="0.6"/>
+                <Border Grid.RowSpan="3" Grid.Column="4" Background="#0088E8" Name="ButtonBorder5" Opacity="0.6"/>
+                <ToggleButton Style="{DynamicResource DrawingToggleButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="4" Background="White"
+                              Name="btnMatrix" Tag="Matrix">
+                    <StackPanel>
+                        <Image Source="/HDSInspector;component/Images/matrix.png" Width="48"/>
+                    </StackPanel>
+                </ToggleButton>
+                <ToggleButton Style="{DynamicResource DrawingToggleButtonStyle}" Grid.Row="1" Grid.Column="1" Margin="4" Background="White"
+                              Name="btnXFlip" Tag="XFlip">
+                    <Image Source="/HDSInspector;component/Images/xflip.png" Width="48"/>
+                </ToggleButton>
+                <ToggleButton Style="{DynamicResource DrawingToggleButtonStyle}" Grid.Row="1" Grid.Column="2" Margin="4" Background="White"
+                              Name="btnYFlip" Tag="YFlip">
+                    <Image Source="/HDSInspector;component/Images/yflip.png" Width="48"/>
+                </ToggleButton>
+                <ToggleButton Style="{DynamicResource DrawingToggleButtonStyle}" Grid.Row="1" Grid.Column="3" Margin="4" Background="White"
+                              Name="btnXYFlip" Tag="XYFlip">
+                    <Image Source="/HDSInspector;component/Images/xyflip.png" Width="48"/>
+                </ToggleButton>
+                <ToggleButton Style="{DynamicResource DrawingToggleButtonStyle}" Grid.Row="1" Grid.Column="4" Margin="4" Background="White"
+                              Name="btnOtherPattern" Tag="Unknown">
+                    <Image Source="/HDSInspector;component/Images/otherpattern.png" Width="48"/>
+                </ToggleButton>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="2" VerticalAlignment="Center" Visibility="Hidden" x:Name="pnlExclamation" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/HDSInspector;component/Images/exclamation.png" Grid.Column="0" Margin="6"/>
+            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" x:Name="txtWarnMessage" Foreground="Blue"/>
+        </Grid>
+        <CheckBox Grid.Row="2" Name="cbAlign">얼라인 사용 안함</CheckBox>
+        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Width="100" Height="30" Name="btnOK">확 인</Button>
+            <Button Width="100" Height="30" Grid.Column="1" Name="btnCancel">취 소</Button>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#4c7eb6" Offset="0.250"/>
+                    <GradientStop Color="#195aa2" Offset="0.750"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+    </Grid>
+</Window>

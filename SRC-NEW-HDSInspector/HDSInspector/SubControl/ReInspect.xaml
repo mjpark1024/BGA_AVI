@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="HDSInspector.SubControl.ReInspect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HDSInspector.SubControl"
+             mc:Ignorable="d" 
+            d:DesignHeight="350" d:DesignWidth="1350">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF58AAEE" Offset="0"/>
+                <GradientStop Color="#FF2A8FE2" Offset="1"/>
+                <GradientStop Color="#FFABD4F6" Offset="0.502"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.ColumnSpan="6" FontSize="45" Margin="15,5,5,5" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" Content="로더 제품 공급이 완료 되었습니다."/>
+        <Label Content="폐기를 재 투입 하시려면" Grid.Row="2" Grid.ColumnSpan="2" FontSize="35" Margin="15,5,5,5" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+        <Label Content="제품을 재 투입 하시려면" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" FontSize="35" Margin="15,5,5,5" Foreground="Green" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+        <!--<Label Content="검사를 종료 하시려면" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" FontSize="35" Margin="15,5,5,5" Foreground="Blue" FontWeight="Bold" HorizontalAlignment="Center"></Label>-->
+        <Button Name="btnFReset"  Grid.Row="3" Grid.ColumnSpan="2" Width="350" Margin="15" FontSize="35" FontWeight="Bold">폐기 재 투입</Button>
+        <Button Name="btnReset"  Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Width="350" Margin="15" FontSize="35" FontWeight="Bold">제품 재 투입</Button>
+        <Button Name="btnStop"  Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="4" Width="350" Margin="15" FontSize="35" FontWeight="Bold">오더 종료</Button>
+        <Label Content="오더 종료를 선택하면" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" FontSize="35" Margin="55,5,0,5" Foreground="Blue" FontWeight="Bold" HorizontalAlignment="Left"></Label>
+        <Label Content="검사가 종료 됩니다." Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" FontSize="35" Margin="15,5,5,5" Foreground="Blue" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Label>
+    </Grid>
+</UserControl>

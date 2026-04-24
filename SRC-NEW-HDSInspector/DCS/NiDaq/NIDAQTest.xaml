@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="DCS.NIDAQ.NIDAQTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Start" Name="btnStart" Click="btnStart_Click" Grid.Column="5" Grid.Row="1" Margin="2"/>
+        <Button Content="Stop"  Name="btnStop"  Click="btnStop_Click"  Grid.Column="5" Grid.Row="2" Margin="2"/>
+        <TextBox Name="txtMsg"  Grid.ColumnSpan="4" Grid.Row="5" Margin="3"/>
+
+        <Label Content="InitDelay" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        <Label Content="Low" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        <Label Content="High" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+
+        <CheckBox Content="Ctr0" Name="chkCtr0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
+        <CheckBox Content="Ctr1" Name="chkCtr1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Content="Ctr2" Name="chkCtr2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Content="Ctr3" Name="chkCtr3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBox Grid.Column="1" Grid.Row="1" Name="txtDelay0" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="txtDelay1" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Name="txtDelay2" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="txtDelay3" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        
+        <TextBox Grid.Column="2" Grid.Row="1" Name="txtLow0" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Name="txtLow1" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Name="txtLow2" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="4" Name="txtLow3" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+
+        <TextBox Grid.Column="3" Grid.Row="1" Name="txtHigh0" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="3" Grid.Row="2" Name="txtHigh1" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="3" Grid.Row="3" Name="txtHigh2" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="3" Grid.Row="4" Name="txtHigh3" Text="5" Margin="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,310 @@
+﻿<Window x:Class="HDSInspector.SubWindow.ParamSummaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
+        Title="검사 파라미터 확인" Height="700" Width="1024" WindowState="Maximized">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="InspItemData"></ObjectDataProvider>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBarWhite}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBarWhite}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="1" BorderBrush="#454545">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                    <GradientStop Color="#FFA7A7A7" Offset="0.700"/>
+                    <GradientStop Color="#FFDADADA" Offset="0.350"/>
+                    <GradientStop Color="#FFC4C4C4" Offset="0.500"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="14" FontFamily="Franklin Gothic" FontWeight="Bold" Margin="10, 0, 0, 0">파라미터 선택 표시</TextBlock>
+        </Border>
+        <WrapPanel Grid.Row="1" Background="#676767">
+            <RadioButton x:Name="radAll" IsChecked="True" Margin="5" Foreground="White" FontWeight="Bold">전체 파라미터 보기</RadioButton>
+            <RadioButton x:Name="radUnitAlign" Margin="5" Foreground="White" FontWeight="Bold">Unit Align</RadioButton>
+            <RadioButton x:Name="radSurface" Margin="5" Foreground="White" FontWeight="Bold">표면 검사</RadioButton>
+            <RadioButton x:Name="radSpace" Margin="5" Foreground="White" FontWeight="Bold">공간 검사</RadioButton>
+            <RadioButton x:Name="radPlate" Margin="5" Foreground="White" FontWeight="Bold">도금 검사</RadioButton>
+            <RadioButton x:Name="radTape" Margin="5" Foreground="White" FontWeight="Bold">Tape 검사</RadioButton>
+            <RadioButton x:Name="radDownset" Margin="5" Foreground="White" FontWeight="Bold">Downset 검사</RadioButton>
+            <RadioButton x:Name="radLeadShape" Margin="5" Foreground="White" FontWeight="Bold">리드 형상 검사</RadioButton>
+            <RadioButton x:Name="radLeadGap" Margin="5" Foreground="White" FontWeight="Bold">리드 간격 검사</RadioButton>
+            <RadioButton x:Name="radSpaceShape" Margin="5" Foreground="White" FontWeight="Bold">공간 형상 검사</RadioButton>
+        </WrapPanel>
+
+        <Border Grid.Row="2" BorderThickness="1" BorderBrush="#454545">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFDFDFD" Offset="0"/>
+                    <GradientStop Color="#FFA7A7A7" Offset="0.700"/>
+                    <GradientStop Color="#FFDADADA" Offset="0.350"/>
+                    <GradientStop Color="#FFC4C4C4" Offset="0.500"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="14" FontFamily="Franklin Gothic" FontWeight="Bold" Margin="10, 0, 0, 0">데이터 일람</TextBlock>
+        </Border>
+        <Grid Grid.Row="3" Background="#676767">
+            <DataGrid filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True" Margin="5" Background="#E7EEEE"
+                      filter:DataGridExtensions.IsClearButtonVisible="False"
+                      ColumnHeaderStyle="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, ResourceId=DataGridHeaderFilterControlStyle}}"
+                      AutoGenerateColumns="False" ItemsSource="{Binding Path=InspItemList}" Name="paramGrid" Grid.Row="0"
+                      IsReadOnly="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="검사코드" x:Name="cRoiCode"
+                                        Binding="{Binding Path=RoiCode}" CanUserSort="False" />
+                    <DataGridComboBoxColumn Header="검사표면" x:Name="cWorkType"
+                                            SelectedItemBinding="{Binding Path=WorkType}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=WorkTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="섹션이름" x:Name="cSectionName"
+                                            SelectedItemBinding="{Binding Path=SectionName}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=SectionNameList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="검사항목" x:Name="cInspName"
+                                            SelectedItemBinding="{Binding Path=InspName}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspNameList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    
+                    <DataGridComboBoxColumn Header="임계구분" x:Name="cThreshType"
+                                            SelectedItemBinding="{Binding Path=ThreshType}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=ThreshTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="하한임계" x:Name="cLowerThresh"
+                                        Binding="{Binding Path=LowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="상한임계" x:Name="cUpperThresh"
+                                        Binding="{Binding Path=UpperThresh}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="마스크 하한임계" x:Name="cMaskLowerThresh"
+                                        Binding="{Binding Path=MaskLowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="마스크 상한임계" x:Name="cMaskUpperThresh"
+                                        Binding="{Binding Path=MaskUpperThresh}" CanUserSort="False"/>
+
+                    <DataGridCheckBoxColumn Header="평균값 적용" x:Name="cApplyAverDiff"
+                                            Binding="{Binding Path=ApplyAverDiff}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="평균값 최소범위" x:Name="cAverMinMargin"
+                                        Binding="{Binding Path=AverMinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="평균값 최대범위" x:Name="cAverMaxMargin"
+                                        Binding="{Binding Path=AverMaxMargin}" CanUserSort="False"/>
+
+                    <DataGridComboBoxColumn Header="검사조건 범위" x:Name="cInspRange"
+                                            SelectedItemBinding="{Binding Path=InspRange}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspRangeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="검사최소 허용범위" x:Name="cMinMargin"
+                                        Binding="{Binding Path=MinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="검사최대 최대범위" x:Name="cMaxMargin"
+                                        Binding="{Binding Path=MaxMargin}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="마스크 축소" x:Name="cErosionTrainIter"
+                                        Binding="{Binding Path=ErosionTrainIter}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="마스크 확장" x:Name="cDilationTrainIter"
+                                        Binding="{Binding Path=DilationTrainIter}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="결과축소" x:Name="cErosionInspIter"
+                                        Binding="{Binding Path=ErosionInspIter}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="결과확장" x:Name="cDilationInspIter"
+                                        Binding="{Binding Path=DilationInspIter}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="최소검출사이즈(Min)" x:Name="cMinDefectSize"
+                                        Binding="{Binding Path=MinDefectSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="최소검출사이즈(Max)" x:Name="cMaxDefectSize"
+                                        Binding="{Binding Path=MaxDefectSize}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="미세불량 최소검출사이즈(Min)" x:Name="cMinSmallDefectSize"
+                                        Binding="{Binding Path=MinSmallDefectSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="미세불량 최소검출사이즈(Max)" x:Name="cMaxSmallDefectSize"
+                                        Binding="{Binding Path=MaxSmallDefectSize}" CanUserSort="False"/>
+
+                    <DataGridTextColumn Header="미세불량 최소검출개수(Min)" x:Name="cMinSmallDefectCount"
+                                        Binding="{Binding Path=MinSmallDefectCount}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="미세불량 최소검출개수(Max)" x:Name="cMaxSmallDefectCount"
+                                        Binding="{Binding Path=MaxSmallDefectCount}" CanUserSort="False"/>
+
+                    <!-- 도금, Tape 전용 프로퍼티 -->
+                    <DataGridTextColumn Header="전체Mask하한" x:Name="cGroundLowerThresh" 
+                                        Binding="{Binding Path=GroundLowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="전체Mask상한" x:Name="cGroundUpperThresh" 
+                                        Binding="{Binding Path=GroundUpperThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상Mask하한" x:Name="cShapeLowerThresh" 
+                                        Binding="{Binding Path=ShapeLowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상Mask상한" x:Name="cShapeUpperThresh" 
+                                        Binding="{Binding Path=ShapeUpperThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상Mask축소" x:Name="cErosionShapeIter" 
+                                        Binding="{Binding Path=ErosionShapeIter}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상Mask확장" x:Name="cDilationShapeIter" 
+                                        Binding="{Binding Path=DilationShapeIter}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상ShiftX" x:Name="cShapeShiftMarginX" 
+                                        Binding="{Binding Path=ShapeShiftMarginX}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상ShiftY" x:Name="cShapeShiftMarginY" 
+                                        Binding="{Binding Path=ShapeShiftMarginY}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상OffsetX" x:Name="cShapeOffsetX"  
+                                        Binding="{Binding Path=ShapeOffsetX}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상OffsetY" x:Name="cShapeOffsetY" 
+                                        Binding="{Binding Path=ShapeOffsetY}" CanUserSort="False"/>
+
+                    <!-- 도금, Tape의 형상 영역 전용 프로퍼티 -->
+                    <DataGridCheckBoxColumn Header="형상영역 검사적용" x:Name="cMasterUse"
+                                            Binding="{Binding Path=MasterUse}" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="형상영역 임계구분" x:Name="cMasterThreshType"
+                                            SelectedItemBinding="{Binding Path=MasterThreshType}" 
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=ThreshTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 하한임계" x:Name="cMasterLowerThresh"
+                                        Binding="{Binding Path=MasterLowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 상한임계" x:Name="cMasterUpperThresh"
+                                        Binding="{Binding Path=MasterUpperThresh}" CanUserSort="False"/>
+                    <DataGridCheckBoxColumn Header="형상영역 평균값적용" x:Name="cMasterApplyAverDiff"
+                                            Binding="{Binding Path=MasterApplyAverDiff}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 평균값 최소범위" x:Name="cMasterAverMinMargin"
+                                        Binding="{Binding Path=MasterAverMinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 평균값 최대범위" x:Name="cMasterAverMaxMargin"
+                                        Binding="{Binding Path=MasterAverMaxMargin}" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="형상영역 검사조건 범위" x:Name="cMasterInspRange"
+                                            SelectedItemBinding="{Binding Path=MasterInspRange}" 
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspRangeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 검사최소 허용범위" x:Name="cMasterMinMargin"
+                                        Binding="{Binding Path=MasterMinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 검사최대 허용범위" x:Name="cMasterMaxMargin"
+                                        Binding="{Binding Path=MasterMaxMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 최소 검출사이즈{Min}" x:Name="cMasterMinDefectSize"
+                                        Binding="{Binding Path=MasterMinDefectSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="형상영역 최소 검출사이즈{Max}" x:Name="cMasterMaxDefectSize"
+                                        Binding="{Binding Path=MasterMaxDefectSize}" CanUserSort="False"/>
+
+                    <!-- 도금, Tape의 표면 영역 전용 프로퍼티 -->
+                    <DataGridCheckBoxColumn Header="표면영역 검사적용" x:Name="cSlaveUse" 
+                                            Binding="{Binding Path=SlaveUse}" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="표면영역 임계구분" x:Name="cSlaveThreshType"
+                                            SelectedItemBinding="{Binding Path=SlaveThreshType}" 
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=ThreshTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 하한임계" x:Name="cSlaveLowerThresh"
+                                        Binding="{Binding Path=SlaveLowerThresh}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 상한임계" x:Name="cSlaveUpperThresh"
+                                        Binding="{Binding Path=SlaveUpperThresh}" CanUserSort="False"/>
+                    <DataGridCheckBoxColumn Header="표면영역 평균값적용" x:Name="cSlaveApplyAverDiff"
+                                            Binding="{Binding Path=SlaveApplyAverDiff}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 평균값 최소범위" x:Name="cSlaveAverMinMargin"
+                                        Binding="{Binding Path=SlaveAverMinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 평균값 최대범위" x:Name="cSlaveAverMaxMargin"
+                                        Binding="{Binding Path=SlaveAverMaxMargin}" CanUserSort="False"/>
+                    <DataGridComboBoxColumn Header="표면영역 검사조건 범위" x:Name="cSlaveInspRange"
+                                            SelectedItemBinding="{Binding Path=SlaveInspRange}" 
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspRangeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 검사최소 허용범위" x:Name="cSlaveMinMargin"
+                                        Binding="{Binding Path=SlaveMinMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 검사최대 허용범위" x:Name="cSlaveMaxMargin"
+                                        Binding="{Binding Path=SlaveMaxMargin}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 최소검출사이즈{Min}" x:Name="cSlaveMinDefectSize"
+                                        Binding="{Binding Path=SlaveMinDefectSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="표면영역 최소검출사이즈{Max}" x:Name="cSlaveMaxDefectSize"
+                                        Binding="{Binding Path=SlaveMaxDefectSize}" CanUserSort="False"/>
+
+                    <!-- 다운셋 전용 프로퍼티 -->
+                    <DataGridCheckBoxColumn Header="역 검사" x:Name="cInvert" 
+                                            Binding="{Binding Path=Invert}" CanUserSort="False"/>
+
+                    <!-- 리드 형상, 간격 전용 프로퍼티 -->
+                    <DataGridTextColumn Header="리드편차 최소허용범위{%}" x:Name="cLeadMinNormalRatio"
+                                        Binding="{Binding Path=LeadMinNormalRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드편차 최대허용범위{%}" x:Name="cLeadMaxNormalRatio"
+                                        Binding="{Binding Path=LeadMaxNormalRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드연속 불량개수" x:Name="cLeadMinHeightSize"
+                                        Binding="{Binding Path=LeadMinHeightSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드최소 선폭범위{%}" x:Name="cLeadMinWidthRatio"
+                                        Binding="{Binding Path=LeadMinWidthRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드최대 선폭범위{%}" x:Name="cLeadMaxWidthRatio"
+                                        Binding="{Binding Path=LeadMaxWidthRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드 최소선폭{px}" x:Name="cLeadMinWidthSize"
+                                        Binding="{Binding Path=LeadMinWidthSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="리드 최대선폭{px}" x:Name="cLeadMaxWidthSize"
+                                        Binding="{Binding Path=LeadMaxWidthSize}" CanUserSort="False"/>
+
+                    <!-- 공간 형상 전용 프로퍼티 -->
+                    <DataGridTextColumn Header="공간편차 최소허용범위{%}" x:Name="cShapeMinNormalRatio"
+                                        Binding="{Binding Path=ShapeMinNormalRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간편차 최대허용범위{%}" x:Name="cShapeMaxNormalRatio"
+                                        Binding="{Binding Path=ShapeMaxNormalRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간연속 불량개수" x:Name="cShapeMinHeightSize"
+                                        Binding="{Binding Path=ShapeMinHeightSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간최소 선폭범위{%}" x:Name="cShapeMinWidthRatio"
+                                        Binding="{Binding Path=ShapeMinWidthRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간최대 선폭범위{%}" x:Name="cShapeMaxWidthRatio"
+                                        Binding="{Binding Path=ShapeMaxWidthRatio}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간 최소선폭{px}" x:Name="cShapeMinWidthSize"
+                                        Binding="{Binding Path=ShapeMinWidthSize}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="공간 최대선폭{px}" x:Name="cShapeMaxWidthSize"
+                                        Binding="{Binding Path=ShapeMaxWidthSize}" CanUserSort="False"/>
+
+                    <!-- Unit Align 전용 프로퍼티 -->
+                    <DataGridTextColumn Header="Align X" x:Name="cAlignX"
+                                        Binding="{Binding Path=AlignMarginX}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="Align Y" x:Name="cAlignY"
+                                        Binding="{Binding Path=AlignMarginY}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="일치율" x:Name="cAlignAcceptance"
+                                        Binding="{Binding Path=AlignAcceptance}" CanUserSort="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="#1C1C1C" BorderThickness="1, 0, 1, 1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#2C5C7A" Offset="0"/>
+                    <GradientStop Color="#0B212F" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- 섹션 생성 정보 -->
+                <TextBlock Width="55" Foreground="White" HorizontalAlignment="Right" Margin="0, 0, 10, 0">섹션</TextBlock>
+                <TextBox Width="40" Foreground="White" IsReadOnly="True" x:Name="txtSectionCount" 
+                         VerticalContentAlignment="Center" HorizontalAlignment="Right" 
+                         BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+                <!-- ROI 생성 정보 -->
+                <TextBlock Width="55" Foreground="White" HorizontalAlignment="Right" Margin="0, 0, 10, 0">ROI</TextBlock>
+                <TextBox Width="40" Foreground="White" IsReadOnly="True" x:Name="txtROICount" VerticalContentAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+                <!-- 검사 항목 정보-->
+                <TextBlock Width="55" Foreground="White" x:Name="lblHeight" HorizontalAlignment="Right"  Margin="0, 0, 10, 0">검사항목</TextBlock>
+                <TextBox Width="40" Foreground="White" IsReadOnly="True" x:Name="txtInspCount" VerticalContentAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+

@@ -1,0 +1,333 @@
+﻿<Window x:Class="HDSInspector.SubWindow.ParamTemplateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HDSInspector.SubWindow"
+        xmlns:dgx="urn:tom-englert.de/DataGridExtensions"
+        xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
+        mc:Ignorable="d" WindowStyle="None" FontFamily ="Roboto"
+        Title="검사 파라미터 템플릿" Height="700" Width="1920" WindowState="Maximized" Closed="Close_Event">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="InspItemData"></ObjectDataProvider>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBarWhite}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBarWhite}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <ControlTemplate x:Key="MultipleChoiceFilter">
+            <dgx:MultipleChoiceFilter />
+        </ControlTemplate>
+        <ControlTemplate x:Key="ComboboxFilter">
+            <Grid d:DataContext="{d:DesignInstance dgx:DataGridFilterColumnControl}">
+                <Grid>
+                    <Control Style="{DynamicResource {x:Static dgx:DataGridFilter.IconStyleKey}}" />
+                    <ComboBox x:Name="ComboBox" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SourceValues}" IsEditable="True" />
+                </Grid>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger SourceName="ComboBox" Property="Text" Value="">
+                    <Setter TargetName="ComboBox" Property="Opacity" Value="0" />
+                </Trigger>
+                <Trigger SourceName="ComboBox" Property="Text" Value="{x:Null}">
+                    <Setter TargetName="ComboBox" Property="Opacity" Value="0" />
+                </Trigger>
+                <Trigger SourceName="ComboBox" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ComboBox" Property="Opacity" Value="1" />
+                </Trigger>
+                <Trigger SourceName="ComboBox" Property="IsFocused" Value="True">
+                    <Setter TargetName="ComboBox" Property="Opacity" Value="1" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <XmlDataProvider x:Key="WorkTypeSource" Source="../Source/WorkTypeList.xml" XPath="Items/Item" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderThickness="1" BorderBrush="#d8d8d8" Background="#4c7eb6">
+                <TextBlock FontSize="14" Foreground="White" FontWeight="Bold" Margin="10, 0, 0, 0">검사 파라미터</TextBlock>
+            </Border>
+            <Grid Grid.Row="1" Background="#e0f1ff">
+                <DataGrid          
+                     ItemsSource="{Binding Path=InspItemList}"  SelectedItem="{Binding SelectedItem}"
+                     Margin="5" Background="#E7EEEE"
+                     Name="paramGrid" Grid.Row="0" AutoGenerateColumns="False" PreviewMouseLeftButtonUp="paramGrid_PreviewMouseLeftButtonUp"
+                     IsReadOnly="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" PreviewMouseWheel="paramGrid_PreviewMouseWheel"
+                    
+                     filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
+                     filter:DataGridExtensions.IsClearButtonVisible="False"
+                    ColumnHeaderStyle="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, ResourceId=DataGridHeaderFilterControlStyle}}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ROI코드" x:Name="cRoiCode"
+                                        Binding="{Binding Path=RoiCode}" CanUserSort="False" />
+
+                        <DataGridComboBoxColumn Header="검사영역" x:Name="cWorkType"
+                                            SelectedItemBinding="{Binding Path=WorkType}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=WorkTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+
+                        <DataGridComboBoxColumn Header="섹션이름" x:Name="cSectionName"
+                                            SelectedItemBinding="{Binding Path=SectionName}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=SectionNameList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+
+                        <DataGridComboBoxColumn Header="검사항목" x:Name="cInspName"
+                                            SelectedItemBinding="{Binding Path=InspName}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspNameList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+
+                        <DataGridComboBoxColumn Header="임계구분" x:Name="cThreshType"
+                                            SelectedItemBinding="{Binding Path=ThreshType}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=ThreshTypeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="하한임계" x:Name="cLowerThresh"
+                                        Binding="{Binding Path=LowerThresh}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="상한임계" x:Name="cUpperThresh"
+                                        Binding="{Binding Path=UpperThresh}" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="마스크 하한임계" x:Name="cMaskLowerThresh"
+                                        Binding="{Binding Path=MaskLowerThresh}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="마스크 상한임계" x:Name="cMaskUpperThresh"
+                                        Binding="{Binding Path=MaskUpperThresh}" CanUserSort="False"/>
+
+                        <!-- Unit Align 전용 프로퍼티 -->
+                        <DataGridTextColumn Header="Align X" x:Name="cAlignX"
+                                        Binding="{Binding Path=AlignMarginX}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="Align Y" x:Name="cAlignY"
+                                        Binding="{Binding Path=AlignMarginY}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="일치율" x:Name="cAlignAcceptance"
+                                        Binding="{Binding Path=AlignAcceptance}" CanUserSort="False"/>
+
+                        <!-- 리드 형상, 간격 전용 프로퍼티 -->
+                        <DataGridTextColumn Header="리드편차 최소허용범위{%}" x:Name="cLeadMinNormalRatio"
+                                        Binding="{Binding Path=LeadMinNormalRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드편차 최대허용범위{%}" x:Name="cLeadMaxNormalRatio"
+                                        Binding="{Binding Path=LeadMaxNormalRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드연속 불량개수" x:Name="cLeadMinHeightSize"
+                                        Binding="{Binding Path=LeadMinHeightSize}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드최소 선폭범위{%}" x:Name="cLeadMinWidthRatio"
+                                        Binding="{Binding Path=LeadMinWidthRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드최대 선폭범위{%}" x:Name="cLeadMaxWidthRatio"
+                                        Binding="{Binding Path=LeadMaxWidthRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드 최소선폭{px}" x:Name="cLeadMinWidthSize"
+                                        Binding="{Binding Path=LeadMinWidthSize}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="리드 최대선폭{px}" x:Name="cLeadMaxWidthSize"
+                                        Binding="{Binding Path=LeadMaxWidthSize}" CanUserSort="False"/>
+
+                        <!-- 공간 형상 전용 프로퍼티 -->
+                        <DataGridTextColumn Header="공간편차 최소허용범위{%}" x:Name="cShapeMinNormalRatio"
+                                        Binding="{Binding Path=ShapeMinNormalRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간편차 최대허용범위{%}" x:Name="cShapeMaxNormalRatio"
+                                        Binding="{Binding Path=ShapeMaxNormalRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간연속 불량개수" x:Name="cShapeMinHeightSize"
+                                        Binding="{Binding Path=ShapeMinHeightSize}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간최소 선폭범위{%}" x:Name="cShapeMinWidthRatio"
+                                        Binding="{Binding Path=ShapeMinWidthRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간최대 선폭범위{%}" x:Name="cShapeMaxWidthRatio"
+                                        Binding="{Binding Path=ShapeMaxWidthRatio}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간 최소선폭{px}" x:Name="cShapeMinWidthSize"
+                                        Binding="{Binding Path=ShapeMinWidthSize}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="공간 최대선폭{px}" x:Name="cShapeMaxWidthSize"
+                                        Binding="{Binding Path=ShapeMaxWidthSize}" CanUserSort="False"/>
+
+                        <DataGridComboBoxColumn Header="검사조건 범위" x:Name="cInspRange"
+                                            SelectedItemBinding="{Binding Path=InspRange}"
+                                            ItemsSource="{Binding Source={StaticResource InspItemData}, Path=InspRangeList}" 
+                                            SelectedValuePath="Id" DisplayMemberPath="Name" CanUserSort="False"/>
+                        <DataGridTextColumn Header="검사최소 허용범위" x:Name="cMinMargin"
+                                        Binding="{Binding Path=MinMargin}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="검사최대 최대범위" x:Name="cMaxMargin"
+                                        Binding="{Binding Path=MaxMargin}" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="마스크 축소" x:Name="cErosionTrainIter"
+                                        Binding="{Binding Path=ErosionTrainIter}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="마스크 확장" x:Name="cDilationTrainIter"
+                                        Binding="{Binding Path=DilationTrainIter}" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="결과축소" x:Name="cErosionInspIter"
+                                        Binding="{Binding Path=ErosionInspIter}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="결과확장" x:Name="cDilationInspIter"
+                                        Binding="{Binding Path=DilationInspIter}" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="최소검출사이즈(Min)" x:Name="cMinDefectSize"
+                                        Binding="{Binding Path=MinDefectSize}" CanUserSort="False"/>
+
+                        <DataGridTextColumn Header="최소검출사이즈(Max)" x:Name="cMaxDefectSize"
+                                        Binding="{Binding Path=MaxDefectSize}" CanUserSort="False"/>
+
+                        <DataGridCheckBoxColumn Header="평균값 적용" x:Name="cApplyAverDiff"
+                                            Binding="{Binding Path=ApplyAverDiff}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="평균값 최소범위" x:Name="cAverMinMargin"
+                                        Binding="{Binding Path=AverMinMargin}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="평균값 최대범위" x:Name="cAverMaxMargin"
+                                        Binding="{Binding Path=AverMaxMargin}" CanUserSort="False"/>
+
+                        <DataGridCheckBoxColumn Header="UsePSRShift" x:Name="cUsePSRShift"
+                                                Binding="{Binding Path=UsePSRShift}" CanUserSort="False"/>
+                        <DataGridCheckBoxColumn Header="UsePSRShiftBA" x:Name="cUsePSRShiftBA"
+                                                Binding="{Binding Path=UsePSRShiftBA}" CanUserSort="False"/>
+                        <DataGridCheckBoxColumn Header="인식키 불량 검출" x:Name="cUseFiduInsp"
+                                                Binding="{Binding Path=UsePunchShift}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="Open Size(px)" x:Name="cPSROpenSize"
+                                        Binding="{Binding Path=MinHeightSize}" CanUserSort="False"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Border Grid.Column="1" BorderThickness="1" BorderBrush="#d8d8d8" Background="#4c7eb6">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="14" Foreground="White" FontWeight="Bold" Margin="10, 0, 0, 0">ROI 뷰어</TextBlock>
+                    <Slider Name="sldrScale" Orientation="Horizontal" Margin="-5, 0" Grid.Column="1"
+								Minimum="0.05" Maximum="10.0" Value="0.5" 
+								VerticalAlignment="Center" IsSnapToTickEnabled="True" TickFrequency="0.1" 
+								Width="120"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1, 0, 1, 1">
+                <ScrollViewer x:Name="svROIViewer" Grid.Row="1" Grid.Column="1" Background="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Focusable="False" ScrollChanged="svTeaching_ScrollChanged">
+                    <Grid x:Name="pnlOuter" MouseWheel="pnlOuter_MouseWheel">
+                        <Grid x:Name="pnlInner" Background="Black">
+                            <Grid.LayoutTransform>
+                                <ScaleTransform ScaleX="{Binding ElementName=sldrScale, Path=Value, Mode=OneWay}"
+												ScaleY="{Binding ElementName=sldrScale, Path=Value, Mode=OneWay}"/>
+                            </Grid.LayoutTransform>
+                        </Grid>
+                        <Canvas x:Name="cvsCross" Background="Transparent"/>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+
+        </Grid>
+        
+        <Border Grid.Row="1" BorderThickness="1" BorderBrush="#d8d8d8" Background="#4c7eb6">
+            <TextBlock FontSize="14" FontWeight="Bold" Margin="10, 0, 0, 0" Foreground="White">파라미터 간략 표시</TextBlock>
+        </Border>
+
+        <Border Grid.Row="2" Background="#e0f1ff" BorderBrush="#d8d8d8" BorderThickness="1">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <RadioButton x:Name="radAll" IsChecked="True" Margin="5" Foreground="Black" FontWeight="Bold">전체 보기</RadioButton>
+                <RadioButton x:Name="radUnitAlign" Margin="5" Foreground="Black" FontWeight="Bold">Unit Align</RadioButton>
+                <RadioButton x:Name="radFiducialMark" Margin="5" Foreground="Black" FontWeight="Bold">인식키 검사</RadioButton>
+                <RadioButton x:Name="radSurface" Margin="5" Foreground="Black" FontWeight="Bold">표면 검사</RadioButton>
+                <RadioButton x:Name="radPSR" Margin="5" Foreground="Black" FontWeight="Bold">PSR 검사</RadioButton>
+                <RadioButton x:Name="radLeadShape" Margin="5" Foreground="Black" FontWeight="Bold">리드 형상 검사</RadioButton>
+                <RadioButton x:Name="radSpaceShape" Margin="5" Foreground="Black" FontWeight="Bold">공간 형상 검사</RadioButton>
+                <RadioButton x:Name="radVentHole" Margin="5" Foreground="Black" FontWeight="Bold">Vent Hole 검사</RadioButton>
+                <RadioButton x:Name="radRaw" Margin="5" Foreground="Black" FontWeight="Bold">원소재 검사</RadioButton>
+                <RadioButton x:Name="radOuter" Margin="5" Foreground="Black" FontWeight="Bold">외곽 검사</RadioButton>
+                <RadioButton x:Name="radVia" Margin="5" Foreground="Black" FontWeight="Bold">Via 검사</RadioButton>
+                <RadioButton x:Name="radExcept" Margin="5" Foreground="Black" FontWeight="Bold">검사 제외</RadioButton>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="#ffffff" BorderBrush="#ffffff" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15 0 0 0">
+                    <!-- 섹션 생성 정보 -->
+                    <TextBlock Width="55" Foreground="Black" HorizontalAlignment="Right" Margin="0, 0, 10, 0">섹션</TextBlock>
+                    <TextBox Width="55" Foreground="Black" IsReadOnly="True" x:Name="txtSectionCount" 
+                         VerticalContentAlignment="Center" HorizontalAlignment="Right" 
+                         BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+                    <!-- ROI 생성 정보 -->
+                    <TextBlock Width="55" Foreground="Black" HorizontalAlignment="Right" Margin="0, 0, 10, 0">ROI</TextBlock>
+                    <TextBox Width="55" Foreground="Black" IsReadOnly="True" x:Name="txtROICount" VerticalContentAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+                    <!-- 검사 항목 정보-->
+                    <TextBlock Width="55" Foreground="Black" x:Name="lblHeight" HorizontalAlignment="Right"  Margin="0, 0, 10, 0">검사항목</TextBlock>
+                    <TextBox Width="55" Foreground="Black" IsReadOnly="True" x:Name="txtInspCount" VerticalContentAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0"/>
+                    <!--복사할 ROI 코드-->
+                    <TextBlock Width="75" FontSize="12" Foreground="Blue" x:Name="lblSelectedRoiCode" HorizontalAlignment="Right"  Margin="0, 0, 10, 0" FontWeight="Bold">복사대상 ROI</TextBlock>
+                    <TextBox Width="55" Foreground="Blue" IsReadOnly="True" x:Name="txtSelectedRoiCode" VerticalContentAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}"  Background="{x:Null}" BorderThickness="0" FontWeight="Bold" Text="없음"/>
+                    
+                </StackPanel>
+                <Border Grid.Column="1" Background="White">
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                        <Button x:Name="btnCopyCancel" Click="btnCopyCancel_Click" Grid.Row="2" Width="100" Height="30" Margin="15, 0" FontSize="20" 
+                                Style="{StaticResource SimpleButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock FontWeight="Light" FontSize="16" Text="선택 취소" VerticalAlignment="Center" Foreground="Black"/>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button x:Name="btnCopy" Click="btnCopy_Click" Grid.Row="2" Width="100" Height="30" Margin="15, 0" FontSize="20" 
+                                Style="{StaticResource SimpleButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock FontWeight="Light" FontSize="16" Text="ROI 복사" VerticalAlignment="Center" Foreground="Black"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btnPaste" Click="btnPaste_Click" Grid.Row="2" Width="100" Height="30" Margin="15, 0" FontSize="20"
+                            Style="{StaticResource SimpleButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock  FontWeight="Light" FontSize="16" Text="붙여넣기" VerticalAlignment="Center" Foreground="black"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btnApply" Click="btnApply_Click" Grid.Row="2" Width="100" Height="30" Margin="15, 0" FontSize="20" Visibility="Collapsed"
+                            Style="{StaticResource SimpleButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock  FontWeight="Light" FontSize="16" Text="최종적용" VerticalAlignment="Center" Foreground="black"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2">
+                    <Button HorizontalAlignment="Right" FontWeight="Light" x:Name="btnCancel" Click="btnClose_Click" Grid.Row="3" Width="100" Height="30" Margin="15, 0" FontSize="16" Style="{StaticResource SimpleButton}"
+                                Content="닫 기" Foreground="black" >
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

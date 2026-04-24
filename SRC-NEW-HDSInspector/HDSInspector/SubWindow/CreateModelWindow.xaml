@@ -1,0 +1,35 @@
+﻿<Window x:Class="HDSInspector.SubWindow.CreateModelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HDSInspector.SubWindow"
+        mc:Ignorable="d"
+        Title="CreateModelWindow" Height="350" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="SkyBlue"></Border>
+        <Border Grid.Row="2" Background="Silver"></Border>
+        <Label FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">새로운 모델명을 입력 해 주세요.</Label>
+        <Label Grid.Row="2" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">새로운 모델코드을 입력 해 주세요.</Label>
+        <TextBox Name="txtName" Grid.Row="1" Margin="10,5" FontSize="35" FontWeight="Bold" ></TextBox>
+        <TextBox Name="txtCode" Grid.Row="3" Margin="10,5" FontSize="35" FontWeight="Bold"></TextBox>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnOK" Grid.Column="1" FontSize="20" Margin="5">확 인</Button>
+            <Button Name="btnCancel" Grid.Column="3" FontSize="20" Margin="5">취 소</Button>
+        </Grid>
+    </Grid>
+</Window>

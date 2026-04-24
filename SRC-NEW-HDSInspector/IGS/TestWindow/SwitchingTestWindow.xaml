@@ -1,0 +1,19 @@
+﻿<Window x:Class="IGS.TestWindow.SwitchingTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGS.TestWindow"
+        mc:Ignorable="d"
+        Title="SwitchingTestWindow" Height="200" Width="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Margin="5" Content="시작" Name="btnStart"/>
+        <Button Grid.Row="1" Margin="5" Content="정지" Name="btnStop"/>
+    </Grid>
+</Window>

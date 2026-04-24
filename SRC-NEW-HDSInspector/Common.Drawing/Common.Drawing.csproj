@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4612488B-945E-41AF-92E8-76C50EF81A30}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common.Drawing</RootNamespace>
+    <AssemblyName>Common.Drawing</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_MTS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_MTS|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug_MTS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit.Extended, Version=1.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\CommandAdd.cs" />
+    <Compile Include="Command\CommandChangeOrder.cs" />
+    <Compile Include="Command\CommandChangeState.cs" />
+    <Compile Include="Command\CommandDelete.cs" />
+    <Compile Include="Command\CommandDeleteAll.cs" />
+    <Compile Include="DrawingTool\ToolEllipseBase.cs" />
+    <Compile Include="DrawingTool\ToolEllipseMark.cs" />
+    <Compile Include="DrawingTool\ToolGuideLine.cs" />
+    <Compile Include="DrawingTool\ToolIDMark.cs" />
+    <Compile Include="DrawingTool\ToolNumberMark.cs" />
+    <Compile Include="DrawingTool\ToolRectangleMark.cs" />
+    <Compile Include="DrawingTool\ToolSpecialMark.cs" />
+    <Compile Include="DrawingTool\ToolStripAlign.cs" />
+    <Compile Include="DrawingTool\ToolStripGuide.cs" />
+    <Compile Include="DrawingTool\ToolTriangleMark.cs" />
+    <Compile Include="DrawingTool\ToolWeekMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsEllipseMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsGuideLine.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsIDMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsMarkGuide.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsNumberMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsRailGuide.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsRectangleMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsSkeletonLine.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsSpecialMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsStripAlign.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsStripOrigin.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsTBDMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsTriangleMark.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsUnitGuide.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsWeekMark.cs" />
+    <Compile Include="GraphicType\GraphicsSkeletonBall.cs" />
+    <Compile Include="GraphicType\GraphicsEllipseBase.cs" />
+    <Compile Include="GraphicType\GraphicsEllipseMark.cs" />
+    <Compile Include="GraphicType\GraphicsGuideLine.cs" />
+    <Compile Include="GraphicType\GraphicsIDMark.cs" />
+    <Compile Include="GraphicType\GraphicsMarkGuide.cs" />
+    <Compile Include="GraphicType\GraphicsNumberMark.cs" />
+    <Compile Include="GraphicType\GraphicsRailGuide.cs" />
+    <Compile Include="GraphicType\GraphicsRectangleMark.cs" />
+    <Compile Include="GraphicType\GraphicsSkeletonLine.cs" />
+    <Compile Include="GraphicType\GraphicsSpecialMark.cs" />
+    <Compile Include="GraphicType\GraphicsStripAlign.cs" />
+    <Compile Include="GraphicType\GraphicsStripOrigin.cs" />
+    <Compile Include="GraphicType\GraphicsTBD.cs" />
+    <Compile Include="GraphicType\GraphicsTriangleMark.cs" />
+    <Compile Include="GraphicType\GraphicsUnitGuide.cs" />
+    <Compile Include="GraphicType\GraphicsWeekMark.cs" />
+    <Compile Include="Helper\ContextMenuHelper.cs" />
+    <Compile Include="Definitions.cs" />
+    <Compile Include="DrawingCanvas.cs" />
+    <Compile Include="GraphicType\GraphicsBase.cs" />
+    <Compile Include="GraphicType\GraphicsEllipse.cs" />
+    <Compile Include="GraphicType\GraphicsLine.cs" />
+    <Compile Include="GraphicType\GraphicsPolyLine.cs" />
+    <Compile Include="GraphicType\GraphicsRectangle.cs" />
+    <Compile Include="GraphicType\GraphicsRectangleBase.cs" />
+    <Compile Include="GraphicType\GraphicsSelectionRectangle.cs" />
+    <Compile Include="Helper\HelperFunctions.cs" />
+    <Compile Include="InspectionTypeUI\BallPattern.xaml.cs">
+      <DependentUpon>BallPattern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\CrossPattern.xaml.cs">
+      <DependentUpon>CrossPattern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\DamSize.xaml.cs" />
+    <Compile Include="InspectionTypeUI\ExceptionalMask.xaml.cs">
+      <DependentUpon>ExceptionalMask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\FigureShape.xaml.cs">
+      <DependentUpon>FigureShape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\Groove.xaml.cs">
+      <DependentUpon>Groove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\GV_Inspection.xaml.cs">
+      <DependentUpon>GV_Inspection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\IDMark.xaml.cs">
+      <DependentUpon>IDMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\OuterFiducial.xaml.cs">
+      <DependentUpon>OuterFiducial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\OuterState.xaml.cs">
+      <DependentUpon>OuterState.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\PSROdd.xaml.cs">
+      <DependentUpon>PSROdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\RawMetrial.xaml.cs">
+      <DependentUpon>RawMetrial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\ShapeShiftWithCL.xaml.cs">
+      <DependentUpon>ShapeShiftWithCL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\UnitPattern.xaml.cs">
+      <DependentUpon>UnitPattern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\VentHole2.xaml.cs">
+      <DependentUpon>VentHole2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\VentHole.xaml.cs">
+      <DependentUpon>VentHole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\WindowPunch.xaml.cs">
+      <DependentUpon>WindowPunch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionType\IInspectionTypeUICommands.cs" />
+    <Compile Include="InspectionTypeUI\FiducialAlign.xaml.cs">
+      <DependentUpon>FiducialAlign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\LeadShapeWithCenterLine.xaml.cs">
+      <DependentUpon>LeadShapeWithCenterLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\LeadGap.xaml.cs">
+      <DependentUpon>LeadGap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\ShapeShift.xaml.cs">
+      <DependentUpon>ShapeShift.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\SpaceShapeWithCenterLine.xaml.cs">
+      <DependentUpon>SpaceShapeWithCenterLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\StateAlignedMask.xaml.cs">
+      <DependentUpon>StateAlignedMask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionTypeUI\StateIntensity.xaml.cs">
+      <DependentUpon>StateIntensity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionType\DefaultInspectionTypeValue.cs" />
+    <Compile Include="InspectionType\Definitions.cs" />
+    <Compile Include="InspectionType\InspectionItem.cs" />
+    <Compile Include="InspectionType\InspectionItemHelper.cs" />
+    <Compile Include="InspectionType\InspectionResultTypeHelper.cs" />
+    <Compile Include="InspectionType\InspectionType.cs" />
+    <Compile Include="InspectionType\InspectionQueryHelper.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsBase.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsEllipse.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsLine.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsPolyLine.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsRectangle.cs" />
+    <Compile Include="InspectionType\InspectionTypeProperty.cs" />
+    <Compile Include="MarkingTypeUI\GuideLocation.xaml.cs" />
+    <Compile Include="MarkingTypeUI\IDMark.xaml.cs" />
+    <Compile Include="MarkingTypeUI\Location.xaml.cs" />
+    <Compile Include="MarkingTypeUI\Number.xaml.cs" />
+    <Compile Include="MarkingTypeUI\RailCircle.xaml.cs" />
+    <Compile Include="MarkingTypeUI\RailLocation.xaml.cs" />
+    <Compile Include="MarkingTypeUI\RailRect.xaml.cs" />
+    <Compile Include="MarkingTypeUI\RailSpecial.xaml.cs" />
+    <Compile Include="MarkingTypeUI\RailTri.xaml.cs" />
+    <Compile Include="MarkingTypeUI\TBD.xaml.cs">
+      <DependentUpon>TBD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MarkingTypeUI\UnitCircle.xaml.cs" />
+    <Compile Include="MarkingTypeUI\UnitGuide.xaml.cs" />
+    <Compile Include="MarkingTypeUI\UnitRect.xaml.cs" />
+    <Compile Include="MarkingTypeUI\UnitSpecial.xaml.cs" />
+    <Compile Include="MarkingTypeUI\UnitTri.xaml.cs" />
+    <Compile Include="MarkingTypeUI\Week.xaml.cs" />
+    <Compile Include="MarkingType\DefaultMarkingTypeValue.cs" />
+    <Compile Include="MarkingType\Definitions.cs" />
+    <Compile Include="MarkingType\MarkInformation.cs" />
+    <Compile Include="MarkingType\MarkingItemHelper.cs" />
+    <Compile Include="MarkingType\MarkingQueryHelper.cs" />
+    <Compile Include="MarkingType\MarkingTypeProperty.cs" />
+    <Compile Include="MarkingType\MarkingTypeUICommands.cs" />
+    <Compile Include="MarkingType\MarkItem.cs" />
+    <Compile Include="MarkingType\MarkType.cs" />
+    <Compile Include="GraphicProperty\PropertiesGraphicsSkeletonBall.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicProperty\SerializationHelper.cs" />
+    <Compile Include="DrawingTool\Tool.cs" />
+    <Compile Include="DrawingTool\ToolEllipse.cs" />
+    <Compile Include="DrawingTool\ToolLine.cs" />
+    <Compile Include="DrawingTool\ToolObject.cs" />
+    <Compile Include="DrawingTool\ToolPointer.cs" />
+    <Compile Include="DrawingTool\ToolPolyLine.cs" />
+    <Compile Include="DrawingTool\ToolRectangle.cs" />
+    <Compile Include="DrawingTool\ToolRectangleBase.cs" />
+    <Compile Include="DrawingTool\ToolTypeConverter.cs" />
+    <Compile Include="Helper\UndoManager.cs" />
+    <Compile Include="SectionSettingStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Ellipse.cur" />
+    <Content Include="Images\Line.cur" />
+    <Content Include="Images\Pencil.cur" />
+    <Content Include="Images\PolyHandle.cur" />
+    <Content Include="Images\Rectangle.cur" />
+    <Content Include="Images\Text.cur" />
+    <Content Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="InspectionTypeUI\BallPattern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\CrossPattern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\DamSize.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InspectionTypeUI\ExceptionalMask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\FiducialAlign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\FigureShape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\Groove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\GV_Inspection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\IDMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\LeadShapeWithCenterLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\LeadGap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\OuterFiducial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\OuterState.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\PSROdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\RawMetrial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\ShapeShift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\ShapeShiftWithCL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\SpaceShapeWithCenterLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\StateAlignedMask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InspectionTypeUI\StateIntensity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\UnitPattern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\VentHole2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InspectionTypeUI\VentHole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionTypeUI\WindowPunch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MarkingTypeUI\GuideLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\IDMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\Location.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\Number.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\RailCircle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\RailLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\RailRect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\RailSpecial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\RailTri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\TBD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MarkingTypeUI\UnitCircle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\UnitGuide.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\UnitRect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\UnitSpecial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\UnitTri.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MarkingTypeUI\Week.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.DataBase\Common.DataBase.csproj">
+      <Project>{43F4DB48-ADB5-491E-A272-D0BA31DCB581}</Project>
+      <Name>Common.DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{D3E958B4-3136-4EF1-A6D8-8FF2050E5F74}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RMS.Generic\RMS.Generic.csproj">
+      <Project>{1BC85125-AB82-4C74-9716-D08AD5E8E66A}</Project>
+      <Name>RMS.Generic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del $(ProjectName).pdb</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

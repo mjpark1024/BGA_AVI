@@ -1,0 +1,28 @@
+﻿<Window x:Class="IGS.MultiThreadingTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IGS"
+        mc:Ignorable="d"
+        Title="MultiThreadingTest" Height="150" Width="350">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Text="Thread 수"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="tboxNum"/>
+        <Button Grid.Row="0" Grid.Column="2" Margin="5" Name="btnRun" Content="실행" FontSize="15"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Text="실행시간"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Name="tbTime"/>
+    </Grid>
+</Window>

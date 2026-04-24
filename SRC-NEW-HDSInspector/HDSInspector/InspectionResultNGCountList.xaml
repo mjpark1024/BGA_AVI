@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="HDSInspector.InspectionResultNGCountList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>                
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.ColumnSpan="5"  BorderBrush="#FF919191" BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="LightGray" BorderThickness="1"/>
+        
+        <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"  HorizontalAlignment="Center">불량 정보</TextBlock>
+        <ScrollViewer Name="NGContListScrollViewer" Grid.Row = "1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" CanContentScroll="True">
+            <ListBox x:Name="lbNGCountList" IsSynchronizedWithCurrentItem="True" SelectionMode="Single">
+                <ListBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.3">
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#77444444" Offset="0.3"/>
+                    </LinearGradientBrush>
+                </ListBox.Background>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height ="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="#FF919191" Margin="1,2,1,2" CornerRadius="2" Opacity="0.8" Name="NGBorder1"/>
+                            <Border Grid.Column="1" BorderBrush="#FF919191" Margin="1,2,1,2" CornerRadius="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.8">
+                                        <GradientStop Color="#77444444" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.3"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Border Grid.Column="2" BorderBrush="#FF919191" Margin="1,2,1,2" CornerRadius="2" Opacity="0.8" Name="NGBorder2"/>
+                            <Border Grid.Column="3" BorderBrush="#FF919191" Margin="1,2,1,2" CornerRadius="2" Name="NGBorder3">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.7">
+                                        <GradientStop Color="#77444444" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.3"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="txtNGName1" Text="{Binding Path=NGName1}" TextAlignment="Center"/>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="txtNGCnt1" Text="{Binding Path=NGCnt1}" TextAlignment="Center"/>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="txtNGName2" Text="{Binding Path=NGName2}" TextAlignment="Center"/>
+                            <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="txtNGCnt2" Text="{Binding Path=NGCnt2}" TextAlignment="Center"/>
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="Align">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="Groove">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="YellowGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="리드">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="RoyalBlue"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="Half 에칭">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="#4c7eb6"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="다운셋">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="Sienna"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="테이프">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="DeepPink"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="도금">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="DarkOrchid"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="표면">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="#4c7eb6"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="공간">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="Aqua"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName1}" Value="기타">
+                                <Setter TargetName="NGBorder1" Property="Background" Value="Gray"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="Align">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="Groove">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="YellowGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="리드">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="RoyalBlue"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="Half 에칭">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="#4c7eb6"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="다운셋">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="Sienna"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="테이프">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="DeepPink"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="도금">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="DarkOrchid"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="표면">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="#4c7eb6"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="공간">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="Aqua"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="기타">
+                                <Setter TargetName="NGBorder2" Property="Background" Value="Gray"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=NGName2}" Value="None">
+                                <Setter TargetName="txtNGName2" Property="Text" Value=""/>
+                                <Setter TargetName="txtNGCnt2" Property="Text" Value=""/>
+                                <Setter TargetName="NGBorder3" Property="Background" Value="Transparent"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>                    
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
