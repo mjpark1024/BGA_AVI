@@ -73,6 +73,7 @@ namespace HDSInspector
 
         public void Init()
         {
+            if (MainWindow.NG_Info.Size == 0) return;
             m_TableData = new InspectionResultDataControl(MainWindow.NG_Info);
             m_TableData.InitNGInfo();
             ResultTable.DataContext = m_TableData;
