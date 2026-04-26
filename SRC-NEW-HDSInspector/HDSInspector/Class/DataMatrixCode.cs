@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Drawing.InspectionTypeUI;
 using DataMatrix.net;
 using IGS.Classes;
 using Keyence.AR.Communication;
@@ -2457,9 +2458,10 @@ namespace HDSInspector
                 List<string> codes = new List<string>();
                 Mat srcImage = BitmapConverter.ToMat(srcBitmap);
                 Mat ConvertImg = srcImage.Clone();
+                Cv2.ImWrite("D:\\TEST.png", srcImage);
                 bChk = ConvertDataMatrix(srcImage, ref ConvertImg, (int)MCR_Simbols.MCR_Simbols_Auto);
-                var zxresult = RecognitionMatrix(ConvertImg, type);
-                Cv2.ImWrite("D:\\TEST.png", ConvertImg);
+                var zxresult = RecognitionMatrix(ConvertImg, type);           
+                Cv2.ImWrite("D:\\DstImg.png", ConvertImg);
                 if (zxresult != "")
                 {
                     codes.Add(zxresult);
@@ -2586,7 +2588,7 @@ namespace HDSInspector
                         area = stats.At<int>(j, (int)ConnectedComponentsTypes.Area);
 
                         // 찾은 덩어리 중 큰것부터 작은 것 순으로 검색하여. 정사각형과 유사하고, 사이즈가 적당히 큰 것으로 리턴한다. 큰 사각형 테두리를 찾더라도 더 작은 것이 우선
-                        if (Math.Abs(width - height) < 30 && width > 40 && height > 40)
+                        if (/*Math.Abs(width - height) < 30 &&*/ width > 40 && height > 40)
                         {
                             // 라벨링 박스
                             if (left < iCutSize || top < iCutSize || image.Cols < left + width + (iCutSize) || image.Rows < top + height + (iCutSize)) continue;
@@ -2703,7 +2705,6 @@ namespace HDSInspector
                             Cv2.Erode(MatRoiImgBi, MatRoiImgBi, mask, new Point(-1, -1), iboraderLength, BorderTypes.Replicate);
                         }
                     }
-                    Cv2.ImWrite("D:\\MatRoiImgBi.png", MatRoiImgBi);
                     int[] iindexChk = new int[2];
                     List<int>[] ListEdgePoints = new List<int>[2];
                     for (int i = 0; i < 2; i++) ListEdgePoints[i] = new List<int>();
@@ -2774,15 +2775,15 @@ namespace HDSInspector
                             (ListEdgePoints[0] == null || ListEdgePoints[0].Count == 0) ||
                             (ListEdgePoints[1] == null || ListEdgePoints[1].Count == 0) ||
                             ListEdgePoints[0].Count() % 2 == 1 ||
-                            ListEdgePoints[1].Count() % 2 == 1 ||
-                            ListEdgePoints[0].Count() != ListEdgePoints[1].Count())
+                            ListEdgePoints[1].Count() % 2 == 1)// ||
+                            //ListEdgePoints[0].Count() != ListEdgePoints[1].Count())
                         {
                             bFindFlag = false;
                         }
 
                         if (bFindFlag == true)
                         {
-                            ///////검증용
+                            /////////////////////검증용/////////////////////////
                             MatRoiImgBi.CopyTo(MatRoiImgBiLine);
                             MatRoiImgBi.CopyTo(MatRoiImgDot);
                             Cv2.CvtColor(ListMatRoiImg[k], ListMatRoiImg[k], ColorConversionCodes.GRAY2BGR);
@@ -2797,8 +2798,26 @@ namespace HDSInspector
                                 Cv2.Line(MatRoiImgBiLine, 0, ListEdgePoints[1][rotate], MatRoiImgBi.Cols, ListEdgePoints[1][rotate], new Scalar(0, 255, 0));
                             }
                             MatRoiImgBiLine.CopyTo(CrossLineImg);
-                            Cv2.Resize(CrossLineImg, CrossLineImg, new Size(300, 300), 0, 0, InterpolationFlags.Linear);
+
+                            int numerator, denominator, multColum, multRow;
+                            if (ListEdgePoints[0].Count > ListEdgePoints[1].Count)
+                            {
+                                numerator = ListEdgePoints[0].Count;
+                                denominator = ListEdgePoints[1].Count;
+                                multColum = (int)Math.Ceiling((double)(numerator / denominator));
+                                multRow = 1;
+
+                            }
+                            else
+                            {
+                                numerator = ListEdgePoints[1].Count;
+                                denominator = ListEdgePoints[0].Count;
+                                multColum = 1;
+                                multRow = (int)Math.Ceiling((double)(numerator / denominator));
+                            }
+                            Cv2.Resize(CrossLineImg, CrossLineImg, new Size(300 * multColum, 300 * multRow), 0, 0, InterpolationFlags.Linear);
                             Cv2.ImWrite("D:\\cross.png", CrossLineImg);
+                            //////////////////////////////////////////////////////
                             //MatRoiImgBiLine                        
                             if (!bRetry)
                             {
@@ -2818,7 +2837,7 @@ namespace HDSInspector
                             {
                                 int ix, iy;
                                 //바이너리  IMAGE 생성 
-                                Mat MCRResult = MCRResultImg.SubMat(new Rect(1, 1, ListEdgePoints[1].Count + 1, ListEdgePoints[0].Count + 1));
+                                Mat MCRResult = MCRResultImg.SubMat(new Rect(1, 1, ListEdgePoints[0].Count + 1, ListEdgePoints[1].Count + 1));
 
                                 for (int rotate = 0; rotate <= ListEdgePoints[1].Count; rotate++)
                                 {
@@ -3176,8 +3195,8 @@ namespace HDSInspector
             if (img.Empty()) return false;
 
             Mat matTmp = new Mat();
-            img.CopyTo(matTmp);
 
+            img.CopyTo(matTmp);
             if (matTmp.Channels() != 1)
                 Cv2.CvtColor(matTmp, matTmp, ColorConversionCodes.BGR2GRAY);
 
@@ -3190,9 +3209,9 @@ namespace HDSInspector
             {
                 return false;
             }
-
-            int iRowSize = (int)(matTmp.Rows / 12.0 + 0.5);
-
+            Size DotSize = FindDotSize(img.Clone());
+            int Count = (int)(matTmp.Rows / DotSize.Width);
+            int iRowSize = (int)(matTmp.Rows / Count);  
             MultiMap<int, int>[] mapEdgeSearch = new MultiMap<int, int>[2];
             MultiMap<int, int>[] mapRisingPos = new MultiMap<int, int>[2];
             MultiMap<int, int>[] mapFallingPos = new MultiMap<int, int>[2];
@@ -3214,7 +3233,6 @@ namespace HDSInspector
             {
                 if (updown == 1)
                     Cv2.Flip(matTmp, matTmp, FlipMode.XY);
-
                 int MaxKeyCnt = 0;
                 int iFindCutPos = -1;
 
@@ -3303,10 +3321,11 @@ namespace HDSInspector
                 if (mcr_version < MaxKey[updown])
                     mcr_version = MaxKey[updown];
             }
-
+                      
+            MatrixCnt = mcr_version * 2;           
+            //if (img.Cols > matTmp.Cols)
+            //    MatrixCnt = mcr_version * 2;
             if (MatrixCnt == 0)
-                MatrixCnt = mcr_version * 2;
-            else if (MatrixCnt != mcr_version * 2)
                 return false;
 
             vecEdgePoints[iType].Clear();
