@@ -29,20 +29,6 @@ using Size = OpenCvSharp.Size;
 
 namespace HDSInspector
 {
-    public static class MatrixCodeDLL
-    {
-        [DllImport("FindDataMatrixd.dll")]
-        private static extern string Decode(Mat InputImgae, ref Mat OutputImage);
-
-        public static string Native_Decode(Bitmap Inputimage)
-        {
-            Mat origin_mat = BitmapConverter.ToMat(Inputimage);
-            Mat CloneMat = origin_mat.Clone();
-            string str = Decode(origin_mat, ref CloneMat);
-            return str;
-        }
-    }
-
     public static class DataMatrixCode
     {
         static Mat mask1 = Cv2.GetStructuringElement(MorphShapes.Rect, new OpenCvSharp.Size(1, 1));
@@ -2493,8 +2479,6 @@ namespace HDSInspector
                 return result;
             }
         }
-        static int iMatrixCnt = 16;
-        static Mat matCrossLineImg = new Mat();
         public static bool ConvertDataMatrix(Mat srcImage, ref Mat DstImg, int simbol, int ithreshold = -1)
         {
             //try
@@ -2503,14 +2487,12 @@ namespace HDSInspector
                 List<string> codes = new List<string>();
                 Mat label_box = new Mat();
 
-                m_bMCROrigin[0] = false;
-                m_bMCROrigin[1] = false;
-
                 Mat image_gray = new Mat();
                 Mat image_bi = new Mat();
                 // 라벨 레이어 변수
                 Mat img_label = new Mat();
                 Mat stats = new Mat();
+
                 Mat centroids = new Mat();
                 Mat mask = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(3, 3), new Point(1, 1));
 
@@ -2530,6 +2512,7 @@ namespace HDSInspector
                 Mat MatRoiImgBi = new Mat(); ;
                 Mat MatRoiImgBiLine = new Mat();
                 Mat MatRoiImgDot = new Mat();
+                Mat CrossLineImg = new Mat();
 
                 int iboraderLength = 0;
                 List<Mat> ListMatRoiImg = new List<Mat>();
@@ -2542,6 +2525,7 @@ namespace HDSInspector
                 bool bFindFlag = true;
                 ListMatRoiImg.Clear();
                 bool AutoSizeChk = true;
+                int iMatrixCnt = 16;
 
                 for (int i = 0; i < 5; i++)
                 {
@@ -2561,8 +2545,8 @@ namespace HDSInspector
                             Cv2.Threshold(image_gray, image_bi, ithreshold, 255, ThresholdTypes.BinaryInv);
                         else//OTSU 알고리즘
                             Cv2.Threshold(image_gray, image_bi, 0, 255, ThresholdTypes.BinaryInv | ThresholdTypes.Otsu);
-                        Cv2.Dilate(image_bi, image_bi, mask, new Point(-1, -1), 1, BorderTypes.Replicate); //노이즈 제거
-                        Cv2.Erode(image_bi, image_bi, mask, new Point(-1, -1), 1, BorderTypes.Replicate); //노이즈 제거    
+                        Cv2.Erode(image_bi, image_bi, mask, new Point(-1, -1), 1, BorderTypes.Replicate); //노이즈 제거  
+                        Cv2.Dilate(image_bi, image_bi, mask, new Point(-1, -1), 1, BorderTypes.Replicate); //노이즈 제거       
                     }
                     else if (i == 2) //(첫번째 이진화 실패할 경우 반전)
                     {
@@ -2812,9 +2796,9 @@ namespace HDSInspector
                             {
                                 Cv2.Line(MatRoiImgBiLine, 0, ListEdgePoints[1][rotate], MatRoiImgBi.Cols, ListEdgePoints[1][rotate], new Scalar(0, 255, 0));
                             }
-                            MatRoiImgBiLine.CopyTo(matCrossLineImg);
-                            Cv2.Resize(matCrossLineImg, matCrossLineImg, new Size(300, 300), 0, 0, InterpolationFlags.Linear);
-                            Cv2.ImWrite("D:\\cross.png", matCrossLineImg);
+                            MatRoiImgBiLine.CopyTo(CrossLineImg);
+                            Cv2.Resize(CrossLineImg, CrossLineImg, new Size(300, 300), 0, 0, InterpolationFlags.Linear);
+                            Cv2.ImWrite("D:\\cross.png", CrossLineImg);
                             //MatRoiImgBiLine                        
                             if (!bRetry)
                             {
@@ -2941,7 +2925,6 @@ namespace HDSInspector
                             Cv2.Resize(MCRResultImg, MCRResultImg, new Size(MCRResultImg.Cols * 10, MCRResultImg.Rows * 10), 0, 0, InterpolationFlags.Nearest);
                             MCRResultImg.CopyTo(DstImg);
                         }
-                        m_RectCode = ListFindRect[k];
                     }
                     if (bFindFlag)
                     {
